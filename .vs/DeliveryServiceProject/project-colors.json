@@ -1,0 +1,21 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "390f3975-cce0-443e-8d81-2a1192224ad3": {
+      "ProjectGuid": "390f3975-cce0-443e-8d81-2a1192224ad3",
+      "DisplayName": "DeliveryServiceData",
+      "ColorIndex": 0
+    },
+    "07a88e03-767e-4104-b60c-58e957576d57": {
+      "ProjectGuid": "07a88e03-767e-4104-b60c-58e957576d57",
+      "DisplayName": "DeliveryServiceDomain",
+      "ColorIndex": 1
+    },
+    "7a25af51-259f-4640-8791-1cf7fac70697": {
+      "ProjectGuid": "7a25af51-259f-4640-8791-1cf7fac70697",
+      "DisplayName": "DeliveryServiceApp",
+      "ColorIndex": 2
+    }
+  },
+  "NextColorIndex": 3
+}

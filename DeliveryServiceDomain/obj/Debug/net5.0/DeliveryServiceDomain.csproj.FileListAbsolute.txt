@@ -1,0 +1,15 @@
+G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceDomain\bin\Debug\net5.0\DeliveryServiceDomain.deps.json
+G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceDomain\bin\Debug\net5.0\DeliveryServiceDomain.runtimeconfig.json
+G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceDomain\bin\Debug\net5.0\DeliveryServiceDomain.runtimeconfig.dev.json
+G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceDomain\bin\Debug\net5.0\DeliveryServiceDomain.dll
+G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceDomain\bin\Debug\net5.0\ref\DeliveryServiceDomain.dll
+G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceDomain\bin\Debug\net5.0\DeliveryServiceDomain.pdb
+G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceDomain\obj\Debug\net5.0\DeliveryServiceDomain.csproj.AssemblyReference.cache
+G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceDomain\obj\Debug\net5.0\DeliveryServiceDomain.GeneratedMSBuildEditorConfig.editorconfig
+G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceDomain\obj\Debug\net5.0\DeliveryServiceDomain.AssemblyInfoInputs.cache
+G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceDomain\obj\Debug\net5.0\DeliveryServiceDomain.AssemblyInfo.cs
+G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceDomain\obj\Debug\net5.0\DeliveryServiceDomain.csproj.CoreCompileInputs.cache
+G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceDomain\obj\Debug\net5.0\DeliveryServiceDomain.dll
+G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceDomain\obj\Debug\net5.0\ref\DeliveryServiceDomain.dll
+G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceDomain\obj\Debug\net5.0\DeliveryServiceDomain.pdb
+G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceDomain\obj\Debug\net5.0\DeliveryServiceDomain.genruntimeconfig.cache
