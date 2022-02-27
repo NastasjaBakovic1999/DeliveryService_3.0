@@ -22,7 +22,7 @@ namespace DeliveryServiceDomain.Configurations
                 .HasColumnName("StatusName")
                 .IsRequired()
                 .HasColumnType("varchar")
-                .HasMaxLength(20);
+                .HasMaxLength(40);
         }
     }
 }

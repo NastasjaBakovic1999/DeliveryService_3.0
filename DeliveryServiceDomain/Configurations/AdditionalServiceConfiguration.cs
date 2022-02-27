@@ -22,7 +22,7 @@ namespace DeliveryServiceDomain.Configurations
                 .HasColumnName("AdditionalServiceName")
                 .IsRequired()
                 .HasColumnType("varchar")
-                .HasMaxLength(20);
+                .HasMaxLength(40);
 
             entity.Property(e => e.AdditionalServicePrice)
                 .HasColumnName("AdditionalServicePrice")
