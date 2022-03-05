@@ -39,12 +39,12 @@ namespace DeliveryServiceData.Implementation
 
         public Deliverer GetByUsernameAndPassword(Deliverer deliverer)
         {
-            return context.Deliverers.SingleOrDefault(d=> d.Username == deliverer.Username && d.Password == deliverer.Password);
+            return context.Deliverers.Single(d=> d.Username == deliverer.Username && d.Password == deliverer.Password);
         }
 
         public Deliverer Search(Expression<Func<Deliverer, bool>> pred)
         {
-            return context.Deliverers.SingleOrDefault(pred);
+            return context.Deliverers.Single(pred);
         }
     }
 }

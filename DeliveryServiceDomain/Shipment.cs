@@ -20,6 +20,8 @@ namespace DeliveryServiceDomain
         public Location ReceivingLocation { get; set; }
         public string Street { get; set; }
         public string PostalNo { get; set; }
+        public string ContactPersonName { get; set; }
+        public string ContactPersonPhone { get; set; }
         public int UserId { get; set; }
         public User User { get; set; }
         public int DelivererId { get; set; }

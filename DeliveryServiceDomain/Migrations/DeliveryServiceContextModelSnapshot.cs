@@ -306,6 +306,18 @@ namespace DeliveryServiceDomain.Migrations
                         .HasColumnName("ShipmentId")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("ContactPersonName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("ContactPersonName");
+
+                    b.Property<string>("ContactPersonPhone")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)")
+                        .HasColumnName("ContactPersonPhone");
+
                     b.Property<int>("DelivererId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
@@ -543,6 +555,12 @@ namespace DeliveryServiceDomain.Migrations
                 {
                     b.HasBaseType("DeliveryServiceDomain.Person");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("Email");
+
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasMaxLength(30)
@@ -559,6 +577,7 @@ namespace DeliveryServiceDomain.Migrations
                             LastName = "Peric",
                             Password = "per1c4",
                             Username = "perica",
+                            Email = "perap@gmail.com",
                             PhoneNumber = "065/111-222-33"
                         },
                         new
@@ -568,6 +587,7 @@ namespace DeliveryServiceDomain.Migrations
                             LastName = "Zikic",
                             Password = "z1k1c4",
                             Username = "zikica",
+                            Email = "zikazikic222@gmail.com",
                             PhoneNumber = "064/444-555-66"
                         });
                 });

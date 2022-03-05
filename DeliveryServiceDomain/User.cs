@@ -7,6 +7,7 @@ namespace DeliveryServiceDomain
     public class User : Person
     {
         public string PhoneNumber { get; set; }
+        public string Email { get; set; }
         public List<Shipment> Shipments { get; set; }
     }
 }

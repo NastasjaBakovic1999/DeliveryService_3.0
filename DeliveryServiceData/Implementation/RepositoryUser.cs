@@ -44,7 +44,7 @@ namespace DeliveryServiceData.Implementation
 
         public User GetByUsernameAndPassword(User user)
         {
-            return context.Users.SingleOrDefault(u => u.Username == user.Username && u.Password == user.Password);
+            return context.Users.Single(u => u.Username == user.Username && u.Password == user.Password);
         }
 
         public User Search(Expression<Func<User, bool>> pred)

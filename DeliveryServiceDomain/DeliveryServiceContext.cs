@@ -92,8 +92,8 @@ namespace DeliveryServiceDomain
         private void Seed(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasData(
-               new User { PersonId = 1, FirstName = "Pera", LastName = "Peric", Username = "perica", Password = "per1c4", PhoneNumber = "065/111-222-33" },
-               new User { PersonId = 2, FirstName = "Zika", LastName = "Zikic", Username = "zikica", Password = "z1k1c4", PhoneNumber = "064/444-555-66" }
+               new User { PersonId = 1, FirstName = "Pera", LastName = "Peric", Username = "perica", Password = "per1c4", PhoneNumber = "065/111-222-33", Email="perap@gmail.com" },
+               new User { PersonId = 2, FirstName = "Zika", LastName = "Zikic", Username = "zikica", Password = "z1k1c4", PhoneNumber = "064/444-555-66", Email="zikazikic222@gmail.com" }
             );
 
             modelBuilder.Entity<Deliverer>().HasData(

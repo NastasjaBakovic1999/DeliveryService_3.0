@@ -20,7 +20,11 @@ namespace DeliveryServiceDomain.Configurations
                 .HasColumnType("varchar")
                 .HasMaxLength(30);
 
-
+            entity.Property(e => e.Email)
+                .HasColumnName("Email")
+                .IsRequired()
+                .HasColumnType("varchar")
+                .HasMaxLength(50);
         }
 
     }

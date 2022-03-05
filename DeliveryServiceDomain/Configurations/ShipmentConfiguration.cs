@@ -49,6 +49,18 @@ namespace DeliveryServiceDomain.Configurations
                 .HasColumnType("int")
                 .IsRequired();
 
+            entity.Property(e => e.ContactPersonName)
+                .HasColumnName("ContactPersonName")
+                .HasColumnType("varchar")
+                .HasMaxLength(50)
+                .IsRequired();
+
+            entity.Property(e => e.ContactPersonPhone)
+                .HasColumnName("ContactPersonPhone")
+                .HasColumnType("varchar")
+                .HasMaxLength(30)
+                .IsRequired();
+
             entity.Property(e => e.Street)
                 .HasColumnName("Street")
                 .IsRequired()

@@ -24,6 +24,7 @@ namespace DeliveryServiceData.UnitOfWork.Implementation
             AdditionalServiceShipment = new RepositoryAdditionalServiceShipment(context);
             ShipmentType = new RepositoryShipmentType(context);
             Deliverer = new RepositoryDeliverer(context);
+            Person = new RepositoryPerson(context);
         }
 
         public IRepositoryAdditionalService AdditionalService { get; set; }
@@ -35,6 +36,7 @@ namespace DeliveryServiceData.UnitOfWork.Implementation
         public IRepositoryStatusShipment StatusShipment { get; set; }
         public IRepositoryUser User { get; set; }
         public IRepositoryDeliverer Deliverer { get; set; }
+        public IRepositoryPerson Person { get; set; }
 
         public void Commit()
         {
