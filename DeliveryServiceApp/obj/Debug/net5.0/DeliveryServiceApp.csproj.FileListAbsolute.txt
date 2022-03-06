@@ -69,5 +69,5 @@ G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\bin\Debug\ne
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\bin\Debug\net5.0\DeliveryServiceDomain.dll
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\bin\Debug\net5.0\DeliveryServiceData.pdb
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\bin\Debug\net5.0\DeliveryServiceDomain.pdb
-G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\obj\Debug\net5.0\Razor\Views\Login\Index.cshtml.g.cs
-G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\obj\Debug\net5.0\Razor\Views\Registration\Index.cshtml.g.cs
+G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\obj\Debug\net5.0\Razor\Views\HomePage\Registration.cshtml.g.cs
+G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\obj\Debug\net5.0\Razor\Views\HomePage\Index.cshtml.g.cs

@@ -15,7 +15,7 @@ namespace DeliveryServiceApp.Models
         public string Username { get; set; }
 
         [Required(ErrorMessage = "Phone number is required")]
-        [Phone(ErrorMessage = "Entered phone number is not valid")]
+        [DataType(DataType.PhoneNumber, ErrorMessage = "Entered phone number is not valid")]
         public string PhoneNumber { get; set; }
 
         [Required(ErrorMessage ="Email address is required")]
@@ -23,11 +23,10 @@ namespace DeliveryServiceApp.Models
         public string Email { get; set; }
 
         [Required(ErrorMessage ="Password is required")]
-        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8}$", ErrorMessage = "Password must have at least one uppercase character, at least one number and at least one special character")]
+        [RegularExpression(@"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&].{8,}$", ErrorMessage = "The password must have at least one uppercase letter, number and special character and must contain at least eight characters.")]
         public string Password { get; set; }
 
         [Required(ErrorMessage ="Confirm password is required")]
-        [DataType(DataType.Password)]
         [Compare("Password")]
         [NotMapped]
         public string ConfirmPassword { get; set; }
