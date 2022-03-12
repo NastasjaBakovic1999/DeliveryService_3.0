@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DeliveryServiceApp.Controllers
 {
-    public class ShippmentController : Controller
+    public class ShipmentController : Controller
     {
         private readonly IUnitOfWork unitOfWork;
 
-        public ShippmentController(IUnitOfWork unitOfWork)
+        public ShipmentController(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
         }
@@ -15,6 +15,11 @@ namespace DeliveryServiceApp.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        public IActionResult Create()
+        {
+            return View("Create");
         }
     }
 }

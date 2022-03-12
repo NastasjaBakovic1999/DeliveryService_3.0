@@ -16,24 +16,48 @@ namespace DeliveryServiceData.Implementation
             this.context = context;
         }
 
-        public void Add(Shipment param)
+        public void Add(Shipment shipment)
         {
-            throw new NotImplementedException();
+            context.Shipments.Add(shipment);
         }
 
-        public void Delete(Shipment param)
+        public void Delete(Shipment shipment)
         {
-            throw new NotImplementedException();
+            context.Shipments.Remove(shipment);
         }
 
         public Shipment FindByID(int id, params int[] ids)
         {
-            throw new NotImplementedException();
+            return context.Shipments.Find(id);
         }
 
         public List<Shipment> GetAll()
         {
-            throw new NotImplementedException();
+            return context.Shipments.ToList();
+        }
+
+        public List<Shipment> GetAllOfSpecifiedUser(int? userId)
+        {
+            if(userId != null)
+            {
+                return context.Shipments.Where(s => s.UserId == userId).ToList();
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public List<Shipment> GetAllOfSpecifiedDeliverer(int? delivererId)
+        {
+            if(delivererId != null)
+            {
+                return context.Shipments.Where(s => s.DelivererId == delivererId).ToList();
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }
