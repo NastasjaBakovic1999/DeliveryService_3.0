@@ -11,7 +11,6 @@ namespace DeliveryServiceDomain
 {
     public class DeliveryServiceContext : DbContext
     {
-        public DbSet<User> Users { get; set; }
         public DbSet<Shipment> Shipments { get; set; }
         public DbSet<AdditionalService> AdditionalServices { get; set; }
         public DbSet<AdditionalServiceShipment> AdditionalServiceShipments { get; set; }
@@ -19,8 +18,6 @@ namespace DeliveryServiceDomain
         public DbSet<ShipmentType> ShipmentTypes { get; set; }
         public DbSet<Status> Statuses { get; set; }
         public DbSet<StatusShipment> StatusShipments { get; set; }
-        public DbSet<Deliverer> Deliverers { get; set; }
-        public DbSet<Person> Persons { get; set; }
 
         public static readonly ILoggerFactory MyLoggerFactory = LoggerFactory.Create(builder => { builder.AddConsole(); });
 
@@ -43,16 +40,6 @@ namespace DeliveryServiceDomain
                 .HasMany<Shipment>(l => l.ReceivingShipments)
                 .WithOne(s => s.ReceivingLocation)
                 .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<User>()
-                .HasMany<Shipment>(u => u.Shipments)
-                .WithOne(s => s.User)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<Deliverer>()
-               .HasMany<Shipment>(d => d.Shipments)
-               .WithOne(s => s.Deliverer)
-               .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<ShipmentType>()
                 .HasMany<Shipment>(st => st.Shipments)
@@ -82,24 +69,12 @@ namespace DeliveryServiceDomain
             modelBuilder.ApplyConfiguration(new AdditionalServiceConfiguration());
             modelBuilder.ApplyConfiguration(new AdditionalServiceShipmentConfiguration());
             modelBuilder.ApplyConfiguration(new LocationConfiguration());
-            modelBuilder.ApplyConfiguration(new UserConfiguration());
-            modelBuilder.ApplyConfiguration(new PersonConfiguration());
-            modelBuilder.ApplyConfiguration(new DelivererConfiguration());
  
             Seed(modelBuilder);
         }
 
         private void Seed(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasData(
-               new User { PersonId = 1, FirstName = "Pera", LastName = "Peric", Username = "perica", Password = "per1c4", PhoneNumber = "065/111-222-33", Email="perap@gmail.com" },
-               new User { PersonId = 2, FirstName = "Zika", LastName = "Zikic", Username = "zikica", Password = "z1k1c4", PhoneNumber = "064/444-555-66", Email="zikazikic222@gmail.com" }
-            );
-
-            modelBuilder.Entity<Deliverer>().HasData(
-                new Deliverer { PersonId = 3, FirstName = "Nastasja", LastName = "Bakovic", Username = "nastasja", Password = "N4st4sj4" },
-                new Deliverer { PersonId = 4, FirstName = "Stefan", LastName = "Antic", Username = "stefan", Password = "ant33" }
-            );
 
             modelBuilder.Entity<Status>().HasData(
                 new Status { StatusId = 1, StatusName = "Zakazana" },

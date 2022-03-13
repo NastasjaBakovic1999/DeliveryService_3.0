@@ -1,9 +1,11 @@
 using DeliveryServiceData.UnitOfWork;
 using DeliveryServiceData.UnitOfWork.Implementation;
 using DeliveryServiceDomain;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -29,8 +31,20 @@ namespace DeliveryServiceApp
             services.AddControllersWithViews();
             services.AddDistributedMemoryCache();
             services.AddSession(opt => opt.IdleTimeout = TimeSpan.FromMinutes(10));
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddDbContext<DeliveryServiceContext>();
+            services.AddDbContext<PersonContext>();
+
+            services.AddIdentity<Person, IdentityRole<int>>().AddEntityFrameworkStores<PersonContext>();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Authentication/Login";
+                options.AccessDeniedPath = "/Authentication/Login";
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(15);
+                options.SlidingExpiration = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,13 +65,14 @@ namespace DeliveryServiceApp
 
             app.UseRouting();
             app.UseSession();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=HomePage}/{action=Index}/{id?}");
+                    pattern: "{controller=Authentication}/{action=Login}/{id?}");
             });
         }
     }

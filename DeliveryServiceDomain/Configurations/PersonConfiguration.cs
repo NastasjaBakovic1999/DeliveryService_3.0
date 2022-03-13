@@ -14,22 +14,6 @@ namespace DeliveryServiceDomain.Configurations
         {
             entity.ToTable("Persons");
 
-            entity.Property(e => e.PersonId)
-                .HasColumnName("PersonId")
-                .IsRequired();
-
-            entity.Property(e => e.Username)
-                .HasColumnName("Username")
-                .IsRequired()
-                .HasColumnType("varchar")
-                .HasMaxLength(20);
-
-            entity.Property(e => e.Password)
-               .HasColumnName("Password")
-               .IsRequired()
-               .HasColumnType("varchar")
-               .HasMaxLength(20);
-
             entity.Property(e => e.FirstName)
                .HasColumnName("FirstName")
                .IsRequired()

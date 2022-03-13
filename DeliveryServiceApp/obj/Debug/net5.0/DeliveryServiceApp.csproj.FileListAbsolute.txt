@@ -5,7 +5,6 @@ G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\bin\Debug\ne
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\bin\Debug\net5.0\DeliveryServiceApp.runtimeconfig.json
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\bin\Debug\net5.0\DeliveryServiceApp.runtimeconfig.dev.json
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\bin\Debug\net5.0\DeliveryServiceApp.dll
-G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\bin\Debug\net5.0\ref\DeliveryServiceApp.dll
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\bin\Debug\net5.0\DeliveryServiceApp.pdb
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\bin\Debug\net5.0\DeliveryServiceApp.Views.dll
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\bin\Debug\net5.0\DeliveryServiceApp.Views.pdb
@@ -69,8 +68,6 @@ G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\bin\Debug\ne
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\bin\Debug\net5.0\DeliveryServiceDomain.dll
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\bin\Debug\net5.0\DeliveryServiceData.pdb
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\bin\Debug\net5.0\DeliveryServiceDomain.pdb
-G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\obj\Debug\net5.0\Razor\Views\HomePage\Registration.cshtml.g.cs
-G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\obj\Debug\net5.0\Razor\Views\HomePage\Index.cshtml.g.cs
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\bin\Debug\net5.0\Humanizer.dll
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\bin\Debug\net5.0\Microsoft.AspNetCore.Razor.Language.dll
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\bin\Debug\net5.0\Microsoft.Bcl.AsyncInterfaces.dll
@@ -146,5 +143,14 @@ G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\bin\Debug\ne
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\bin\Debug\net5.0\runtimes\win-arm\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\bin\Debug\net5.0\runtimes\win-arm64\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
-G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\obj\Debug\net5.0\Razor\Views\User\ShipmentsList.cshtml.g.cs
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
+G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\obj\Debug\net5.0\refint\DeliveryServiceApp.dll
+G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\obj\Debug\net5.0\Razor\Views\Error.cshtml.g.cs
+G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\bin\Debug\net5.0\Microsoft.Extensions.Identity.Core.dll
+G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll
+G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\obj\Debug\net5.0\Razor\Views\Authentication\Register.cshtml.g.cs
+G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\obj\Debug\net5.0\Razor\Views\Authentication\Login.cshtml.g.cs
+G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs

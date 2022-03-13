@@ -1,6 +1,5 @@
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceData\bin\Debug\net5.0\DeliveryServiceData.deps.json
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceData\bin\Debug\net5.0\DeliveryServiceData.dll
-G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceData\bin\Debug\net5.0\ref\DeliveryServiceData.dll
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceData\bin\Debug\net5.0\DeliveryServiceData.pdb
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceData\bin\Debug\net5.0\DeliveryServiceDomain.dll
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceData\bin\Debug\net5.0\DeliveryServiceDomain.pdb
@@ -13,3 +12,4 @@ G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceData\obj\Debug\n
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceData\obj\Debug\net5.0\ref\DeliveryServiceData.dll
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceData\obj\Debug\net5.0\DeliveryServiceData.pdb
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceData\obj\Debug\net5.0\DeliveryServiceData.csproj.CopyComplete
+G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceData\obj\Debug\net5.0\refint\DeliveryServiceData.dll

@@ -115,6 +115,135 @@ namespace DeliveryServiceDomain.Migrations
                     b.ToTable("AdditionalServiceShipments");
                 });
 
+            modelBuilder.Entity("DeliveryServiceDomain.Customer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("PostalCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Customer");
+                });
+
+            modelBuilder.Entity("DeliveryServiceDomain.Deliverer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateOfEmployment")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Deliverer");
+                });
+
             modelBuilder.Entity("DeliveryServiceDomain.Location", b =>
                 {
                     b.Property<int>("LocationId")
@@ -261,43 +390,6 @@ namespace DeliveryServiceDomain.Migrations
                         });
                 });
 
-            modelBuilder.Entity("DeliveryServiceDomain.Person", b =>
-                {
-                    b.Property<int>("PersonId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("PersonId")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("varchar(20)")
-                        .HasColumnName("FirstName");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("varchar(20)")
-                        .HasColumnName("LastName");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("varchar(20)")
-                        .HasColumnName("Password");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("varchar(20)")
-                        .HasColumnName("Username");
-
-                    b.HasKey("PersonId");
-
-                    b.ToTable("Persons");
-                });
-
             modelBuilder.Entity("DeliveryServiceDomain.Shipment", b =>
                 {
                     b.Property<int>("ShipmentId")
@@ -317,6 +409,12 @@ namespace DeliveryServiceDomain.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)")
                         .HasColumnName("ContactPersonPhone");
+
+                    b.Property<int>("CustomerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("UserId")
+                        .HasDefaultValueSql("(CONVERT([int],session_context(N'PersonId')))");
 
                     b.Property<int>("DelivererId")
                         .ValueGeneratedOnAdd()
@@ -373,13 +471,9 @@ namespace DeliveryServiceDomain.Migrations
                         .HasColumnType("varchar(30)")
                         .HasColumnName("Street");
 
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("UserId")
-                        .HasDefaultValueSql("(CONVERT([int],session_context(N'PersonId')))");
-
                     b.HasKey("ShipmentId");
+
+                    b.HasIndex("CustomerId");
 
                     b.HasIndex("DelivererId");
 
@@ -388,8 +482,6 @@ namespace DeliveryServiceDomain.Migrations
                     b.HasIndex("SendingLocationId");
 
                     b.HasIndex("ShipmentTypeId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Shipments");
                 });
@@ -526,72 +618,6 @@ namespace DeliveryServiceDomain.Migrations
                     b.ToTable("StatusShipments");
                 });
 
-            modelBuilder.Entity("DeliveryServiceDomain.Deliverer", b =>
-                {
-                    b.HasBaseType("DeliveryServiceDomain.Person");
-
-                    b.ToTable("Deliverers");
-
-                    b.HasData(
-                        new
-                        {
-                            PersonId = 3,
-                            FirstName = "Nastasja",
-                            LastName = "Bakovic",
-                            Password = "N4st4sj4",
-                            Username = "nastasja"
-                        },
-                        new
-                        {
-                            PersonId = 4,
-                            FirstName = "Stefan",
-                            LastName = "Antic",
-                            Password = "ant33",
-                            Username = "stefan"
-                        });
-                });
-
-            modelBuilder.Entity("DeliveryServiceDomain.User", b =>
-                {
-                    b.HasBaseType("DeliveryServiceDomain.Person");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)")
-                        .HasColumnName("Email");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("varchar(30)")
-                        .HasColumnName("PhoneNumber");
-
-                    b.ToTable("Users");
-
-                    b.HasData(
-                        new
-                        {
-                            PersonId = 1,
-                            FirstName = "Pera",
-                            LastName = "Peric",
-                            Password = "per1c4",
-                            Username = "perica",
-                            Email = "perap@gmail.com",
-                            PhoneNumber = "065/111-222-33"
-                        },
-                        new
-                        {
-                            PersonId = 2,
-                            FirstName = "Zika",
-                            LastName = "Zikic",
-                            Password = "z1k1c4",
-                            Username = "zikica",
-                            Email = "zikazikic222@gmail.com",
-                            PhoneNumber = "064/444-555-66"
-                        });
-                });
-
             modelBuilder.Entity("DeliveryServiceDomain.AdditionalServiceShipment", b =>
                 {
                     b.HasOne("DeliveryServiceDomain.AdditionalService", "AdditionalService")
@@ -613,10 +639,16 @@ namespace DeliveryServiceDomain.Migrations
 
             modelBuilder.Entity("DeliveryServiceDomain.Shipment", b =>
                 {
+                    b.HasOne("DeliveryServiceDomain.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("DeliveryServiceDomain.Deliverer", "Deliverer")
-                        .WithMany("Shipments")
+                        .WithMany()
                         .HasForeignKey("DelivererId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DeliveryServiceDomain.Location", "ReceivingLocation")
@@ -637,11 +669,7 @@ namespace DeliveryServiceDomain.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("DeliveryServiceDomain.User", "User")
-                        .WithMany("Shipments")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                    b.Navigation("Customer");
 
                     b.Navigation("Deliverer");
 
@@ -650,8 +678,6 @@ namespace DeliveryServiceDomain.Migrations
                     b.Navigation("SendingLocation");
 
                     b.Navigation("ShipmentType");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DeliveryServiceDomain.StatusShipment", b =>
@@ -671,24 +697,6 @@ namespace DeliveryServiceDomain.Migrations
                     b.Navigation("Shipment");
 
                     b.Navigation("Status");
-                });
-
-            modelBuilder.Entity("DeliveryServiceDomain.Deliverer", b =>
-                {
-                    b.HasOne("DeliveryServiceDomain.Person", null)
-                        .WithOne()
-                        .HasForeignKey("DeliveryServiceDomain.Deliverer", "PersonId")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("DeliveryServiceDomain.User", b =>
-                {
-                    b.HasOne("DeliveryServiceDomain.Person", null)
-                        .WithOne()
-                        .HasForeignKey("DeliveryServiceDomain.User", "PersonId")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("DeliveryServiceDomain.AdditionalService", b =>
@@ -716,16 +724,6 @@ namespace DeliveryServiceDomain.Migrations
                 });
 
             modelBuilder.Entity("DeliveryServiceDomain.Status", b =>
-                {
-                    b.Navigation("Shipments");
-                });
-
-            modelBuilder.Entity("DeliveryServiceDomain.Deliverer", b =>
-                {
-                    b.Navigation("Shipments");
-                });
-
-            modelBuilder.Entity("DeliveryServiceDomain.User", b =>
                 {
                     b.Navigation("Shipments");
                 });

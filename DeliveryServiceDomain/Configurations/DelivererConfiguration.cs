@@ -12,7 +12,7 @@ namespace DeliveryServiceDomain.Configurations
     {
         public void Configure(EntityTypeBuilder<Deliverer> entity)
         {
-            entity.HasBaseType<Person>().ToTable("Deliverers");
+            entity.HasBaseType<Person>().ToTable("Deliverer");
         }
     }
 }

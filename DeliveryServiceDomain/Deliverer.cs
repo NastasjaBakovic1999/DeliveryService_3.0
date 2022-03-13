@@ -8,6 +8,6 @@ namespace DeliveryServiceDomain
 {
     public class Deliverer : Person
     {
-        public List<Shipment> Shipments { get; set; }
+        public DateTime DateOfEmployment { get; set; }
     }
 }

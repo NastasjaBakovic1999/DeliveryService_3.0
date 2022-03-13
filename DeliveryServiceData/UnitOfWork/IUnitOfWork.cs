@@ -15,9 +15,6 @@ namespace DeliveryServiceData.UnitOfWork
         public IRepositoryShipmentType ShipmentType { get; set; }
         public IRepositoryStatus Status { get; set; }
         public IRepositoryStatusShipment StatusShipment { get; set; }
-        public IRepositoryUser User { get; set; }
-        public IRepositoryDeliverer Deliverer { get; set; }
-        public IRepositoryPerson Person {get; set; }
         void Commit();
     }
 }

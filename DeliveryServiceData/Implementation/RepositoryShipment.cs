@@ -40,7 +40,7 @@ namespace DeliveryServiceData.Implementation
         {
             if(userId != null)
             {
-                return context.Shipments.Where(s => s.UserId == userId).ToList();
+                return context.Shipments.Where(s => s.CustomerId == userId).ToList();
             }
             else
             {

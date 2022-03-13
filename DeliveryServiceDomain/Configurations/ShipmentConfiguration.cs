@@ -73,7 +73,7 @@ namespace DeliveryServiceDomain.Configurations
                 .HasColumnType("varchar")
                 .HasMaxLength(5);
 
-            entity.Property(e => e.UserId)
+            entity.Property(e => e.CustomerId)
                 .HasColumnName("UserId")
                 .IsRequired()
                 .HasColumnType("int")

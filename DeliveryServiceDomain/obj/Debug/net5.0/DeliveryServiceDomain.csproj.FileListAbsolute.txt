@@ -2,7 +2,6 @@ G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceDomain\bin\Debug
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceDomain\bin\Debug\net5.0\DeliveryServiceDomain.runtimeconfig.json
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceDomain\bin\Debug\net5.0\DeliveryServiceDomain.runtimeconfig.dev.json
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceDomain\bin\Debug\net5.0\DeliveryServiceDomain.dll
-G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceDomain\bin\Debug\net5.0\ref\DeliveryServiceDomain.dll
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceDomain\bin\Debug\net5.0\DeliveryServiceDomain.pdb
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceDomain\obj\Debug\net5.0\DeliveryServiceDomain.csproj.AssemblyReference.cache
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceDomain\obj\Debug\net5.0\DeliveryServiceDomain.GeneratedMSBuildEditorConfig.editorconfig
@@ -13,3 +12,4 @@ G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceDomain\obj\Debug
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceDomain\obj\Debug\net5.0\ref\DeliveryServiceDomain.dll
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceDomain\obj\Debug\net5.0\DeliveryServiceDomain.pdb
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceDomain\obj\Debug\net5.0\DeliveryServiceDomain.genruntimeconfig.cache
+G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceDomain\obj\Debug\net5.0\refint\DeliveryServiceDomain.dll
