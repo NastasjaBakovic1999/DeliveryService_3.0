@@ -45,55 +45,55 @@ namespace DeliveryServiceDomain.Migrations
                         new
                         {
                             AdditionalServiceId = 1,
-                            AdditionalServiceName = "Potpisana otpremnica",
+                            AdditionalServiceName = "Signed delivery note",
                             AdditionalServicePrice = 50.0
                         },
                         new
                         {
                             AdditionalServiceId = 2,
-                            AdditionalServiceName = "Povratnica",
+                            AdditionalServiceName = "Return receipt",
                             AdditionalServicePrice = 50.0
                         },
                         new
                         {
                             AdditionalServiceId = 3,
-                            AdditionalServiceName = "Dodatna ambalaza",
+                            AdditionalServiceName = "Additional packaging",
                             AdditionalServicePrice = 60.0
                         },
                         new
                         {
                             AdditionalServiceId = 4,
-                            AdditionalServiceName = "Lično uručenje",
+                            AdditionalServiceName = "Personal delivery",
                             AdditionalServicePrice = 60.0
                         },
                         new
                         {
                             AdditionalServiceId = 5,
-                            AdditionalServiceName = "Osiguranje vrednosti",
+                            AdditionalServiceName = "Value insurance",
                             AdditionalServicePrice = 80.0
                         },
                         new
                         {
                             AdditionalServiceId = 6,
-                            AdditionalServiceName = "Email izveštaj",
+                            AdditionalServiceName = "Email report",
                             AdditionalServicePrice = 30.0
                         },
                         new
                         {
                             AdditionalServiceId = 7,
-                            AdditionalServiceName = "SMS izveštaj",
+                            AdditionalServiceName = "SMS report",
                             AdditionalServicePrice = 30.0
                         },
                         new
                         {
                             AdditionalServiceId = 8,
-                            AdditionalServiceName = "Uručenje danas za sutra do 12h",
+                            AdditionalServiceName = "Delivery today for tomorrow until 12h",
                             AdditionalServicePrice = 90.0
                         },
                         new
                         {
                             AdditionalServiceId = 9,
-                            AdditionalServiceName = "Uručenje danas za sutra do 19h",
+                            AdditionalServiceName = "Delivery today for tomorrow until 19h",
                             AdditionalServicePrice = 70.0
                         });
                 });
@@ -244,152 +244,6 @@ namespace DeliveryServiceDomain.Migrations
                     b.ToTable("Deliverer");
                 });
 
-            modelBuilder.Entity("DeliveryServiceDomain.Location", b =>
-                {
-                    b.Property<int>("LocationId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("LocationId")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("LocationName")
-                        .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("varchar(25)")
-                        .HasColumnName("LocationName");
-
-                    b.HasKey("LocationId");
-
-                    b.ToTable("Locations");
-
-                    b.HasData(
-                        new
-                        {
-                            LocationId = 1,
-                            LocationName = "Beograd"
-                        },
-                        new
-                        {
-                            LocationId = 2,
-                            LocationName = "Valjevo"
-                        },
-                        new
-                        {
-                            LocationId = 3,
-                            LocationName = "Vranje"
-                        },
-                        new
-                        {
-                            LocationId = 4,
-                            LocationName = "Zaječar"
-                        },
-                        new
-                        {
-                            LocationId = 5,
-                            LocationName = "Zrenjanin"
-                        },
-                        new
-                        {
-                            LocationId = 6,
-                            LocationName = "Jagodina"
-                        },
-                        new
-                        {
-                            LocationId = 7,
-                            LocationName = "Kragujevac"
-                        },
-                        new
-                        {
-                            LocationId = 8,
-                            LocationName = "Kraljevo"
-                        },
-                        new
-                        {
-                            LocationId = 9,
-                            LocationName = "Kruševac"
-                        },
-                        new
-                        {
-                            LocationId = 10,
-                            LocationName = "Leskovac"
-                        },
-                        new
-                        {
-                            LocationId = 11,
-                            LocationName = "Loznica"
-                        },
-                        new
-                        {
-                            LocationId = 12,
-                            LocationName = "Niš"
-                        },
-                        new
-                        {
-                            LocationId = 13,
-                            LocationName = "Novi Pazar"
-                        },
-                        new
-                        {
-                            LocationId = 14,
-                            LocationName = "Novi Sad"
-                        },
-                        new
-                        {
-                            LocationId = 15,
-                            LocationName = "Pančevo"
-                        },
-                        new
-                        {
-                            LocationId = 16,
-                            LocationName = "Požarevac"
-                        },
-                        new
-                        {
-                            LocationId = 17,
-                            LocationName = "Priština"
-                        },
-                        new
-                        {
-                            LocationId = 18,
-                            LocationName = "Smederevo"
-                        },
-                        new
-                        {
-                            LocationId = 19,
-                            LocationName = "Sombor"
-                        },
-                        new
-                        {
-                            LocationId = 20,
-                            LocationName = "Sremska Mitrovica"
-                        },
-                        new
-                        {
-                            LocationId = 21,
-                            LocationName = "Subotica"
-                        },
-                        new
-                        {
-                            LocationId = 22,
-                            LocationName = "Užice"
-                        },
-                        new
-                        {
-                            LocationId = 23,
-                            LocationName = "Čačak"
-                        },
-                        new
-                        {
-                            LocationId = 24,
-                            LocationName = "Šabac"
-                        },
-                        new
-                        {
-                            LocationId = 25,
-                            LocationName = "Pirot"
-                        });
-                });
-
             modelBuilder.Entity("DeliveryServiceDomain.Shipment", b =>
                 {
                     b.Property<int>("ShipmentId")
@@ -428,23 +282,39 @@ namespace DeliveryServiceDomain.Migrations
                         .HasColumnType("varchar(100)")
                         .HasColumnName("Note");
 
-                    b.Property<string>("PostalNo")
-                        .IsRequired()
-                        .HasMaxLength(5)
-                        .HasColumnType("varchar(5)")
-                        .HasColumnName("PostalNo");
-
                     b.Property<double>("Price")
                         .HasColumnType("float")
                         .HasColumnName("Price");
 
-                    b.Property<int>("ReceivingLocationId")
-                        .HasColumnType("int")
-                        .HasColumnName("ReceivingLocationId");
+                    b.Property<string>("ReceivingAddress")
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)")
+                        .HasColumnName("ReceivingAddress");
 
-                    b.Property<int>("SendingLocationId")
-                        .HasColumnType("int")
-                        .HasColumnName("SendingLocationId");
+                    b.Property<string>("ReceivingCity")
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)")
+                        .HasColumnName("ReceivingCity");
+
+                    b.Property<string>("ReceivingPostalCode")
+                        .HasMaxLength(5)
+                        .HasColumnType("varchar(5)")
+                        .HasColumnName("ReceivingPostalCode");
+
+                    b.Property<string>("SendingAddress")
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)")
+                        .HasColumnName("SendingAddress");
+
+                    b.Property<string>("SendingCity")
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)")
+                        .HasColumnName("SendingCity");
+
+                    b.Property<string>("SendingPostalCode")
+                        .HasMaxLength(5)
+                        .HasColumnType("varchar(5)")
+                        .HasColumnName("SendingPostalCode");
 
                     b.Property<string>("ShipmentCode")
                         .IsRequired()
@@ -457,19 +327,9 @@ namespace DeliveryServiceDomain.Migrations
                         .HasColumnType("varchar(30)")
                         .HasColumnName("ShipmentContent");
 
-                    b.Property<int>("ShipmentTypeId")
+                    b.Property<int>("ShipmentWeightId")
                         .HasColumnType("int")
-                        .HasColumnName("ShipmentTypeId");
-
-                    b.Property<double>("ShipmentWeight")
-                        .HasColumnType("float")
-                        .HasColumnName("ShipmentWeight");
-
-                    b.Property<string>("Street")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("varchar(30)")
-                        .HasColumnName("Street");
+                        .HasColumnName("ShipmentWeightId");
 
                     b.HasKey("ShipmentId");
 
@@ -477,55 +337,63 @@ namespace DeliveryServiceDomain.Migrations
 
                     b.HasIndex("DelivererId");
 
-                    b.HasIndex("ReceivingLocationId");
-
-                    b.HasIndex("SendingLocationId");
-
-                    b.HasIndex("ShipmentTypeId");
+                    b.HasIndex("ShipmentWeightId");
 
                     b.ToTable("Shipments");
                 });
 
-            modelBuilder.Entity("DeliveryServiceDomain.ShipmentType", b =>
+            modelBuilder.Entity("DeliveryServiceDomain.ShipmentWeight", b =>
                 {
-                    b.Property<int>("ShipmentTypeId")
+                    b.Property<int>("ShipmentWeightId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("ShipmentTypeId")
+                        .HasColumnName("ShipmentWeightId")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ShipmentTypeName")
+                    b.Property<string>("ShipmentWeightDescpription")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("varchar(20)")
-                        .HasColumnName("ShipmentTypeName");
+                        .HasMaxLength(40)
+                        .HasColumnType("varchar(40)")
+                        .HasColumnName("Desc");
 
-                    b.Property<double>("ShipmentTypePrice")
+                    b.Property<double>("ShipmentWeightPrice")
                         .HasColumnType("float")
-                        .HasColumnName("ShipmentTypePrice");
+                        .HasColumnName("ShipmentWeightPrice");
 
-                    b.HasKey("ShipmentTypeId");
+                    b.HasKey("ShipmentWeightId");
 
-                    b.ToTable("ShipmentTypes");
+                    b.ToTable("ShipmentWeight");
 
                     b.HasData(
                         new
                         {
-                            ShipmentTypeId = 1,
-                            ShipmentTypeName = "Standardna",
-                            ShipmentTypePrice = 220.0
+                            ShipmentWeightId = 1,
+                            ShipmentWeightDescpription = "Up to 0,5 kg",
+                            ShipmentWeightPrice = 250.0
                         },
                         new
                         {
-                            ShipmentTypeId = 2,
-                            ShipmentTypeName = "Specijalna",
-                            ShipmentTypePrice = 350.0
+                            ShipmentWeightId = 2,
+                            ShipmentWeightDescpription = "Over 0,5 to 2kg",
+                            ShipmentWeightPrice = 300.0
                         },
                         new
                         {
-                            ShipmentTypeId = 3,
-                            ShipmentTypeName = "Međunarodna",
-                            ShipmentTypePrice = 900.0
+                            ShipmentWeightId = 3,
+                            ShipmentWeightDescpription = "Over 2 to 5kg",
+                            ShipmentWeightPrice = 390.0
+                        },
+                        new
+                        {
+                            ShipmentWeightId = 4,
+                            ShipmentWeightDescpription = "Over 5 to 10kg",
+                            ShipmentWeightPrice = 510.0
+                        },
+                        new
+                        {
+                            ShipmentWeightId = 5,
+                            ShipmentWeightDescpription = "Over 10 to 20kg",
+                            ShipmentWeightPrice = 700.0
                         });
                 });
 
@@ -551,47 +419,47 @@ namespace DeliveryServiceDomain.Migrations
                         new
                         {
                             StatusId = 1,
-                            StatusName = "Zakazana"
+                            StatusName = "Scheduled"
                         },
                         new
                         {
                             StatusId = 2,
-                            StatusName = "Na pakovanju"
+                            StatusName = "On the packaging"
                         },
                         new
                         {
                             StatusId = 3,
-                            StatusName = "Uskladištena za slanje"
+                            StatusName = "Stored for shipping"
                         },
                         new
                         {
                             StatusId = 4,
-                            StatusName = "Kod kurira"
+                            StatusName = "At the courier"
                         },
                         new
                         {
                             StatusId = 5,
-                            StatusName = "U transportu"
+                            StatusName = "In transport"
                         },
                         new
                         {
                             StatusId = 6,
-                            StatusName = "Uručena"
+                            StatusName = "Delivered"
                         },
                         new
                         {
                             StatusId = 7,
-                            StatusName = "Uskladištena na čekanju"
+                            StatusName = "Stored on hold"
                         },
                         new
                         {
                             StatusId = 8,
-                            StatusName = "Odbijena"
+                            StatusName = "Rejected"
                         },
                         new
                         {
                             StatusId = 9,
-                            StatusName = "Vraćena pošiljaocu"
+                            StatusName = "Returned to sender"
                         });
                 });
 
@@ -651,21 +519,9 @@ namespace DeliveryServiceDomain.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DeliveryServiceDomain.Location", "ReceivingLocation")
-                        .WithMany("ReceivingShipments")
-                        .HasForeignKey("ReceivingLocationId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("DeliveryServiceDomain.Location", "SendingLocation")
-                        .WithMany("SendingShipments")
-                        .HasForeignKey("SendingLocationId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("DeliveryServiceDomain.ShipmentType", "ShipmentType")
+                    b.HasOne("DeliveryServiceDomain.ShipmentWeight", "ShipmentWeight")
                         .WithMany("Shipments")
-                        .HasForeignKey("ShipmentTypeId")
+                        .HasForeignKey("ShipmentWeightId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -673,11 +529,7 @@ namespace DeliveryServiceDomain.Migrations
 
                     b.Navigation("Deliverer");
 
-                    b.Navigation("ReceivingLocation");
-
-                    b.Navigation("SendingLocation");
-
-                    b.Navigation("ShipmentType");
+                    b.Navigation("ShipmentWeight");
                 });
 
             modelBuilder.Entity("DeliveryServiceDomain.StatusShipment", b =>
@@ -704,13 +556,6 @@ namespace DeliveryServiceDomain.Migrations
                     b.Navigation("Shipments");
                 });
 
-            modelBuilder.Entity("DeliveryServiceDomain.Location", b =>
-                {
-                    b.Navigation("ReceivingShipments");
-
-                    b.Navigation("SendingShipments");
-                });
-
             modelBuilder.Entity("DeliveryServiceDomain.Shipment", b =>
                 {
                     b.Navigation("AdditionalServices");
@@ -718,7 +563,7 @@ namespace DeliveryServiceDomain.Migrations
                     b.Navigation("ShipmentStatuses");
                 });
 
-            modelBuilder.Entity("DeliveryServiceDomain.ShipmentType", b =>
+            modelBuilder.Entity("DeliveryServiceDomain.ShipmentWeight", b =>
                 {
                     b.Navigation("Shipments");
                 });

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace DeliveryServiceDomain
 {
-    public class ShipmentType
+    public class ShipmentWeight
     {
-        public int ShipmentTypeId { get; set; }
-        public string ShipmentTypeName { get; set; }
-        public double ShipmentTypePrice { get; set; }
+        public int ShipmentWeightId { get; set; }
+        public string ShipmentWeightDescpription { get; set; }
+        public double ShipmentWeightPrice { get; set; }
         public List<Shipment> Shipments { get; set; }
     }
 }

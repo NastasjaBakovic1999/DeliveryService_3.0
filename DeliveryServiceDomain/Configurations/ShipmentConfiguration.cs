@@ -24,30 +24,45 @@ namespace DeliveryServiceDomain.Configurations
                 .HasColumnType("varchar")
                 .HasMaxLength(12);
 
-            entity.Property(e => e.ShipmentWeight)
-                .HasColumnName("ShipmentWeight")
+            entity.Property(e => e.ShipmentWeightId)
+                .HasColumnName("ShipmentWeightId")
                 .IsRequired()
-                .HasColumnType("float");
+                .HasColumnType("int");
 
             entity.Property(e => e.ShipmentContent)
                 .HasColumnName("ShipmentContent")
                 .HasColumnType("varchar")
                 .HasMaxLength(30);
 
-            entity.Property(e => e.ShipmentTypeId)
-                .HasColumnName("ShipmentTypeId")
-                .HasColumnType("int")
-                .IsRequired();
+            entity.Property(e => e.SendingAddress)
+               .HasColumnName("SendingAddress")
+               .HasColumnType("varchar")
+               .HasMaxLength(30);
 
-            entity.Property(e => e.SendingLocationId)
-                .HasColumnName("SendingLocationId")
-                .HasColumnType("int")
-                .IsRequired();
+            entity.Property(e => e.SendingCity)
+              .HasColumnName("SendingCity")
+              .HasColumnType("varchar")
+              .HasMaxLength(30);
 
-            entity.Property(e => e.ReceivingLocationId)
-                .HasColumnName("ReceivingLocationId")
-                .HasColumnType("int")
-                .IsRequired();
+            entity.Property(e => e.SendingPostalCode)
+              .HasColumnName("SendingPostalCode")
+              .HasColumnType("varchar")
+              .HasMaxLength(5);
+
+            entity.Property(e => e.ReceivingAddress)
+             .HasColumnName("ReceivingAddress")
+             .HasColumnType("varchar")
+             .HasMaxLength(30);
+
+            entity.Property(e => e.ReceivingCity)
+              .HasColumnName("ReceivingCity")
+              .HasColumnType("varchar")
+              .HasMaxLength(30);
+
+            entity.Property(e => e.ReceivingPostalCode)
+              .HasColumnName("ReceivingPostalCode")
+              .HasColumnType("varchar")
+              .HasMaxLength(5);
 
             entity.Property(e => e.ContactPersonName)
                 .HasColumnName("ContactPersonName")
@@ -60,18 +75,6 @@ namespace DeliveryServiceDomain.Configurations
                 .HasColumnType("varchar")
                 .HasMaxLength(30)
                 .IsRequired();
-
-            entity.Property(e => e.Street)
-                .HasColumnName("Street")
-                .IsRequired()
-                .HasColumnType("varchar")
-                .HasMaxLength(30);
-
-            entity.Property(e => e.PostalNo)
-                .HasColumnName("PostalNo")
-                .IsRequired()
-                .HasColumnType("varchar")
-                .HasMaxLength(5);
 
             entity.Property(e => e.CustomerId)
                 .HasColumnName("UserId")

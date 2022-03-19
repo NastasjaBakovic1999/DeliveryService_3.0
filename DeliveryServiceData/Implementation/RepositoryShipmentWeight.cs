@@ -7,31 +7,31 @@ using System.Threading.Tasks;
 
 namespace DeliveryServiceData.Implementation
 {
-    public class RepositoryShipmentType : IRepositoryShipmentType
+    internal class RepositoryShipmentWeight : IRepositoryShipmentWeight
     {
         private readonly DeliveryServiceContext context;
 
-        public RepositoryShipmentType(DeliveryServiceContext context)
+        public RepositoryShipmentWeight(DeliveryServiceContext context)
         {
             this.context = context;
         }
 
-        public void Add(ShipmentType param)
+        public void Add(ShipmentWeight param)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(ShipmentType param)
+        public void Delete(ShipmentWeight param)
         {
             throw new NotImplementedException();
         }
 
-        public ShipmentType FindByID(int id, params int[] ids)
+        public ShipmentWeight FindByID(int id, params int[] ids)
         {
             throw new NotImplementedException();
         }
 
-        public List<ShipmentType> GetAll()
+        public List<ShipmentWeight> GetAll()
         {
             throw new NotImplementedException();
         }

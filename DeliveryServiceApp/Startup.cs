@@ -35,7 +35,7 @@ namespace DeliveryServiceApp
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddDbContext<DeliveryServiceContext>();
             services.AddDbContext<PersonContext>();
-
+            services.AddScoped<IPasswordHasher<Person>, PasswordHasher<Person>>();
             services.AddIdentity<Person, IdentityRole<int>>().AddEntityFrameworkStores<PersonContext>();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
             services.ConfigureApplicationCookie(options =>
@@ -45,6 +45,8 @@ namespace DeliveryServiceApp
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(15);
                 options.SlidingExpiration = true;
             });
+
+  
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -72,7 +74,7 @@ namespace DeliveryServiceApp
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Authentication}/{action=Login}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

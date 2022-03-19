@@ -20,10 +20,16 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-sm-end">
-                    <ul class="navbar-nav flex-grow-1 justify-content-sm-end">
+                    <ul class="navbar-nav">
                         @if(signInManager.IsSignedIn(User))
                         {
-                        <li class="nav-item">
+                           <li class="nav-item flex-grow-1 justify-content-sm-start">
+                               <a class="nav-link text-dark" asp-area="" asp-controller="Calculator" asp-action="Index">Shipping Calculator</a>
+                           </li>
+                            <li class="nav-item flex-grow-1 justify-content-sm-start">
+                               <a class="nav-link text-dark" asp-area="" asp-controller="Shipment" asp-action="Create">Order a Shipment</a>
+                           </li>
+                            <li class="nav-item flex-grow-1 justify-content-sm-end">
                             <form method="post" asp-action="Logout" asp-controller="Authentication">
                                 <button type="submit" class="nav-link btn btn-link py-0">
                                     Logout @User.Identity.Name
@@ -33,10 +39,10 @@
                         }
                         else
                         {
-                        <li class="nav-item">
+                        <li class="nav-item flex-grow-1 justify-content-sm-end">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Authentication" asp-action="Login">Login</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item flex-grow-1 justify-content-sm-end">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Authentication" asp-action="Register">Register</a>
                         </li>
                         }

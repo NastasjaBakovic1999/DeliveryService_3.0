@@ -10,11 +10,10 @@ namespace DeliveryServiceData.UnitOfWork
     {
         public IRepositoryAdditionalService AdditionalService { get; set; }
         public IRepositoryAdditionalServiceShipment AdditionalServiceShipment { get; set; }
-        public IRepositoryLocation Location { get; set; }
         public IRepositoryShipment Shipment { get; set; }
-        public IRepositoryShipmentType ShipmentType { get; set; }
         public IRepositoryStatus Status { get; set; }
         public IRepositoryStatusShipment StatusShipment { get; set; }
+        public IRepositoryShipmentWeight ShipmentWeight { get; set; }
         void Commit();
     }
 }

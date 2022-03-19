@@ -122,14 +122,14 @@ namespace DeliveryServiceDomain.Migrations.Person
                             Id = "1",
                             ConcurrencyStamp = "1",
                             Name = "User",
-                            NormalizedName = "User"
+                            NormalizedName = "USER"
                         },
                         new
                         {
                             Id = "2",
                             ConcurrencyStamp = "2",
                             Name = "Deliverer",
-                            NormalizedName = "Deliverer"
+                            NormalizedName = "DELIVERER"
                         });
                 });
 
@@ -280,12 +280,13 @@ namespace DeliveryServiceDomain.Migrations.Person
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e21747d3-ce66-4c57-a053-4674f22628b5",
+                            ConcurrencyStamp = "65552e09-2103-4284-a036-e2f3d954325f",
                             Email = "perap@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Pera",
                             LastName = "Peric",
                             LockoutEnabled = false,
+                            PasswordHash = "AQAAAAEAACcQAAAAEINfhc6QvZIMxRjsR3Y6jYFCRNsCBN/c1edwr2BUOia4hJ0Jh8RUyREi0dkHWikQYw==",
                             PhoneNumber = "065/111-222-33",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
@@ -297,12 +298,13 @@ namespace DeliveryServiceDomain.Migrations.Person
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0a82ebfa-0bb3-4556-84bb-e79351813844",
+                            ConcurrencyStamp = "314e1e13-b22f-4a47-bcca-16a7a35f7606",
                             Email = "zikazikic222@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Zika",
                             LastName = "Zikic",
                             LockoutEnabled = false,
+                            PasswordHash = "AQAAAAEAACcQAAAAEIDbrqLORZFY9pJx2S/0m3veQ30sazqc5PfvG73eDuOayCpFDV+FLDv23HlZsx2Jqg==",
                             PhoneNumber = "064/444-555-66",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
@@ -326,11 +328,12 @@ namespace DeliveryServiceDomain.Migrations.Person
                         {
                             Id = 3,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "91e1e427-45a4-458f-a9d9-e4f9376107af",
+                            ConcurrencyStamp = "b29ea42c-a784-4e56-9200-77acbcea3a89",
                             EmailConfirmed = false,
                             FirstName = "Nastasja",
                             LastName = "Bakovic",
                             LockoutEnabled = false,
+                            PasswordHash = "AQAAAAEAACcQAAAAEEvHiv9BDqd2Ul8bwmvF8CjW0ndOb2XG5H1SJ84b7VZmKVrKfhsoW9eb/5XZRCpr7w==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UserName = "nastasja",
@@ -340,11 +343,12 @@ namespace DeliveryServiceDomain.Migrations.Person
                         {
                             Id = 4,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f47e01a7-1f5a-4b9b-a9fe-aae251d776be",
+                            ConcurrencyStamp = "09ab1f2b-e9bf-4f27-ab68-5b0e8844ac58",
                             EmailConfirmed = false,
                             FirstName = "Stefan",
                             LastName = "Antic",
                             LockoutEnabled = false,
+                            PasswordHash = "AQAAAAEAACcQAAAAEGXZdrUFDkP19WdXHUNg1JCqR0EWyg4TTkeZt48pMKa9joC5Fq7aIyLJHORClvhaIQ==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UserName = "stefan",

@@ -18,19 +18,17 @@ namespace DeliveryServiceData.UnitOfWork.Implementation
             Shipment = new RepositoryShipment(context);
             Status = new RepositoryStatus(context);
             StatusShipment = new RepositoryStatusShipment(context);
-            Location = new RepositoryLocation(context);
             AdditionalService = new RepositoryAdditionalService(context);
             AdditionalServiceShipment = new RepositoryAdditionalServiceShipment(context);
-            ShipmentType = new RepositoryShipmentType(context);
+            ShipmentWeight = new RepositoryShipmentWeight(context);
         }
 
         public IRepositoryAdditionalService AdditionalService { get; set; }
         public IRepositoryAdditionalServiceShipment AdditionalServiceShipment { get; set; }
-        public IRepositoryLocation Location { get; set; }
         public IRepositoryShipment Shipment { get; set; }
-        public IRepositoryShipmentType ShipmentType { get; set; }
         public IRepositoryStatus Status { get; set; }
         public IRepositoryStatusShipment StatusShipment { get; set; }
+        public IRepositoryShipmentWeight ShipmentWeight { get; set; }
 
         public void Commit()
         {

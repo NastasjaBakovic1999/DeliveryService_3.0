@@ -154,3 +154,4 @@ G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\bin\Debug\ne
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\obj\Debug\net5.0\Razor\Views\Authentication\Register.cshtml.g.cs
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\obj\Debug\net5.0\Razor\Views\Authentication\Login.cshtml.g.cs
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
+G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\obj\Debug\net5.0\Razor\Views\Shipment\Index.cshtml.g.cs
