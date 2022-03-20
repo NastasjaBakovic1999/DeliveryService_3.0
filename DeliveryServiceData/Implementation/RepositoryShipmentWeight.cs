@@ -16,24 +16,24 @@ namespace DeliveryServiceData.Implementation
             this.context = context;
         }
 
-        public void Add(ShipmentWeight param)
+        public void Add(ShipmentWeight entity)
         {
-            throw new NotImplementedException();
+            context.ShipmentWeights.Add(entity);
         }
 
-        public void Delete(ShipmentWeight param)
+        public void Delete(ShipmentWeight entity)
         {
-            throw new NotImplementedException();
+            context.ShipmentWeights.Remove(entity);
         }
 
         public ShipmentWeight FindByID(int id, params int[] ids)
         {
-            throw new NotImplementedException();
+            return context.ShipmentWeights.Find(id);
         }
 
         public List<ShipmentWeight> GetAll()
         {
-            throw new NotImplementedException();
+            return context.ShipmentWeights.ToList();
         }
     }
 }

@@ -1,0 +1,120 @@
+﻿@model DeliveryServiceApp.Models.CreateShipmentViewModel
+
+<h4>Order a Shipment</h4>
+<hr/>
+<div class="row">
+    <div class = "col-12">
+        <form asp-action="Create" method="post">
+            <div class="row">
+                 <div class="col-md-6">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                            <label asp-for="ShipmentWeightId" class="control-label"></label>
+                        <select asp-for="ShipmentWeightId" asp-items="@Model.ShipmentWeights" class="form-control" ></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ShipmentContent" class="control-label"></label>
+                        <input asp-for="ShipmentContent" class="form-control" />
+                        <span asp-validation-for="ShipmentContent" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SendingCity" class="control-label"></label>
+                        <input asp-for="SendingCity" class="form-control" />
+                        <span asp-validation-for="SendingCity" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SendingAddress" class="control-label"></label>
+                        <input asp-for="SendingAddress" class="form-control" />
+                        <span asp-validation-for="SendingAddress" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SendingPostalCode" class="control-label"></label>
+                        <input asp-for="SendingPostalCode" class="form-control" />
+                        <span asp-validation-for="SendingPostalCode" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ReceivingCity" class="control-label"></label>
+                        <input asp-for="ReceivingCity" class="form-control" />
+                        <span asp-validation-for="ReceivingCity" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ReceivingAddress" class="control-label"></label>
+                        <input asp-for="ReceivingAddress" class="form-control" />
+                        <span asp-validation-for="ReceivingAddress" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ReceivingPostalCode" class="control-label"></label>
+                        <input asp-for="ReceivingPostalCode" class="form-control" />
+                        <span asp-validation-for="ReceivingPostalCode" class="text-danger"></span>
+                    </div>
+                 </div>
+
+                 <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="ContactPersonName" class="control-label"></label>
+                        <input asp-for="ContactPersonName" class="form-control" />
+                        <span asp-validation-for="ContactPersonName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ContactPersonPhone" class="control-label"></label>
+                        <input asp-for="ContactPersonPhone" class="form-control" id="contactPersonPhone" />
+                        <span asp-validation-for="ContactPersonPhone" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Note" class="control-label"></label>
+                        <input asp-for="Note" class="form-control" type="text"/>
+                        <span asp-validation-for="Note" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                         <label class="control-label">Select Additional Services</label>
+                         <select asp-items="@Model.AdditionalServices" class="form-control" id="additionalServices"></select>
+                    </div>
+
+                    <div class="form-group">
+                          <button class="btn btn-dark" id="addService"  type="button">Add Additional Service</button>
+                    </div>
+
+                    <table class="table" id="additionalServicesTable" hidden>
+                           <thead>
+                               <tr>
+                                  <th>Service</th>
+                                  <th>Price</th>
+                                </tr>
+                           </thead>
+                           <tbody>
+                           </tbody>
+                    </table>
+
+                    <div class="form-group">
+                           <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                 </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        $("#addService").click(function(event){
+          $.ajax({
+              url: "@Url.Action("AddService", "Shipment")",
+              method: "GET",
+              data: {
+                  "additionalServiceId": $("#additionalServices").val(),
+                  "number": $("#additionalServicesTable tbody tr").length
+              },
+              success: function(data){
+                  $("#additionalServicesTable tbody").append(data);
+                  $("#additionalServicesTable").attr("hidden", false);
+              },
+              error: function(){
+                  alert("Error");
+              }
+          });
+        });
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

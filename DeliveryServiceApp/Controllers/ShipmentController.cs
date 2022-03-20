@@ -1,4 +1,5 @@
 ﻿using DeliveryServiceApp.Models;
+using DeliveryServiceData.UnitOfWork;
 using DeliveryServiceData.UnitOfWork.Implementation;
 using DeliveryServiceDomain;
 using Microsoft.AspNetCore.Mvc;
@@ -10,31 +11,54 @@ namespace DeliveryServiceApp.Controllers
 {
     public class ShipmentController : Controller
     {
-        private readonly UnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
 
-        public ShipmentController(UnitOfWork unitOfWork)
+        public ShipmentController(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
         }
 
-        [HttpGet]
         public IActionResult Create()
         {
             List<AdditionalService> additionalServicesList = unitOfWork.AdditionalService.GetAll();
             List<SelectListItem> selectAdditionalServicesList = additionalServicesList.Select(s => new SelectListItem { Text = s.AdditionalServiceName+" "+s.AdditionalServicePrice, Value = s.AdditionalServiceId.ToString() }).ToList();
 
+            List<ShipmentWeight> shipmentWeightList = unitOfWork.ShipmentWeight.GetAll();
+            List<SelectListItem> selectShipmentWeightList = shipmentWeightList.Select(s => new SelectListItem { Text = s.ShipmentWeightDescpription, Value = s.ShipmentWeightId.ToString() }).ToList();
+
             CreateShipmentViewModel model = new CreateShipmentViewModel
             {
-                AdditionalServices = selectAdditionalServicesList
+                AdditionalServices = selectAdditionalServicesList,
+                ShipmentWeights = selectShipmentWeightList
             };
 
             return View(model);
         }
 
-        //[HttpPost]
-        //public IActionResult Create(CreateShipmentViewModel model)
-        //{
+        [HttpPost]
+        public IActionResult Create(CreateShipmentViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
 
-        //}
+            return RedirectToAction("CustomerShipments");
+        }
+
+        public IActionResult AddService(int additionalServiceId, int number)
+        {
+            AdditionalService service = unitOfWork.AdditionalService.FindByID(additionalServiceId);
+
+            AdditonalServiceViewModel model = new AdditonalServiceViewModel
+            {
+                AdditionalServiceId = service.AdditionalServiceId,
+                AddtionalServiceName = service.AdditionalServiceName,
+                AdditonalServicePrice = service.AdditionalServicePrice,
+                Sn = number
+            };
+
+            return PartialView(model);
+        }
     }
 }
