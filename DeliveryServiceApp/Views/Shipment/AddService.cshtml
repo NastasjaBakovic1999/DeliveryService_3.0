@@ -1,6 +1,20 @@
 ﻿@model DeliveryServiceApp.Models.AdditonalServiceViewModel
 
-<tr>
+<tr id="row_@Model.AdditionalServiceId">
     <td>@Model.AddtionalServiceName <input value ="@Model.AdditionalServiceId" name="Services[@Model.Sn].AdditionalServiceId" hidden /> </td>
-    <td>@Model.AdditonalServicePrice</td>
+    <td>@Model.AdditonalServicePrice RSD </td>
+    <td>
+        <button class="btn btn-outline-dark btn-sm" id="removeService" type="button">Remove</button>
+    </td>
 </tr>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        $("#removeService").on("click", function(){
+            $(this).parent('tr').remove();
+            alert( $(this).parent('tr'))
+        });
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

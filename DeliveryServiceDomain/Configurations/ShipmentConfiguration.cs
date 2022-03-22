@@ -79,13 +79,11 @@ namespace DeliveryServiceDomain.Configurations
             entity.Property(e => e.CustomerId)
                 .HasColumnName("UserId")
                 .IsRequired()
-                .HasColumnType("int")
-                .HasDefaultValueSql("(CONVERT([int],session_context(N'PersonId')))");
+                .HasColumnType("int");
 
             entity.Property(e => e.DelivererId)
                 .HasColumnName("DelivererId")
-                .HasColumnType("int")
-                .HasDefaultValueSql("(CONVERT([int],session_context(N'PersonId')))");
+                .HasColumnType("int");
 
             entity.Property(e => e.Price)
                 .HasColumnName("Price")
