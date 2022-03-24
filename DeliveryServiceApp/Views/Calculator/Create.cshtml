@@ -1,0 +1,84 @@
+﻿@model DeliveryServiceApp.Models.CalculatorViewModel
+
+<h4>Calculate Shipment</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+          <div class="form-group">
+                <label asp-for="ShipmentWeightId" class="control-label"></label>
+                <select asp-for="ShipmentWeightId" asp-items="@Model.ShipmentWeights" class="form-control" ></select>
+           </div>
+           <div class="form-group">
+                 <label class="control-label">Select Additional Services</label>
+                 <select asp-items="@Model.AdditionalServices" class="form-control" id="additionalServices"></select>
+            </div>
+
+            <div class="form-group">
+                  <button class="btn btn-dark" id="addService"  type="button">Add Additional Service</button>
+            </div>
+
+            <table class="table" id="additionalServicesTable" hidden>
+                    <thead>
+                        <tr>
+                            <th>Service</th>
+                            <th>Price</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+            </table>
+
+           <div class="form-group" hidden id="price">
+                <label asp-for="Price" class="control-label"></label>
+                <h2>The price of the shipment would be:</h2>
+                <h3 id="priceValue"></h3> <h3>RSD</h3>
+           </div>
+
+            <div class="form-group">
+                  <input type="button" value="Create" class="btn btn-primary" id="submit"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        $("#addService").click(function(event){
+          $.ajax({
+              url: "@Url.Action("AddService", "Shipment")",
+              method: "GET",
+              data: {
+                  "additionalServiceId": $("#additionalServices").val(),
+                  "number": $("#additionalServicesTable tbody tr").length
+              },
+              success: function(data){
+                  $("#additionalServicesTable tbody").append(data);
+                  $("#additionalServicesTable").attr("hidden", false);
+              },
+              error: function(){
+                  alert("Error");
+              }
+          });
+        });
+
+         $("#submit").click(function(event){
+          $.ajax({
+              url: "@Url.Action("CalculateShipment", "Calculator")",
+              method: "GET",
+              success: function(data){
+                  $("#priceValue").append(data);
+                  $("#submit").attr("hidden", true);
+                  $("#price").attr("hidden", false);
+              },
+              error: function(){
+                  alert("Error");
+              }
+          });
+        });
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -45,6 +45,15 @@ namespace DeliveryServiceApp.Controllers
         {
             if (!ModelState.IsValid)
             {
+                List<AdditionalService> additionalServicesList = unitOfWork.AdditionalService.GetAll();
+                List<SelectListItem> selectAdditionalServicesList = additionalServicesList.Select(s => new SelectListItem { Text = s.AdditionalServiceName + " - " + s.AdditionalServicePrice + " RSD", Value = s.AdditionalServiceId.ToString() }).ToList();
+
+                List<ShipmentWeight> shipmentWeightList = unitOfWork.ShipmentWeight.GetAll();
+                List<SelectListItem> selectShipmentWeightList = shipmentWeightList.Select(s => new SelectListItem { Text = s.ShipmentWeightDescpription, Value = s.ShipmentWeightId.ToString() }).ToList();
+
+                model.AdditionalServices = selectAdditionalServicesList;
+                model.ShipmentWeights = selectShipmentWeightList;
+
                 return View(model);
             }
 
