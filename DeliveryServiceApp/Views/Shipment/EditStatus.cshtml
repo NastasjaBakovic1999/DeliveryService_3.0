@@ -1,0 +1,49 @@
+﻿@model DeliveryServiceApp.Models.ShipmentMonitoringViewModel
+
+<h4>Add shipment statust</h4>
+<hr/>
+<div class="row">
+
+    <h3>Current Shipment Statuses</h3>
+    <h4>Shipment Code: @Model.ShipmentCode</h4>
+    <hr />
+    <table class="table">
+	    <thead>
+		    <tr>
+			    <th>Shipment Status</th>
+			    <th>Status Time</th>
+		    </tr>
+	    </thead>
+	    <tbody>
+		    @foreach (StatusShipmentViewModel item in @Model.ShipmentStatuses)
+	       {
+		       <tr>
+			    <td>@item.StatusName</td>
+			    <td>@item.StatusTime</td>
+		    </tr>
+	       }
+	    </tbody>
+    </table>
+
+    <div class = "col-12">
+        <form asp-action="EditStatus" method="post">
+            <div class="row">
+                 <div class="col-md-6">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="StatusId" class="control-label">Select status:</label>
+                        <select asp-for="StatusId" asp-items="@Model.StatusesSelect" class="form-control" ></select>
+                    </div>
+
+                    <div class="form-group">
+                           <input type="submit" value="Create" class="btn btn-primary btn-block" />
+                    </div>
+                 </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="AllShipments">Back to Shipment List</a>
+</div>

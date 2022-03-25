@@ -26,7 +26,7 @@ namespace DeliveryServiceApp.Controllers
         public IActionResult Create()
         {
             List<AdditionalService> additionalServicesList = unitOfWork.AdditionalService.GetAll();
-            List<SelectListItem> selectAdditionalServicesList = additionalServicesList.Select(s => new SelectListItem { Text = s.AdditionalServiceName+" - "+s.AdditionalServicePrice+" RSD", Value = s.AdditionalServiceId.ToString() }).ToList();
+            List<SelectListItem> selectAdditionalServicesList = additionalServicesList.Select(s => new SelectListItem { Text = s.AdditionalServiceName + " - " + s.AdditionalServicePrice + " RSD", Value = s.AdditionalServiceId.ToString() }).ToList();
 
             List<ShipmentWeight> shipmentWeightList = unitOfWork.ShipmentWeight.GetAll();
             List<SelectListItem> selectShipmentWeightList = shipmentWeightList.Select(s => new SelectListItem { Text = s.ShipmentWeightDescpription, Value = s.ShipmentWeightId.ToString() }).ToList();
@@ -75,7 +75,7 @@ namespace DeliveryServiceApp.Controllers
 
             Random rand = new Random();
             const string chars = "0123456789QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm";
-            shipment.ShipmentCode = new string( Enumerable.Repeat(chars, 11)
+            shipment.ShipmentCode = new string(Enumerable.Repeat(chars, 11)
                                                           .Select(s => s[rand.Next(chars.Length)])
                                                           .ToArray());
 
@@ -83,7 +83,7 @@ namespace DeliveryServiceApp.Controllers
             int userId = -1;
             int.TryParse(userManager.GetUserId(HttpContext.User), out userId);
 
-            if(userId != -1)
+            if (userId != -1)
             {
                 shipment.CustomerId = userId;
             }
@@ -94,10 +94,10 @@ namespace DeliveryServiceApp.Controllers
             if (model.Services != null && model.Services.Count() > 0)
             {
                 List<AdditionalService> additionalServices = unitOfWork.AdditionalService.GetAll();
-                
-                foreach(AdditonalServiceViewModel sa in model.Services)
+
+                foreach (AdditonalServiceViewModel sa in model.Services)
                 {
-                    additionalServicesPrice += additionalServices.Find(s => s.AdditionalServiceId == sa.AdditionalServiceId).AdditionalServicePrice; 
+                    additionalServicesPrice += additionalServices.Find(s => s.AdditionalServiceId == sa.AdditionalServiceId).AdditionalServicePrice;
                 }
             }
 
@@ -144,6 +144,13 @@ namespace DeliveryServiceApp.Controllers
             return View(model);
         }
 
+        public IActionResult AllShipments()
+        {
+            List<Shipment> model = unitOfWork.Shipment.GetAll();
+
+            return View(model);
+        }
+
         public IActionResult ShipmentMonitoring()
         {
             ShipmentMonitoringViewModel model = new ShipmentMonitoringViewModel();
@@ -157,8 +164,8 @@ namespace DeliveryServiceApp.Controllers
             List<StatusShipment> statusShipmentList = unitOfWork.StatusShipment.GetAllByShipmentId(shipment.ShipmentId);
 
             List<Status> statusesList = unitOfWork.Status.GetAll();
-            
-            foreach(StatusShipment ss in statusShipmentList)
+
+            foreach (StatusShipment ss in statusShipmentList)
             {
                 StatusShipmentViewModel ssvm = new StatusShipmentViewModel
                 {
@@ -171,5 +178,47 @@ namespace DeliveryServiceApp.Controllers
 
             return View("ShipmentStatuses", model);
         }
-    }
+
+        public IActionResult EditStatus(int id)
+        {
+            Shipment shipment = unitOfWork.Shipment.FindByID(id);
+
+            List<StatusShipment> statusShipmentList = unitOfWork.StatusShipment.GetAllByShipmentId(shipment.ShipmentId);
+            List<Status> statusesList = unitOfWork.Status.GetAll();
+            List<SelectListItem> statusesSelectList = statusesList.Select(s => new SelectListItem { Text = s.StatusName, Value = s.StatusId.ToString() }).ToList();
+
+            ShipmentMonitoringViewModel model = new ShipmentMonitoringViewModel
+            {
+                ShipmentCode = shipment.ShipmentCode,
+                StatusesSelect = statusesSelectList
+            };
+
+            foreach (StatusShipment ss in statusShipmentList)
+            {
+                StatusShipmentViewModel ssvm = new StatusShipmentViewModel
+                {
+                    StatusName = statusesList.Find(sl => sl.StatusId == ss.StatusId).StatusName,
+                    StatusTime = ss.StatusTime
+                };
+                model.ShipmentStatuses.Add(ssvm);
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult EditStatus(int id, ShipmentMonitoringViewModel model)
+        {
+            unitOfWork.StatusShipment.Add(new StatusShipment
+            {
+                ShipmentId = id,
+                StatusId = model.StatusId,
+                StatusTime = DateTime.Today
+            });
+
+            unitOfWork.Commit();
+
+            return RedirectToAction("AllShipments");
+        }
+    }   
 }
