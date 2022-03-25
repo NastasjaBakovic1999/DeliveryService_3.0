@@ -11,5 +11,6 @@ namespace DeliveryServiceData
     {
         public List<Shipment> GetAllOfSpecifiedUser(int? userId);
         public List<Shipment> GetAllOfSpecifiedDeliverer(int? delivererId);
+        public Shipment FindByCode(string code);
     }
 }

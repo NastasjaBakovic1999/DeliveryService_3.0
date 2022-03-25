@@ -133,5 +133,43 @@ namespace DeliveryServiceApp.Controllers
 
             return PartialView(model);
         }
+
+        public IActionResult CustomerShipments()
+        {
+            int userId = -1;
+            int.TryParse(userManager.GetUserId(HttpContext.User), out userId);
+
+            List<Shipment> model = unitOfWork.Shipment.GetAllOfSpecifiedUser(userId);
+
+            return View(model);
+        }
+
+        public IActionResult ShipmentMonitoring()
+        {
+            ShipmentMonitoringViewModel model = new ShipmentMonitoringViewModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult ShipmentMonitoring(ShipmentMonitoringViewModel model)
+        {
+            Shipment shipment = unitOfWork.Shipment.FindByCode(model.ShipmentCode);
+            List<StatusShipment> statusShipmentList = unitOfWork.StatusShipment.GetAllByShipmentId(shipment.ShipmentId);
+
+            List<Status> statusesList = unitOfWork.Status.GetAll();
+            
+            foreach(StatusShipment ss in statusShipmentList)
+            {
+                StatusShipmentViewModel ssvm = new StatusShipmentViewModel
+                {
+                    StatusName = statusesList.Find(sl => sl.StatusId == ss.StatusId).StatusName,
+                    StatusTime = ss.StatusTime
+                };
+                model.ShipmentStatuses.Add(ssvm);
+            }
+
+
+            return View("ShipmentStatuses", model);
+        }
     }
 }

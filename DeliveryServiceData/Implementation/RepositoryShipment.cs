@@ -40,7 +40,16 @@ namespace DeliveryServiceData.Implementation
         {
             if(userId != null)
             {
-                return context.Shipments.Where(s => s.CustomerId == userId).ToList();
+                var shipments = context.Shipments.Where(s => s.CustomerId == userId);
+
+                if(shipments != null && shipments.Any())
+                {
+                    return shipments.ToList();
+                }
+                else
+                {
+                    return null;
+                }
             }
             else
             {

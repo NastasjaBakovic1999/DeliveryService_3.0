@@ -9,7 +9,7 @@ namespace DeliveryServiceApp.DataAnnotations
         {
             if (value != null)
             {
-                if (!Regex.IsMatch(value.ToString(), "^[0-9]{0,5}$"))
+                if (!Regex.IsMatch(value.ToString(), "^[0-9]{5,5}$"))
                 {
                     return false;
                 }

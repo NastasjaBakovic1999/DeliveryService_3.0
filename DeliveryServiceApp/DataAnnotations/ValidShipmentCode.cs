@@ -3,13 +3,13 @@ using System.Text.RegularExpressions;
 
 namespace DeliveryServiceApp.DataAnnotations
 {
-    public class ValidPhoneAttribute : ValidationAttribute
+    public class ValidShipmentCode : ValidationAttribute
     {
         public override bool IsValid(object value)
         {
-            if(value != null)
+            if (value != null)
             {
-                if (!Regex.IsMatch(value.ToString(), "^06[0-9]{7,9}$"))
+                if (!Regex.IsMatch(value.ToString(), "^[a-zA-Z0-9]{11,11}$"))
                 {
                     return false;
                 }

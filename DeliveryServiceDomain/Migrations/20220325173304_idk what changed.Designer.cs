@@ -4,14 +4,16 @@ using DeliveryServiceDomain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DeliveryServiceDomain.Migrations
 {
     [DbContext(typeof(DeliveryServiceContext))]
-    partial class DeliveryServiceContextModelSnapshot : ModelSnapshot
+    [Migration("20220325173304_idk what changed")]
+    partial class idkwhatchanged
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

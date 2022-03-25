@@ -1,0 +1,22 @@
+﻿@model DeliveryServiceApp.Models.ShipmentMonitoringViewModel
+
+<h3>Statuses of your shipment</h3>
+<h4>Shipment Code: @Model.ShipmentCode</h4>
+<hr />
+<table class="table">
+	<thead>
+		<tr>
+			<th>Shipment Status</th>
+			<th>Status Time</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (StatusShipmentViewModel item in @Model.ShipmentStatuses)
+	   {
+		   <tr>
+			<td>@item.StatusName</td>
+			<td>@item.StatusTime</td>
+		</tr>
+	   }
+	</tbody>
+</table>

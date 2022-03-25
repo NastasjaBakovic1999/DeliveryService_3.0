@@ -1,0 +1,31 @@
+﻿@using DeliveryServiceDomain
+@model List<Shipment>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Shipment Code</th>
+			<th>Shipment Content</th>
+			<th>Sending Location</th>
+			<th>Receiving Location</th>
+			<th>Price</th>
+			<th>Check Shipment Statuses</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (Shipment item in Model)
+	   {
+		   <tr>
+			<td>@item.ShipmentCode</td>
+			<td>@item.ShipmentContent</td>
+			<td>@item.SendingAddress, @item.SendingCity @item.SendingPostalCode</td>
+			<td>@item.ReceivingAddress, @item.ReceivingCity @item.ReceivingPostalCode</td>
+			<td>@item.Price</td>
+			<td><a href="Shipment/Details/@item.ShipmentId">Check Status</a></td>
+			</tr>
+	   }
+		
+
+	</tbody>
+
+</table>

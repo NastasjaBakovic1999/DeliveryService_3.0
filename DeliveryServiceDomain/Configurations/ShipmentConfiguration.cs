@@ -77,7 +77,7 @@ namespace DeliveryServiceDomain.Configurations
                 .IsRequired();
 
             entity.Property(e => e.CustomerId)
-                .HasColumnName("UserId")
+                .HasColumnName("CustomerId")
                 .IsRequired()
                 .HasColumnType("int");
 
