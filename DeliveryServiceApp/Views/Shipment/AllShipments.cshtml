@@ -1,34 +1,38 @@
 ﻿@using DeliveryServiceDomain
 @model List<Shipment>
 
-<h3>All your shipments in one place</h3>
-<hr />
+<h3>All shipments</h3>
 
-<table class="table">
-	<thead>
-		<tr>
-			<th>Shipment Code</th>
-			<th>Shipment Content</th>
-			<th>Sending Location</th>
-			<th>Receiving Location</th>
-			<th>Price</th>
-			<th>Check Shipment Statuses</th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (Shipment item in Model)
-	   {
-		   <tr>
-			<td>@item.ShipmentCode</td>
-			<td>@item.ShipmentContent</td>
-			<td>@item.SendingAddress, @item.SendingCity @item.SendingPostalCode</td>
-			<td>@item.ReceivingAddress, @item.ReceivingCity @item.ReceivingPostalCode</td>
-			<td>@item.Price</td>
-			<td><a href="Shipment/EditStatus/@item.ShipmentId">Edit Status</a></td>
+@if(@Model == null || @Model.Count()==0){
+	<hr />
+	<h2>No shipments yet.</h2>
+	<h2>Rest and drink coffee.</h2>
+}
+else {
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Shipment Code</th>
+				<th>Shipment Content</th>
+				<th>Sending Location</th>
+				<th>Receiving Location</th>
+				<th>Price</th>
+				<th>Edit Shipment Status</th>
 			</tr>
-	   }
-		
+		</thead>
+		<tbody>
+			@foreach (Shipment item in Model)
+		   {
+			   <tr>
+				<td>@item.ShipmentCode</td>
+				<td>@item.ShipmentContent</td>
+				<td>@item.SendingAddress, @item.SendingCity @item.SendingPostalCode</td>
+				<td>@item.ReceivingAddress, @item.ReceivingCity @item.ReceivingPostalCode</td>
+				<td>@item.Price RSD</td>
+				<td><a href="EditStatus/@item.ShipmentId">Edit Status</a></td>
+				</tr>
+		   }
+		</tbody>
+	</table>
+}
 
-	</tbody>
-
-</table>

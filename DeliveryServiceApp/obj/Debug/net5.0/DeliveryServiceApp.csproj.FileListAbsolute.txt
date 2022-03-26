@@ -159,3 +159,7 @@ G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\obj\Debug\ne
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\obj\Debug\net5.0\Razor\Views\Calculator\Create.cshtml.g.cs
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\obj\Debug\net5.0\Razor\Views\Calculator\Price.cshtml.g.cs
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\obj\Debug\net5.0\Razor\Views\Shipment\CustomerShipments.cshtml.g.cs
+G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\obj\Debug\net5.0\Razor\Views\Shipment\AllShipments.cshtml.g.cs
+G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\obj\Debug\net5.0\Razor\Views\Shipment\EditStatus.cshtml.g.cs
+G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\obj\Debug\net5.0\Razor\Views\Shipment\ShipmentMonitoring.cshtml.g.cs
+G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\obj\Debug\net5.0\Razor\Views\Shipment\ShipmentStatuses.cshtml.g.cs

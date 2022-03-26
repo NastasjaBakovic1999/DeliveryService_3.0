@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,7 @@ namespace DeliveryServiceApp
             services.AddDbContext<DeliveryServiceContext>();
             services.AddDbContext<PersonContext>();
             services.AddScoped<IPasswordHasher<Person>, PasswordHasher<Person>>();
+
             services.AddIdentity<Person, IdentityRole<int>>().AddEntityFrameworkStores<PersonContext>();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
             services.ConfigureApplicationCookie(options =>

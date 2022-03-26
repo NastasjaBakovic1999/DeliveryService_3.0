@@ -114,6 +114,14 @@ namespace DeliveryServiceApp.Controllers
                 unitOfWork.AdditionalServiceShipment.Add(ass);
             }
 
+            StatusShipment ss = new StatusShipment
+            {
+                ShipmentId = shipment.ShipmentId,
+                StatusId = unitOfWork.Status.GetByName("Scheduled").StatusId,
+                StatusTime = DateTime.Now
+            };
+
+            unitOfWork.StatusShipment.Add(ss);
             unitOfWork.Commit();
 
             return RedirectToAction("CustomerShipments");
@@ -161,6 +169,13 @@ namespace DeliveryServiceApp.Controllers
         public IActionResult ShipmentMonitoring(ShipmentMonitoringViewModel model)
         {
             Shipment shipment = unitOfWork.Shipment.FindByCode(model.ShipmentCode);
+
+            if(shipment == null)
+            {
+                ModelState.AddModelError(string.Empty, "The shipment code you entered does not exist. Please check your code and try again.");
+                return View("ShipmentMonitoring");
+            }
+
             List<StatusShipment> statusShipmentList = unitOfWork.StatusShipment.GetAllByShipmentId(shipment.ShipmentId);
 
             List<Status> statusesList = unitOfWork.Status.GetAll();
@@ -174,7 +189,6 @@ namespace DeliveryServiceApp.Controllers
                 };
                 model.ShipmentStatuses.Add(ssvm);
             }
-
 
             return View("ShipmentStatuses", model);
         }
@@ -213,7 +227,7 @@ namespace DeliveryServiceApp.Controllers
             {
                 ShipmentId = id,
                 StatusId = model.StatusId,
-                StatusTime = DateTime.Today
+                StatusTime = DateTime.Now
             });
 
             unitOfWork.Commit();

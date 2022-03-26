@@ -25,7 +25,7 @@ namespace DeliveryServiceDomain
             optionsBuilder
                .UseLoggerFactory(MyLoggerFactory)
                .EnableSensitiveDataLogging()
-               .UseSqlServer(@"Server = (localdb)\mssqllocaldb; Database = DeliveryServiceDB; ");
+               .UseSqlServer(@"Server=(localdb)\MSSQLLocalDB; Database=Delivery_Service_Database;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

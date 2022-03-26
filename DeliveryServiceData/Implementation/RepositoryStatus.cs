@@ -41,6 +41,9 @@ namespace DeliveryServiceData.Implementation
             context.Statuses.Update(status);
         }
 
-
+        public Status GetByName(string name)
+        {
+            return context.Statuses.FirstOrDefault(s => s.StatusName == name);
+        }
     }
 }

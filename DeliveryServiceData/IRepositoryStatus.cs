@@ -10,5 +10,6 @@ namespace DeliveryServiceData
     public interface IRepositoryStatus : IRepository<Status>
     {
         public void Edit(Status status);
+        public Status GetByName(string name);
     }
 }

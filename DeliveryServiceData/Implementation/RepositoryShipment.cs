@@ -36,20 +36,16 @@ namespace DeliveryServiceData.Implementation
             return context.Shipments.ToList();
         }
 
+        public Shipment FindByCode(string code)
+        {
+            return context.Shipments.FirstOrDefault(s => s.ShipmentCode == code);
+        }
+
         public List<Shipment> GetAllOfSpecifiedUser(int? userId)
         {
-            if(userId != null)
+            if (userId != null)
             {
-                var shipments = context.Shipments.Where(s => s.CustomerId == userId);
-
-                if(shipments != null && shipments.Any())
-                {
-                    return shipments.ToList();
-                }
-                else
-                {
-                    return null;
-                }
+                return context.Shipments.Where(s => s.CustomerId == userId).ToList();
             }
             else
             {
@@ -68,5 +64,6 @@ namespace DeliveryServiceData.Implementation
                 return null;
             }
         }
+
     }
 }

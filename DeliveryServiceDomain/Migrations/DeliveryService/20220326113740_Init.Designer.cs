@@ -7,18 +7,18 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace DeliveryServiceDomain.Migrations
+namespace DeliveryServiceDomain.Migrations.DeliveryService
 {
     [DbContext(typeof(DeliveryServiceContext))]
-    [Migration("20220318215551_deleted locations")]
-    partial class deletedlocations
+    [Migration("20220326113740_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.14")
+                .HasAnnotation("ProductVersion", "5.0.15")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("DeliveryServiceDomain.AdditionalService", b =>
@@ -267,16 +267,12 @@ namespace DeliveryServiceDomain.Migrations
                         .HasColumnName("ContactPersonPhone");
 
                     b.Property<int>("CustomerId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("UserId")
-                        .HasDefaultValueSql("(CONVERT([int],session_context(N'PersonId')))");
+                        .HasColumnName("CustomerId");
 
                     b.Property<int>("DelivererId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("DelivererId")
-                        .HasDefaultValueSql("(CONVERT([int],session_context(N'PersonId')))");
+                        .HasColumnName("DelivererId");
 
                     b.Property<string>("Note")
                         .IsRequired()
@@ -329,9 +325,9 @@ namespace DeliveryServiceDomain.Migrations
                         .HasColumnType("varchar(30)")
                         .HasColumnName("ShipmentContent");
 
-                    b.Property<double>("ShipmentWeight")
-                        .HasColumnType("float")
-                        .HasColumnName("ShipmentWeight");
+                    b.Property<int>("ShipmentWeightId")
+                        .HasColumnType("int")
+                        .HasColumnName("ShipmentWeightId");
 
                     b.HasKey("ShipmentId");
 
@@ -339,7 +335,64 @@ namespace DeliveryServiceDomain.Migrations
 
                     b.HasIndex("DelivererId");
 
+                    b.HasIndex("ShipmentWeightId");
+
                     b.ToTable("Shipments");
+                });
+
+            modelBuilder.Entity("DeliveryServiceDomain.ShipmentWeight", b =>
+                {
+                    b.Property<int>("ShipmentWeightId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ShipmentWeightId")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ShipmentWeightDescpription")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("varchar(40)")
+                        .HasColumnName("Desc");
+
+                    b.Property<double>("ShipmentWeightPrice")
+                        .HasColumnType("float")
+                        .HasColumnName("ShipmentWeightPrice");
+
+                    b.HasKey("ShipmentWeightId");
+
+                    b.ToTable("ShipmentWeight");
+
+                    b.HasData(
+                        new
+                        {
+                            ShipmentWeightId = 1,
+                            ShipmentWeightDescpription = "Up to 0,5 kg",
+                            ShipmentWeightPrice = 250.0
+                        },
+                        new
+                        {
+                            ShipmentWeightId = 2,
+                            ShipmentWeightDescpription = "Over 0,5 to 2kg",
+                            ShipmentWeightPrice = 300.0
+                        },
+                        new
+                        {
+                            ShipmentWeightId = 3,
+                            ShipmentWeightDescpription = "Over 2 to 5kg",
+                            ShipmentWeightPrice = 390.0
+                        },
+                        new
+                        {
+                            ShipmentWeightId = 4,
+                            ShipmentWeightDescpription = "Over 5 to 10kg",
+                            ShipmentWeightPrice = 510.0
+                        },
+                        new
+                        {
+                            ShipmentWeightId = 5,
+                            ShipmentWeightDescpription = "Over 10 to 20kg",
+                            ShipmentWeightPrice = 700.0
+                        });
                 });
 
             modelBuilder.Entity("DeliveryServiceDomain.Status", b =>
@@ -464,9 +517,17 @@ namespace DeliveryServiceDomain.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("DeliveryServiceDomain.ShipmentWeight", "ShipmentWeight")
+                        .WithMany("Shipments")
+                        .HasForeignKey("ShipmentWeightId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("Customer");
 
                     b.Navigation("Deliverer");
+
+                    b.Navigation("ShipmentWeight");
                 });
 
             modelBuilder.Entity("DeliveryServiceDomain.StatusShipment", b =>
@@ -498,6 +559,11 @@ namespace DeliveryServiceDomain.Migrations
                     b.Navigation("AdditionalServices");
 
                     b.Navigation("ShipmentStatuses");
+                });
+
+            modelBuilder.Entity("DeliveryServiceDomain.ShipmentWeight", b =>
+                {
+                    b.Navigation("Shipments");
                 });
 
             modelBuilder.Entity("DeliveryServiceDomain.Status", b =>

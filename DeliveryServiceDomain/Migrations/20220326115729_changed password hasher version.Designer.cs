@@ -7,18 +7,18 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace DeliveryServiceDomain.Migrations.Person
+namespace DeliveryServiceDomain.Migrations
 {
     [DbContext(typeof(PersonContext))]
-    [Migration("20220325174403_init2")]
-    partial class init2
+    [Migration("20220326115729_changed password hasher version")]
+    partial class changedpasswordhasherversion
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.14")
+                .HasAnnotation("ProductVersion", "5.0.15")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("DeliveryServiceDomain.Person", b =>
@@ -121,14 +121,14 @@ namespace DeliveryServiceDomain.Migrations.Person
                     b.HasData(
                         new
                         {
-                            Id = "1",
+                            Id = "3",
                             ConcurrencyStamp = "1",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "2",
+                            Id = "4",
                             ConcurrencyStamp = "2",
                             Name = "Deliverer",
                             NormalizedName = "DELIVERER"
@@ -244,6 +244,28 @@ namespace DeliveryServiceDomain.Migrations.Person
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = 1,
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            UserId = 2,
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            UserId = 3,
+                            RoleId = 4
+                        },
+                        new
+                        {
+                            UserId = 4,
+                            RoleId = 4
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
@@ -282,13 +304,13 @@ namespace DeliveryServiceDomain.Migrations.Person
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "aa5791d0-de16-46bf-9496-77d3c6a717cc",
+                            ConcurrencyStamp = "2e38ee56-8a11-43e2-a48e-e6b4510900c5",
                             Email = "perap@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Pera",
                             LastName = "Peric",
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEEMjSi3UOzWEytP4+GofKv/v6tjHDay4ytbuehi44UDQjcTFh9e4SLslExr5xb6c7Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECSg5L5RMqpSy48KkdAWu9lz7KYfeUjAj83Ov60k6r3h/2GHRA+UtUlkBTnj3GZWsg==",
                             PhoneNumber = "065/111-222-33",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
@@ -300,13 +322,13 @@ namespace DeliveryServiceDomain.Migrations.Person
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fd111ca0-e67e-4de8-a0b3-dd4c60c4e6b8",
+                            ConcurrencyStamp = "a3853602-c837-4a0e-95c4-30be7b3e27f4",
                             Email = "zikazikic222@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Zika",
                             LastName = "Zikic",
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEDGnOZLKqHsjhpWMraWLZbfofE4PdHUFNQawrO4dEI+O4o0J2xmYVxHFa8gRrnhgDg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPs0v8LOOj+ZbgjrZtDwf1CblCzj8jeG3wWegU1edHhUpFUutYooOf/jhMun2dPvHw==",
                             PhoneNumber = "064/444-555-66",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
@@ -330,12 +352,12 @@ namespace DeliveryServiceDomain.Migrations.Person
                         {
                             Id = 3,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bb8adfe1-6844-474f-b7e0-e8f0abd4e2a0",
+                            ConcurrencyStamp = "20706632-a1e9-4164-92dc-757914c36ec3",
                             EmailConfirmed = false,
                             FirstName = "Nastasja",
                             LastName = "Bakovic",
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEF97RO35n7hdeCmdLZxxSaRL3giZa8mDIGy5hnHQXnf5dnAKyORluVPdWscgWieqfg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEeRnYAitIOLiptD2aAAT/OFEPPQaiqarC3yC5pnKOwHLbLTX45e6OZxKe3Q2VnDzA==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UserName = "nastasja",
@@ -345,12 +367,12 @@ namespace DeliveryServiceDomain.Migrations.Person
                         {
                             Id = 4,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ed149c7e-4c3e-42d1-b8a7-638d83188630",
+                            ConcurrencyStamp = "b89d8b62-bebc-478e-a6b2-b2851d295620",
                             EmailConfirmed = false,
                             FirstName = "Stefan",
                             LastName = "Antic",
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEGW4ITJDTKkpC45/UBUSSSJ5FaIC04BHGveSNLnfnV/mw6AS/GdND87yvZhTyH6E8w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAG07WhKSm8llAbqawaSfe9txdtsWgjLdBkXS36CBJHfNqJQV47Kx3LNG4m/xGLBVA==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UserName = "stefan",

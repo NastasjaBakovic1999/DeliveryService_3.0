@@ -92,7 +92,6 @@ namespace DeliveryServiceDomain.Configurations
 
             entity.Property(e => e.Note)
                 .HasColumnName("Note")
-                .IsRequired()
                 .HasColumnType("varchar")
                 .HasMaxLength(100);
         }

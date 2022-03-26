@@ -4,21 +4,19 @@ using DeliveryServiceDomain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace DeliveryServiceDomain.Migrations
+namespace DeliveryServiceDomain.Migrations.DeliveryService
 {
     [DbContext(typeof(DeliveryServiceContext))]
-    [Migration("20220317220335_deleted shipmenttype")]
-    partial class deletedshipmenttype
+    partial class DeliveryServiceContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.14")
+                .HasAnnotation("ProductVersion", "5.0.15")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("DeliveryServiceDomain.AdditionalService", b =>
@@ -246,152 +244,6 @@ namespace DeliveryServiceDomain.Migrations
                     b.ToTable("Deliverer");
                 });
 
-            modelBuilder.Entity("DeliveryServiceDomain.Location", b =>
-                {
-                    b.Property<int>("LocationId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("LocationId")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("LocationName")
-                        .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("varchar(25)")
-                        .HasColumnName("LocationName");
-
-                    b.HasKey("LocationId");
-
-                    b.ToTable("Locations");
-
-                    b.HasData(
-                        new
-                        {
-                            LocationId = 1,
-                            LocationName = "Beograd"
-                        },
-                        new
-                        {
-                            LocationId = 2,
-                            LocationName = "Valjevo"
-                        },
-                        new
-                        {
-                            LocationId = 3,
-                            LocationName = "Vranje"
-                        },
-                        new
-                        {
-                            LocationId = 4,
-                            LocationName = "Zaječar"
-                        },
-                        new
-                        {
-                            LocationId = 5,
-                            LocationName = "Zrenjanin"
-                        },
-                        new
-                        {
-                            LocationId = 6,
-                            LocationName = "Jagodina"
-                        },
-                        new
-                        {
-                            LocationId = 7,
-                            LocationName = "Kragujevac"
-                        },
-                        new
-                        {
-                            LocationId = 8,
-                            LocationName = "Kraljevo"
-                        },
-                        new
-                        {
-                            LocationId = 9,
-                            LocationName = "Kruševac"
-                        },
-                        new
-                        {
-                            LocationId = 10,
-                            LocationName = "Leskovac"
-                        },
-                        new
-                        {
-                            LocationId = 11,
-                            LocationName = "Loznica"
-                        },
-                        new
-                        {
-                            LocationId = 12,
-                            LocationName = "Niš"
-                        },
-                        new
-                        {
-                            LocationId = 13,
-                            LocationName = "Novi Pazar"
-                        },
-                        new
-                        {
-                            LocationId = 14,
-                            LocationName = "Novi Sad"
-                        },
-                        new
-                        {
-                            LocationId = 15,
-                            LocationName = "Pančevo"
-                        },
-                        new
-                        {
-                            LocationId = 16,
-                            LocationName = "Požarevac"
-                        },
-                        new
-                        {
-                            LocationId = 17,
-                            LocationName = "Priština"
-                        },
-                        new
-                        {
-                            LocationId = 18,
-                            LocationName = "Smederevo"
-                        },
-                        new
-                        {
-                            LocationId = 19,
-                            LocationName = "Sombor"
-                        },
-                        new
-                        {
-                            LocationId = 20,
-                            LocationName = "Sremska Mitrovica"
-                        },
-                        new
-                        {
-                            LocationId = 21,
-                            LocationName = "Subotica"
-                        },
-                        new
-                        {
-                            LocationId = 22,
-                            LocationName = "Užice"
-                        },
-                        new
-                        {
-                            LocationId = 23,
-                            LocationName = "Čačak"
-                        },
-                        new
-                        {
-                            LocationId = 24,
-                            LocationName = "Šabac"
-                        },
-                        new
-                        {
-                            LocationId = 25,
-                            LocationName = "Pirot"
-                        });
-                });
-
             modelBuilder.Entity("DeliveryServiceDomain.Shipment", b =>
                 {
                     b.Property<int>("ShipmentId")
@@ -413,40 +265,51 @@ namespace DeliveryServiceDomain.Migrations
                         .HasColumnName("ContactPersonPhone");
 
                     b.Property<int>("CustomerId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("UserId")
-                        .HasDefaultValueSql("(CONVERT([int],session_context(N'PersonId')))");
+                        .HasColumnName("CustomerId");
 
                     b.Property<int>("DelivererId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("DelivererId")
-                        .HasDefaultValueSql("(CONVERT([int],session_context(N'PersonId')))");
+                        .HasColumnName("DelivererId");
 
                     b.Property<string>("Note")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)")
                         .HasColumnName("Note");
-
-                    b.Property<string>("PostalNo")
-                        .IsRequired()
-                        .HasMaxLength(5)
-                        .HasColumnType("varchar(5)")
-                        .HasColumnName("PostalNo");
 
                     b.Property<double>("Price")
                         .HasColumnType("float")
                         .HasColumnName("Price");
 
-                    b.Property<int>("ReceivingLocationId")
-                        .HasColumnType("int")
-                        .HasColumnName("ReceivingLocationId");
+                    b.Property<string>("ReceivingAddress")
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)")
+                        .HasColumnName("ReceivingAddress");
 
-                    b.Property<int>("SendingLocationId")
-                        .HasColumnType("int")
-                        .HasColumnName("SendingLocationId");
+                    b.Property<string>("ReceivingCity")
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)")
+                        .HasColumnName("ReceivingCity");
+
+                    b.Property<string>("ReceivingPostalCode")
+                        .HasMaxLength(5)
+                        .HasColumnType("varchar(5)")
+                        .HasColumnName("ReceivingPostalCode");
+
+                    b.Property<string>("SendingAddress")
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)")
+                        .HasColumnName("SendingAddress");
+
+                    b.Property<string>("SendingCity")
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)")
+                        .HasColumnName("SendingCity");
+
+                    b.Property<string>("SendingPostalCode")
+                        .HasMaxLength(5)
+                        .HasColumnType("varchar(5)")
+                        .HasColumnName("SendingPostalCode");
 
                     b.Property<string>("ShipmentCode")
                         .IsRequired()
@@ -459,15 +322,9 @@ namespace DeliveryServiceDomain.Migrations
                         .HasColumnType("varchar(30)")
                         .HasColumnName("ShipmentContent");
 
-                    b.Property<double>("ShipmentWeight")
-                        .HasColumnType("float")
-                        .HasColumnName("ShipmentWeight");
-
-                    b.Property<string>("Street")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("varchar(30)")
-                        .HasColumnName("Street");
+                    b.Property<int>("ShipmentWeightId")
+                        .HasColumnType("int")
+                        .HasColumnName("ShipmentWeightId");
 
                     b.HasKey("ShipmentId");
 
@@ -475,11 +332,64 @@ namespace DeliveryServiceDomain.Migrations
 
                     b.HasIndex("DelivererId");
 
-                    b.HasIndex("ReceivingLocationId");
-
-                    b.HasIndex("SendingLocationId");
+                    b.HasIndex("ShipmentWeightId");
 
                     b.ToTable("Shipments");
+                });
+
+            modelBuilder.Entity("DeliveryServiceDomain.ShipmentWeight", b =>
+                {
+                    b.Property<int>("ShipmentWeightId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ShipmentWeightId")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ShipmentWeightDescpription")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("varchar(40)")
+                        .HasColumnName("Desc");
+
+                    b.Property<double>("ShipmentWeightPrice")
+                        .HasColumnType("float")
+                        .HasColumnName("ShipmentWeightPrice");
+
+                    b.HasKey("ShipmentWeightId");
+
+                    b.ToTable("ShipmentWeight");
+
+                    b.HasData(
+                        new
+                        {
+                            ShipmentWeightId = 1,
+                            ShipmentWeightDescpription = "Up to 0,5 kg",
+                            ShipmentWeightPrice = 250.0
+                        },
+                        new
+                        {
+                            ShipmentWeightId = 2,
+                            ShipmentWeightDescpription = "Over 0,5 to 2kg",
+                            ShipmentWeightPrice = 300.0
+                        },
+                        new
+                        {
+                            ShipmentWeightId = 3,
+                            ShipmentWeightDescpription = "Over 2 to 5kg",
+                            ShipmentWeightPrice = 390.0
+                        },
+                        new
+                        {
+                            ShipmentWeightId = 4,
+                            ShipmentWeightDescpription = "Over 5 to 10kg",
+                            ShipmentWeightPrice = 510.0
+                        },
+                        new
+                        {
+                            ShipmentWeightId = 5,
+                            ShipmentWeightDescpription = "Over 10 to 20kg",
+                            ShipmentWeightPrice = 700.0
+                        });
                 });
 
             modelBuilder.Entity("DeliveryServiceDomain.Status", b =>
@@ -604,15 +514,9 @@ namespace DeliveryServiceDomain.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DeliveryServiceDomain.Location", "ReceivingLocation")
-                        .WithMany("ReceivingShipments")
-                        .HasForeignKey("ReceivingLocationId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("DeliveryServiceDomain.Location", "SendingLocation")
-                        .WithMany("SendingShipments")
-                        .HasForeignKey("SendingLocationId")
+                    b.HasOne("DeliveryServiceDomain.ShipmentWeight", "ShipmentWeight")
+                        .WithMany("Shipments")
+                        .HasForeignKey("ShipmentWeightId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -620,9 +524,7 @@ namespace DeliveryServiceDomain.Migrations
 
                     b.Navigation("Deliverer");
 
-                    b.Navigation("ReceivingLocation");
-
-                    b.Navigation("SendingLocation");
+                    b.Navigation("ShipmentWeight");
                 });
 
             modelBuilder.Entity("DeliveryServiceDomain.StatusShipment", b =>
@@ -649,18 +551,16 @@ namespace DeliveryServiceDomain.Migrations
                     b.Navigation("Shipments");
                 });
 
-            modelBuilder.Entity("DeliveryServiceDomain.Location", b =>
-                {
-                    b.Navigation("ReceivingShipments");
-
-                    b.Navigation("SendingShipments");
-                });
-
             modelBuilder.Entity("DeliveryServiceDomain.Shipment", b =>
                 {
                     b.Navigation("AdditionalServices");
 
                     b.Navigation("ShipmentStatuses");
+                });
+
+            modelBuilder.Entity("DeliveryServiceDomain.ShipmentWeight", b =>
+                {
+                    b.Navigation("Shipments");
                 });
 
             modelBuilder.Entity("DeliveryServiceDomain.Status", b =>

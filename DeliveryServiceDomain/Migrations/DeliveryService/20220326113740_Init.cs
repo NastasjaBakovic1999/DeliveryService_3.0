@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace DeliveryServiceDomain.Migrations
+namespace DeliveryServiceDomain.Migrations.DeliveryService
 {
     public partial class Init : Migration
     {
@@ -22,30 +22,17 @@ namespace DeliveryServiceDomain.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Locations",
+                name: "ShipmentWeight",
                 columns: table => new
                 {
-                    LocationId = table.Column<int>(type: "int", nullable: false)
+                    ShipmentWeightId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    LocationName = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false)
+                    Desc = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false),
+                    ShipmentWeightPrice = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Locations", x => x.LocationId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ShipmentTypes",
-                columns: table => new
-                {
-                    ShipmentTypeId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ShipmentTypeName = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false),
-                    ShipmentTypePrice = table.Column<double>(type: "float", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ShipmentTypes", x => x.ShipmentTypeId);
+                    table.PrimaryKey("PK_ShipmentWeight", x => x.ShipmentWeightId);
                 });
 
             migrationBuilder.CreateTable(
@@ -68,17 +55,18 @@ namespace DeliveryServiceDomain.Migrations
                     ShipmentId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ShipmentCode = table.Column<string>(type: "varchar(12)", maxLength: 12, nullable: false),
-                    ShipmentWeight = table.Column<double>(type: "float", nullable: false),
+                    ShipmentWeightId = table.Column<int>(type: "int", nullable: false),
                     ShipmentContent = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true),
-                    ShipmentTypeId = table.Column<int>(type: "int", nullable: false),
-                    SendingLocationId = table.Column<int>(type: "int", nullable: false),
-                    ReceivingLocationId = table.Column<int>(type: "int", nullable: false),
-                    Street = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false),
-                    PostalNo = table.Column<string>(type: "varchar(5)", maxLength: 5, nullable: false),
+                    SendingCity = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true),
+                    SendingAddress = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true),
+                    SendingPostalCode = table.Column<string>(type: "varchar(5)", maxLength: 5, nullable: true),
+                    ReceivingCity = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true),
+                    ReceivingAddress = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true),
+                    ReceivingPostalCode = table.Column<string>(type: "varchar(5)", maxLength: 5, nullable: true),
                     ContactPersonName = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
                     ContactPersonPhone = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false, defaultValueSql: "(CONVERT([int],session_context(N'PersonId')))"),
-                    DelivererId = table.Column<int>(type: "int", nullable: false, defaultValueSql: "(CONVERT([int],session_context(N'PersonId')))"),
+                    CustomerId = table.Column<int>(type: "int", nullable: false),
+                    DelivererId = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<double>(type: "float", nullable: false),
                     Note = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
                 },
@@ -86,8 +74,8 @@ namespace DeliveryServiceDomain.Migrations
                 {
                     table.PrimaryKey("PK_Shipments", x => x.ShipmentId);
                     table.ForeignKey(
-                        name: "FK_Shipments_Customer_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Shipments_Customer_CustomerId",
+                        column: x => x.CustomerId,
                         principalTable: "Customer",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -98,22 +86,10 @@ namespace DeliveryServiceDomain.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Shipments_Locations_ReceivingLocationId",
-                        column: x => x.ReceivingLocationId,
-                        principalTable: "Locations",
-                        principalColumn: "LocationId",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Shipments_Locations_SendingLocationId",
-                        column: x => x.SendingLocationId,
-                        principalTable: "Locations",
-                        principalColumn: "LocationId",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Shipments_ShipmentTypes_ShipmentTypeId",
-                        column: x => x.ShipmentTypeId,
-                        principalTable: "ShipmentTypes",
-                        principalColumn: "ShipmentTypeId",
+                        name: "FK_Shipments_ShipmentWeight_ShipmentWeightId",
+                        column: x => x.ShipmentWeightId,
+                        principalTable: "ShipmentWeight",
+                        principalColumn: "ShipmentWeightId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -171,57 +147,27 @@ namespace DeliveryServiceDomain.Migrations
                 columns: new[] { "AdditionalServiceId", "AdditionalServiceName", "AdditionalServicePrice" },
                 values: new object[,]
                 {
-                    { 1, "Potpisana otpremnica", 50.0 },
-                    { 2, "Povratnica", 50.0 },
-                    { 3, "Dodatna ambalaza", 60.0 },
-                    { 4, "Lično uručenje", 60.0 },
-                    { 5, "Osiguranje vrednosti", 80.0 },
-                    { 6, "Email izveštaj", 30.0 },
-                    { 7, "SMS izveštaj", 30.0 },
-                    { 8, "Uručenje danas za sutra do 12h", 90.0 },
-                    { 9, "Uručenje danas za sutra do 19h", 70.0 }
+                    { 1, "Signed delivery note", 50.0 },
+                    { 2, "Return receipt", 50.0 },
+                    { 3, "Additional packaging", 60.0 },
+                    { 4, "Personal delivery", 60.0 },
+                    { 5, "Value insurance", 80.0 },
+                    { 6, "Email report", 30.0 },
+                    { 7, "SMS report", 30.0 },
+                    { 8, "Delivery today for tomorrow until 12h", 90.0 },
+                    { 9, "Delivery today for tomorrow until 19h", 70.0 }
                 });
 
             migrationBuilder.InsertData(
-                table: "Locations",
-                columns: new[] { "LocationId", "LocationName" },
+                table: "ShipmentWeight",
+                columns: new[] { "ShipmentWeightId", "Desc", "ShipmentWeightPrice" },
                 values: new object[,]
                 {
-                    { 16, "Požarevac" },
-                    { 17, "Priština" },
-                    { 18, "Smederevo" },
-                    { 19, "Sombor" },
-                    { 20, "Sremska Mitrovica" },
-                    { 24, "Šabac" },
-                    { 22, "Užice" },
-                    { 23, "Čačak" },
-                    { 15, "Pančevo" },
-                    { 25, "Pirot" },
-                    { 21, "Subotica" },
-                    { 13, "Novi Pazar" },
-                    { 14, "Novi Sad" },
-                    { 1, "Beograd" },
-                    { 12, "Niš" },
-                    { 2, "Valjevo" },
-                    { 3, "Vranje" },
-                    { 5, "Zrenjanin" },
-                    { 6, "Jagodina" },
-                    { 4, "Zaječar" },
-                    { 8, "Kraljevo" },
-                    { 9, "Kruševac" },
-                    { 10, "Leskovac" },
-                    { 11, "Loznica" },
-                    { 7, "Kragujevac" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "ShipmentTypes",
-                columns: new[] { "ShipmentTypeId", "ShipmentTypeName", "ShipmentTypePrice" },
-                values: new object[,]
-                {
-                    { 1, "Standardna", 220.0 },
-                    { 2, "Specijalna", 350.0 },
-                    { 3, "Međunarodna", 900.0 }
+                    { 5, "Over 10 to 20kg", 700.0 },
+                    { 4, "Over 5 to 10kg", 510.0 },
+                    { 3, "Over 2 to 5kg", 390.0 },
+                    { 2, "Over 0,5 to 2kg", 300.0 },
+                    { 1, "Up to 0,5 kg", 250.0 }
                 });
 
             migrationBuilder.InsertData(
@@ -229,22 +175,15 @@ namespace DeliveryServiceDomain.Migrations
                 columns: new[] { "StatusId", "StatusName" },
                 values: new object[,]
                 {
-                    { 6, "Uručena" },
-                    { 7, "Uskladištena na čekanju" },
-                    { 5, "U transportu" },
-                    { 8, "Odbijena" },
-                    { 3, "Uskladištena za slanje" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Statuses",
-                columns: new[] { "StatusId", "StatusName" },
-                values: new object[,]
-                {
-                    { 2, "Na pakovanju" },
-                    { 1, "Zakazana" },
-                    { 4, "Kod kurira" },
-                    { 9, "Vraćena pošiljaocu" }
+                    { 1, "Scheduled" },
+                    { 2, "On the packaging" },
+                    { 3, "Stored for shipping" },
+                    { 4, "At the courier" },
+                    { 5, "In transport" },
+                    { 6, "Delivered" },
+                    { 7, "Stored on hold" },
+                    { 8, "Rejected" },
+                    { 9, "Returned to sender" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -253,29 +192,19 @@ namespace DeliveryServiceDomain.Migrations
                 column: "ShipmentId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Shipments_CustomerId",
+                table: "Shipments",
+                column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Shipments_DelivererId",
                 table: "Shipments",
                 column: "DelivererId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Shipments_ReceivingLocationId",
+                name: "IX_Shipments_ShipmentWeightId",
                 table: "Shipments",
-                column: "ReceivingLocationId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Shipments_SendingLocationId",
-                table: "Shipments",
-                column: "SendingLocationId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Shipments_ShipmentTypeId",
-                table: "Shipments",
-                column: "ShipmentTypeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Shipments_UserId",
-                table: "Shipments",
-                column: "UserId");
+                column: "ShipmentWeightId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_StatusShipments_ShipmentId",
@@ -301,10 +230,13 @@ namespace DeliveryServiceDomain.Migrations
                 name: "Statuses");
 
             migrationBuilder.DropTable(
-                name: "Locations");
+                name: "Customer");
 
             migrationBuilder.DropTable(
-                name: "ShipmentTypes");
+                name: "Deliverer");
+
+            migrationBuilder.DropTable(
+                name: "ShipmentWeight");
         }
     }
 }

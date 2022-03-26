@@ -2,9 +2,18 @@
 @model List<Shipment>
 
 <h3>All your shipments in one place</h3>
-<hr />
 
-<table class="table">
+@if(@Model == null || @Model.Count() ==0){
+	<hr />
+	<h2>No shipments yet.</h2>
+	<br />
+
+	<div>
+    <a asp-action="Create">Order a Shipment</a>
+	</div>
+}
+else {
+	<table class="table">
 	<thead>
 		<tr>
 			<th>Shipment Code</th>
@@ -12,23 +21,21 @@
 			<th>Sending Location</th>
 			<th>Receiving Location</th>
 			<th>Price</th>
-			<th>Check Shipment Statuses</th>
+			<th>Check Shipment Status</th>
 		</tr>
 	</thead>
 	<tbody>
 		@foreach (Shipment item in Model)
-	   {
-		   <tr>
+		   {
+			<tr>
 			<td>@item.ShipmentCode</td>
 			<td>@item.ShipmentContent</td>
 			<td>@item.SendingAddress, @item.SendingCity @item.SendingPostalCode</td>
 			<td>@item.ReceivingAddress, @item.ReceivingCity @item.ReceivingPostalCode</td>
-			<td>@item.Price</td>
-			<td><a href="Shipment/ShipmentMonitoring/@item.ShipmentCode">Check Status</a></td>
+			<td>@item.Price RSD</td>
+			<td><a href="ShipmentMonitoring/@item.ShipmentCode">Check Status</a></td>
 			</tr>
-	   }
-		
-
-	</tbody>
-
-</table>
+		   }
+		</tbody>
+	</table>
+}

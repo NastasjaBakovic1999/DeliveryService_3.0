@@ -7,18 +7,18 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace DeliveryServiceDomain.Migrations
+namespace DeliveryServiceDomain.Migrations.DeliveryService
 {
     [DbContext(typeof(DeliveryServiceContext))]
-    [Migration("20220322210045_set deliveredId as optional")]
-    partial class setdeliveredIdasoptional
+    [Migration("20220326122148_deleted required attr for note")]
+    partial class deletedrequiredattrfornote
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.14")
+                .HasAnnotation("ProductVersion", "5.0.15")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("DeliveryServiceDomain.AdditionalService", b =>
@@ -267,19 +267,14 @@ namespace DeliveryServiceDomain.Migrations
                         .HasColumnName("ContactPersonPhone");
 
                     b.Property<int>("CustomerId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("UserId")
-                        .HasDefaultValueSql("(CONVERT([int],session_context(N'PersonId')))");
+                        .HasColumnName("CustomerId");
 
                     b.Property<int>("DelivererId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("DelivererId")
-                        .HasDefaultValueSql("(CONVERT([int],session_context(N'PersonId')))");
+                        .HasColumnName("DelivererId");
 
                     b.Property<string>("Note")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)")
                         .HasColumnName("Note");
