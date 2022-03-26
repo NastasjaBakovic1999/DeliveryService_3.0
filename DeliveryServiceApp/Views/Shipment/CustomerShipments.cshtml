@@ -1,4 +1,5 @@
 ﻿@using DeliveryServiceDomain
+@using DeliveryServiceApp.Models
 @model List<Shipment>
 
 <h3>All your shipments in one place</h3>
@@ -33,7 +34,16 @@ else {
 			<td>@item.SendingAddress, @item.SendingCity @item.SendingPostalCode</td>
 			<td>@item.ReceivingAddress, @item.ReceivingCity @item.ReceivingPostalCode</td>
 			<td>@item.Price RSD</td>
-			<td><a href="ShipmentMonitoring/@item.ShipmentCode">Check Status</a></td>
+			<td>
+				@{
+					var smvm = new ShipmentMonitoringViewModel();
+					smvm.ShipmentCode = @item.ShipmentCode;
+				}
+				<form asp-action="ShipmentMonitoring" method="post">
+					<input value="@smvm" hidden/>
+					<button type="submit" class="btn btn-link btn-sm">Check Status</button>
+				</form>
+			</td>
 			</tr>
 		   }
 		</tbody>

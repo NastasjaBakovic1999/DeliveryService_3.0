@@ -1,6 +1,7 @@
 ﻿using DeliveryServiceApp.Models;
 using DeliveryServiceData.UnitOfWork;
 using DeliveryServiceDomain;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace DeliveryServiceApp.Controllers
             this.unitOfWork = unitOfWork;
         }
 
+        [Authorize(Roles = "Customer")]
         public IActionResult Create()
         {
             List<AdditionalService> additionalServicesList = unitOfWork.AdditionalService.GetAll();

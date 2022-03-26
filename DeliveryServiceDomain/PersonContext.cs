@@ -71,8 +71,8 @@ namespace DeliveryServiceDomain
         private void SeedRoles(ModelBuilder builder)
         {
             builder.Entity<IdentityRole>().HasData(
-                new IdentityRole() { Id = "3", Name = "User", ConcurrencyStamp = "1", NormalizedName = "USER" },
-                new IdentityRole() { Id = "4", Name = "Deliverer", ConcurrencyStamp = "2", NormalizedName = "DELIVERER" }
+                new IdentityRole() { Id = "1", Name = "Customer", ConcurrencyStamp = "1", NormalizedName = "CUSTOMER" },
+                new IdentityRole() { Id = "2", Name = "Deliverer", ConcurrencyStamp = "2", NormalizedName = "DELIVERER" }
                 );
 
             builder.Entity<IdentityUserRole<int>>().HasData(

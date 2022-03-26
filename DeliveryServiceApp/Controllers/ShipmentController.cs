@@ -2,6 +2,7 @@
 using DeliveryServiceData.UnitOfWork;
 using DeliveryServiceData.UnitOfWork.Implementation;
 using DeliveryServiceDomain;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -23,6 +24,7 @@ namespace DeliveryServiceApp.Controllers
             this.userManager = userManager;
         }
 
+        [Authorize(Roles = "Customer")]
         public IActionResult Create()
         {
             List<AdditionalService> additionalServicesList = unitOfWork.AdditionalService.GetAll();
@@ -41,6 +43,7 @@ namespace DeliveryServiceApp.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Customer")]
         public IActionResult Create(CreateShipmentViewModel model)
         {
             if (!ModelState.IsValid)
@@ -127,6 +130,7 @@ namespace DeliveryServiceApp.Controllers
             return RedirectToAction("CustomerShipments");
         }
 
+        [Authorize(Roles = "Customer")]
         public IActionResult AddService(int additionalServiceId, int number)
         {
             AdditionalService service = unitOfWork.AdditionalService.FindByID(additionalServiceId);
@@ -142,6 +146,7 @@ namespace DeliveryServiceApp.Controllers
             return PartialView(model);
         }
 
+        [Authorize(Roles = "Customer")]
         public IActionResult CustomerShipments()
         {
             int userId = -1;
@@ -152,6 +157,7 @@ namespace DeliveryServiceApp.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Deliverer")]
         public IActionResult AllShipments()
         {
             List<Shipment> model = unitOfWork.Shipment.GetAll();
@@ -159,6 +165,7 @@ namespace DeliveryServiceApp.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Customer, Deliverer")]
         public IActionResult ShipmentMonitoring()
         {
             ShipmentMonitoringViewModel model = new ShipmentMonitoringViewModel();
@@ -193,6 +200,7 @@ namespace DeliveryServiceApp.Controllers
             return View("ShipmentStatuses", model);
         }
 
+        [Authorize(Roles = "Deliverer")]
         public IActionResult EditStatus(int id)
         {
             Shipment shipment = unitOfWork.Shipment.FindByID(id);
@@ -223,6 +231,8 @@ namespace DeliveryServiceApp.Controllers
         [HttpPost]
         public IActionResult EditStatus(int id, ShipmentMonitoringViewModel model)
         {
+
+
             unitOfWork.StatusShipment.Add(new StatusShipment
             {
                 ShipmentId = id,

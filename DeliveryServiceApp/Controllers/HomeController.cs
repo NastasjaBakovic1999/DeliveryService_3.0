@@ -10,5 +10,11 @@ namespace DeliveryServiceApp.Controllers
         {
             return View();
         }
+
+        [AllowAnonymous]
+        public IActionResult AccesDenied()
+        {
+            return View();
+        }
     }
 }

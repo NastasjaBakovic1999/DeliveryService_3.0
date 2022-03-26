@@ -28,7 +28,7 @@ namespace DeliveryServiceApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Register([FromForm]RegisterViewModel model)
         {
-            Customer person = new Customer
+            Customer customer = new Customer
             {
                 FirstName = model.FirstName,
                 LastName = model.LastName,
@@ -39,10 +39,14 @@ namespace DeliveryServiceApp.Controllers
                 PostalCode = model.PostalCode
             };
 
-            var result = await userManager.CreateAsync(person, model.Password);
+            var result = await userManager.CreateAsync(customer, model.Password);
 
             if (result.Succeeded)
             {
+                var currentUser = await userManager.FindByNameAsync(customer.UserName);
+
+                var roleresult = await userManager.AddToRoleAsync(currentUser, "Customer");
+
                 return RedirectToAction("Login");
             }
             else

@@ -43,7 +43,7 @@ namespace DeliveryServiceApp
             services.ConfigureApplicationCookie(options =>
             {
                 options.LoginPath = "/Authentication/Login";
-                options.AccessDeniedPath = "/Authentication/Login";
+                options.AccessDeniedPath = "/Home/AccesDenied";
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(15);
                 options.SlidingExpiration = true;
             });
