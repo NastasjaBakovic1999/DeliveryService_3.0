@@ -47,7 +47,7 @@ namespace DeliveryServiceApp.Controllers
 
                 var roleresult = await userManager.AddToRoleAsync(currentUser, "Customer");
 
-                return RedirectToAction("Login");
+                return RedirectToAction("Index", "Home");
             }
             else
             {

@@ -8,7 +8,7 @@
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
           <div class="form-group">
                 <label asp-for="ShipmentWeightId" class="control-label"></label>
-                <select asp-for="ShipmentWeightId" asp-items="@Model.ShipmentWeights" class="form-control" ></select>
+                <select asp-for="ShipmentWeightId" asp-items="@Model.ShipmentWeights" class="form-control"></select>
            </div>
            <div class="form-group">
                  <label class="control-label">Select Additional Services</label>
@@ -16,7 +16,7 @@
             </div>
 
             <div class="form-group">
-                  <button class="btn btn-dark" id="addService"  type="button">Add Additional Service</button>
+                  <button class="btn btn-dark" id="addService" type="button">Add Additional Service</button>
             </div>
 
             <table class="table" id="additionalServicesTable" hidden>
@@ -33,12 +33,12 @@
 
            <div class="form-group" hidden id="price">
                 <label asp-for="Price" class="control-label"></label>
-                <h2>The price of the shipment would be:</h2>
-                <h3 id="priceValue"></h3> <h3>RSD</h3>
+                <h4>The price of the shipment would be:</h4>
+                
            </div>
 
             <div class="form-group">
-                  <input type="button" value="Create" class="btn btn-primary" id="submit"/>
+                  <input type="button" value="Calculate" class="btn btn-primary" id="submit"/>
             </div>
         </form>
     </div>
@@ -58,21 +58,6 @@
               success: function(data){
                   $("#additionalServicesTable tbody").append(data);
                   $("#additionalServicesTable").attr("hidden", false);
-              },
-              error: function(){
-                  alert("Error");
-              }
-          });
-        });
-
-         $("#submit").click(function(event){
-          $.ajax({
-              url: "@Url.Action("CalculateShipment", "Calculator")",
-              method: "GET",
-              success: function(data){
-                  $("#priceValue").append(data);
-                  $("#submit").attr("hidden", true);
-                  $("#price").attr("hidden", false);
               },
               error: function(){
                   alert("Error");

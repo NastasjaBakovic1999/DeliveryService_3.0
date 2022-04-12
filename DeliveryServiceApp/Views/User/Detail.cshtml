@@ -1,0 +1,73 @@
+﻿@model DeliveryServiceApp.Models.UserProfileViewModel
+
+<div>
+    <h4>Hey @User.Identity.Name, here is your profile</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Username)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        @if(@Model.Address != null && @Model.PostalCode != null){
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.PostalCode)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.PostalCode)
+            </dd>
+        }
+
+        @if(@Model.DateOfEmployment != new DateTime()){
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.DateOfEmployment)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.DateOfEmployment)
+            </dd>
+        }
+    </dl>
+</div>
+<div>
+   <a href="@Url.Action("Edit", "User", @Model)">
+        <i class="bi bi-gear-fill pr-1"></i>
+            Edit account
+   </a>
+</div>

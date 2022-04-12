@@ -35,8 +35,7 @@ namespace DeliveryServiceApp.Controllers
             return View(model);
         }
 
-        [HttpPost]
-        public IActionResult Create(CalculatorViewModel model)
+        public IActionResult CalculateShipment(CalculatorViewModel model)
         {
             if (!ModelState.IsValid)
             {

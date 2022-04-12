@@ -1,1 +1,16 @@
-﻿<h1>Home hehehheehheheh</h1>
+﻿@section Style{
+    <link rel="stylesheet" href="~/css/home.css" />
+}
+
+<div class="wrapper">
+    <div class="col align-content-center">
+        <div class="block">
+            <h3>Welcome to us!</h3>
+            <div class="line"></div>
+            <h4>That your shipment arrives on time - fast, reliable, responsible</h4>
+            <form asp-action="Create" asp-controller="Shipment" method="get">
+			    <button type="submit" class="btn btn-warning btn-sm">Order a Shipment</button>
+	        </form>
+        </div>
+    </div>
+</div>

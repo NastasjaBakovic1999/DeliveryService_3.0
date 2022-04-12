@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.31919.166
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliveryServiceData", "DeliveryServiceData\DeliveryServiceData.csproj", "{390F3975-CCE0-443E-8D81-2A1192224AD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeliveryServiceData", "DeliveryServiceData\DeliveryServiceData.csproj", "{390F3975-CCE0-443E-8D81-2A1192224AD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliveryServiceDomain", "DeliveryServiceDomain\DeliveryServiceDomain.csproj", "{07A88E03-767E-4104-B60C-58E957576D57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeliveryServiceDomain", "DeliveryServiceDomain\DeliveryServiceDomain.csproj", "{07A88E03-767E-4104-B60C-58E957576D57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliveryServiceApp", "DeliveryServiceApp\DeliveryServiceApp.csproj", "{7A25AF51-259F-4640-8791-1CF7FAC70697}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeliveryServiceApp", "DeliveryServiceApp\DeliveryServiceApp.csproj", "{7A25AF51-259F-4640-8791-1CF7FAC70697}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -34,6 +34,7 @@ namespace DeliveryServiceApp
             services.AddSession(opt => opt.IdleTimeout = TimeSpan.FromMinutes(10));
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IPersonUnitOfWork, PersonUnitOfWork>();
             services.AddDbContext<DeliveryServiceContext>();
             services.AddDbContext<PersonContext>();
             services.AddScoped<IPasswordHasher<Person>, PasswordHasher<Person>>();

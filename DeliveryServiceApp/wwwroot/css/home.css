@@ -1,0 +1,20 @@
+﻿
+.wrapper {
+    background-image: url(../img/road_runner_wall1.png);
+    height: 90vh;
+    background-size: cover;
+    background-position: center;
+}
+
+.block {
+    background-color: ghostwhite;
+    justify-content: center;
+    
+}
+
+.line {
+    width: 112px;
+    height: 47px;
+    border-bottom: 1px solid black;
+    position: absolute;
+}
