@@ -201,6 +201,7 @@ namespace DeliveryServiceApp.Controllers
         }
 
         [Authorize(Roles = "Deliverer")]
+        [HttpGet]
         public IActionResult EditStatus(int id)
         {
             Shipment shipment = unitOfWork.Shipment.FindByID(id);
@@ -232,6 +233,34 @@ namespace DeliveryServiceApp.Controllers
         public IActionResult EditStatus(int id, ShipmentMonitoringViewModel model)
         {
 
+            Shipment shipment = unitOfWork.Shipment.FindByID(id);
+            List<StatusShipment> statusShipmentList = unitOfWork.StatusShipment.GetAllByShipmentId(shipment.ShipmentId);
+
+            if(statusShipmentList.Any(ss => ss.StatusId == model.StatusId))
+            {
+                ModelState.AddModelError(string.Empty, "You cannot add a status that is already in the shipment status list.");
+
+                List<Status> statusesList = unitOfWork.Status.GetAll();
+                List<SelectListItem> statusesSelectList = statusesList.Select(s => new SelectListItem { Text = s.StatusName, Value = s.StatusId.ToString() }).ToList();
+
+                ShipmentMonitoringViewModel m = new ShipmentMonitoringViewModel
+                {
+                    ShipmentCode = shipment.ShipmentCode,
+                    StatusesSelect = statusesSelectList
+                };
+
+                foreach (StatusShipment ss in statusShipmentList)
+                {
+                    StatusShipmentViewModel ssvm = new StatusShipmentViewModel
+                    {
+                        StatusName = statusesList.Find(sl => sl.StatusId == ss.StatusId).StatusName,
+                        StatusTime = ss.StatusTime
+                    };
+                    m.ShipmentStatuses.Add(ssvm);
+                }
+
+                return View(m);
+            }
 
             unitOfWork.StatusShipment.Add(new StatusShipment
             {
@@ -242,7 +271,7 @@ namespace DeliveryServiceApp.Controllers
 
             unitOfWork.Commit();
 
-            return RedirectToAction("AllShipments");
+            return RedirectToAction("EditStatus");
         }
     }   
 }

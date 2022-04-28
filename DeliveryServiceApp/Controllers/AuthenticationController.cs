@@ -1,5 +1,6 @@
 ﻿using DeliveryServiceApp.Models;
 using DeliveryServiceDomain;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -75,9 +76,23 @@ namespace DeliveryServiceApp.Controllers
         public async Task<IActionResult> Login([FromForm] LoginViewModel model)
         {
             var result = await signInManager.PasswordSignInAsync(model.Username, model.Password, false, false);
+            
 
             if (result.Succeeded)
             {
+                var user = await userManager.FindByNameAsync(model.Username);
+                var roles = await userManager.GetRolesAsync(user);
+
+                if (roles.Contains("Deliverer"))
+                {
+                    HttpContext.Session.SetString("userrole", "Deliverer");
+                }
+
+                if (roles.Contains("Customer"))
+                {
+                    HttpContext.Session.SetString("userrole", "Customer");
+                }
+
                 return RedirectToAction("Index", "Home");
             }
 

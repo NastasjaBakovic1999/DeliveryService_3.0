@@ -8,6 +8,11 @@ a.navbar-brand {
   font-weight: 700;
 }
 
+.nav-item {
+    font-weight: 700;
+    color: #ffffff;
+}
+
 /* Provide sufficient contrast against white background */
 a {
   color: #0366d6;

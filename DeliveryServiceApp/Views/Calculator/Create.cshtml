@@ -38,7 +38,7 @@
            </div>
 
             <div class="form-group">
-                  <input type="button" value="Calculate" class="btn btn-primary" id="submit"/>
+                  <input type="button" value="Calculate" class="btn btn-warning" id="submit"/>
             </div>
         </form>
     </div>
@@ -64,6 +64,18 @@
               }
           });
         });
+
+        function removeRow(e){
+             let row = e.parentElement.parentElement;
+        console.log(row);
+            row.remove();
+
+
+        const inputIds = document.querySelectorAll("tr td input[data-name=serviceId]");
+        for(let i =0; i<inputIds.length; i++){
+            inputIds[i].setAttribute("name", `Services[${i}].AdditionalServiceId`);
+        }
+       }
     </script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
