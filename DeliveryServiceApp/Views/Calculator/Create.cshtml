@@ -2,44 +2,55 @@
 
 <h4>Calculate Shipment</h4>
 <hr />
+
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create" method="post">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-          <div class="form-group">
-                <label asp-for="ShipmentWeightId" class="control-label"></label>
-                <select asp-for="ShipmentWeightId" asp-items="@Model.ShipmentWeights" class="form-control"></select>
-           </div>
-           <div class="form-group">
-                 <label class="control-label">Select Additional Services</label>
-                 <select asp-items="@Model.AdditionalServices" class="form-control" id="additionalServices"></select>
-            </div>
+      <div class = "col-12">
+        <form asp-action="CalculateShipment" method="post">
+           <div class="row">
+              <div class="col-md-6">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                  <div class="form-group">
+                        <label class="control-label">Select Shipment Weight:</label>
+                        <select asp-for="ShipmentWeightId" asp-items="@Model.ShipmentWeights" class="form-control"></select>
+                   </div>
+                   <div class="form-group">
+                         <label class="control-label">Select Additional Services:</label>
+                         <select asp-items="@Model.AdditionalServices" class="form-control" id="additionalServices"></select>
+                    </div>
 
-            <div class="form-group">
-                  <button class="btn btn-dark" id="addService" type="button">Add Additional Service</button>
-            </div>
+                    <div class="form-group">
+                          <button class="btn btn-dark" id="addService" type="button">Add Additional Service</button>
+                    </div>
 
-            <table class="table" id="additionalServicesTable" hidden>
-                    <thead>
-                        <tr>
-                            <th>Service</th>
-                            <th>Price</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-            </table>
+                    <table class="table" id="additionalServicesTable" hidden>
+                            <thead>
+                                <tr>
+                                    <th>Service</th>
+                                    <th>Price</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                    </table>
 
-           <div class="form-group" hidden id="price">
-                <label asp-for="Price" class="control-label"></label>
-                <h4>The price of the shipment would be:</h4>
-                
-           </div>
+                   <div class="form-group">
+                         <input type="submit" value="Calculate" class="btn btn-warning btn-block"/>
+                    </div>
+                </div>
 
-            <div class="form-group">
-                  <input type="button" value="Calculate" class="btn btn-warning" id="submit"/>
-            </div>
+                 <div class="col-md-6">
+                    @if(@Model.Price != 0)
+                    {
+                      <div class="form-group py-md-5">
+                          <div>
+                                <h3>The price of the shipment would be:</h3>
+                                <h4>@Model.Price RSD</h4>
+                          </div>  
+                      </div>
+                    }
+                </div>
+             </div>
         </form>
     </div>
 </div>
@@ -67,15 +78,14 @@
 
         function removeRow(e){
              let row = e.parentElement.parentElement;
-        console.log(row);
-            row.remove();
+             row.remove();
 
-
-        const inputIds = document.querySelectorAll("tr td input[data-name=serviceId]");
-        for(let i =0; i<inputIds.length; i++){
-            inputIds[i].setAttribute("name", `Services[${i}].AdditionalServiceId`);
+            const inputIds = document.querySelectorAll("tr td input[data-name=serviceId]");
+                for(let i =0; i<inputIds.length; i++){
+                    inputIds[i].setAttribute("name", `Services[${i}].AdditionalServiceId`);
+                }
         }
-       }
+
     </script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

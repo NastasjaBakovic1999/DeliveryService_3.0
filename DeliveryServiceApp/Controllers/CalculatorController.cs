@@ -18,7 +18,7 @@ namespace DeliveryServiceApp.Controllers
         }
 
         [Authorize(Roles = "Customer")]
-        public IActionResult Create()
+        public IActionResult CalculateShipment()
         {
             List<AdditionalService> additionalServicesList = unitOfWork.AdditionalService.GetAll();
             List<SelectListItem> selectAdditionalServicesList = additionalServicesList.Select(s => new SelectListItem { Text = s.AdditionalServiceName + " - " + s.AdditionalServicePrice + " RSD", Value = s.AdditionalServiceId.ToString() }).ToList();
@@ -32,23 +32,24 @@ namespace DeliveryServiceApp.Controllers
                 ShipmentWeights = selectShipmentWeightList
             };
 
-            return View(model);
+            return View("Create", model);
         }
 
+        [HttpPost]
         public IActionResult CalculateShipment(CalculatorViewModel model)
         {
+            List<AdditionalService> additionalServicesList = unitOfWork.AdditionalService.GetAll();
+            List<SelectListItem> selectAdditionalServicesList = additionalServicesList.Select(s => new SelectListItem { Text = s.AdditionalServiceName + " - " + s.AdditionalServicePrice + " RSD", Value = s.AdditionalServiceId.ToString() }).ToList();
+
+            List<ShipmentWeight> shipmentWeightList = unitOfWork.ShipmentWeight.GetAll();
+            List<SelectListItem> selectShipmentWeightList = shipmentWeightList.Select(s => new SelectListItem { Text = s.ShipmentWeightDescpription, Value = s.ShipmentWeightId.ToString() }).ToList();
+           
             if (!ModelState.IsValid)
             {
-                List<AdditionalService> additionalServicesList = unitOfWork.AdditionalService.GetAll();
-                List<SelectListItem> selectAdditionalServicesList = additionalServicesList.Select(s => new SelectListItem { Text = s.AdditionalServiceName + " - " + s.AdditionalServicePrice + " RSD", Value = s.AdditionalServiceId.ToString() }).ToList();
-
-                List<ShipmentWeight> shipmentWeightList = unitOfWork.ShipmentWeight.GetAll();
-                List<SelectListItem> selectShipmentWeightList = shipmentWeightList.Select(s => new SelectListItem { Text = s.ShipmentWeightDescpription, Value = s.ShipmentWeightId.ToString() }).ToList();
-
                 model.AdditionalServices = selectAdditionalServicesList;
                 model.ShipmentWeights = selectShipmentWeightList;
                 
-                return View(model);
+                return View("Create", model);
             }
 
             double weightPrice = unitOfWork.ShipmentWeight.FindByID(model.ShipmentWeightId).ShipmentWeightPrice;
@@ -66,7 +67,10 @@ namespace DeliveryServiceApp.Controllers
 
             model.Price = weightPrice + additionalServicesPrice;
 
-            return PartialView("Price",model);
+            model.AdditionalServices = selectAdditionalServicesList;
+            model.ShipmentWeights = selectShipmentWeightList;
+
+            return View("Create", model);
         }
     }
 }
