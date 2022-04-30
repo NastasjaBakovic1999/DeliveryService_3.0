@@ -9,5 +9,7 @@ namespace DeliveryServiceData
 {
     public interface IRepositoryDeliverer:IRepository<Deliverer>
     {
+        public void Add(Deliverer deliverer);
+        public void Delete(Deliverer deliverer);
     }
 }

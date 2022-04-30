@@ -16,30 +16,6 @@ namespace DeliveryServiceData.Implementation
             this.context = context;
         }
 
-        public void Add(AdditionalService additionalService)
-        {
-            try
-            {
-                context.AdditionalServices.Add(additionalService);
-            }
-            catch(Exception ex)
-            {
-                throw new Exception($"Greška prilikom čuvanja nove dodatne uluge! Greška: {ex.Message}");
-            }
-        }
-
-        public void Delete(AdditionalService additionalService)
-        {
-            try
-            {
-                context.AdditionalServices.Remove(additionalService);
-            }
-            catch(Exception ex)
-            {
-                throw new Exception($"Greška prilikom brisanja dodatne uluge! Greška: {ex.Message}");
-            }
-        }
-
         public AdditionalService FindByID(int id, params int[] ids)
         {
             try

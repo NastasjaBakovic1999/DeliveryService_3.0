@@ -16,30 +16,6 @@ namespace DeliveryServiceData.Implementation
             this.context = context;
         }
 
-        public void Add(Status status)
-        {
-            try
-            {
-                context.Statuses.Add(status);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Greška prilikom čuvanja novog statusa! Greška: {ex.Message}");
-            }
-        }
-
-        public void Delete(Status status)
-        {
-            try
-            {
-                context.Statuses.Remove(status);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Greška prilikom brisanja statusa! Greška: {ex.Message}");
-            }
-        }
-
         public Status FindByID(int id, params int[] ids)
         {
             try
