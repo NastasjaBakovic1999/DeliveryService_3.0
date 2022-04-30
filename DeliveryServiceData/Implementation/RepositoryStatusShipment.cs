@@ -18,32 +18,74 @@ namespace DeliveryServiceData.Implementation
 
         public void Add(StatusShipment statusShipment)
         {
-            context.StatusShipments.Add(statusShipment);
+            try
+            {
+                context.StatusShipments.Add(statusShipment);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Greška prilikom čuvanja novog statusa određenje pošiljke! Greška: {ex.Message}");
+            }
         }
 
         public void Delete(StatusShipment statusShipment)
         {
-            context.StatusShipments.Remove(statusShipment);
+            try
+            {
+                context.StatusShipments.Remove(statusShipment);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Greška prilikom brisanja statusa određenje pošiljke! Greška: {ex.Message}");
+            }
         }
 
         public StatusShipment FindByID(int id, params int[] ids)
         {
-            return context.StatusShipments.Find(id, ids[0]);
+            try
+            {
+                return context.StatusShipments.Find(id, ids[0]);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Greška prilikom učitavanja pošiljke i njenih statusa! Greška: {ex.Message}");
+            }
         }
 
         public List<StatusShipment> GetAll()
         {
-            return context.StatusShipments.ToList();
+            try
+            {
+                return context.StatusShipments.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Greška prilikom učitavanja svih pošiljki sa njihovim statusima! Greška: {ex.Message}");
+            }
         }
 
         public void Edit(StatusShipment statusShipment)
         {
-            context.StatusShipments.Update(statusShipment);
+            try
+            {
+                context.StatusShipments.Update(statusShipment);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Greška prilikom izmene podataka pošiljke sa njenim statusima! Greška: {ex.Message}");
+            }
         }
 
         public List<StatusShipment> GetAllByShipmentId(int shipmentId)
         {
-            return context.StatusShipments.Where(ss => ss.ShipmentId == shipmentId).ToList();
+            try
+            {
+                return context.StatusShipments.Where(ss => ss.ShipmentId == shipmentId).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Greška prilikom učitavanja pošiljke i njenih statusa na osnovu id-ja pošiljke! Greška: {ex.Message}");
+            }
         }
     }
 }
