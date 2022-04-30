@@ -16,12 +16,13 @@ namespace DeliveryServiceApp.Services.Implementation
 
         public AdditionalService FindByID(int id, params int[] ids)
         {
-            throw new System.NotImplementedException();
+            AdditionalService additionalService = unitOfWork.AdditionalService.FindByID(id, ids);
+            return additionalService;
         }
 
         public List<AdditionalService> GetAll()
         {
-            throw new System.NotImplementedException();
+            return unitOfWork.AdditionalService.GetAll();
         }
     }
 }
