@@ -8,9 +8,9 @@ namespace DeliveryServiceApp.Services.Implementation
     public class ServiceCustomer : IServiceCustomer
     {
 
-        private readonly IUnitOfWork unitOfWork;
+        private readonly IPersonUnitOfWork unitOfWork;
 
-        public ServiceCustomer(IUnitOfWork unitOfWork)
+        public ServiceCustomer(IPersonUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
         }

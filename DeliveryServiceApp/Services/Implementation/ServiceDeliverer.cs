@@ -7,9 +7,9 @@ namespace DeliveryServiceApp.Services.Implementation
 {
     public class ServiceDeliverer : IServiceDeliverer
     {
-        private readonly IUnitOfWork unitOfWork;
+        private readonly IPersonUnitOfWork unitOfWork;
 
-        public ServiceDeliverer(IUnitOfWork unitOfWork)
+        public ServiceDeliverer(IPersonUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
         }
