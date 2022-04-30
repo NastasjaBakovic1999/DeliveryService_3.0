@@ -18,51 +18,75 @@ namespace DeliveryServiceData.Implementation
 
         public void Add(Shipment shipment)
         {
-            context.Shipments.Add(shipment);
+            try
+            {
+                context.Shipments.Add(shipment);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Greška prilikom čuvanja nove pošiljke! Greška: {ex.Message}");
+            }
         }
 
         public void Delete(Shipment shipment)
         {
-            context.Shipments.Remove(shipment);
+            try
+            {
+                context.Shipments.Remove(shipment);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Greška prilikom brisanja pošiljke! Greška: {ex.Message}");
+            }
         }
 
         public Shipment FindByID(int id, params int[] ids)
         {
-            return context.Shipments.Find(id);
+            try
+            {
+                return context.Shipments.Find(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Greška prilikom učitavanja pošiljle! Greška: {ex.Message}");
+            }
         }
 
         public List<Shipment> GetAll()
         {
-            return context.Shipments.ToList();
+            try
+            {
+                return context.Shipments.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Greška prilikom vraćanja svih pošiljaka! Greška: {ex.Message}");
+            }
         }
 
         public Shipment FindByCode(string code)
         {
-            return context.Shipments.FirstOrDefault(s => s.ShipmentCode == code);
+            try
+            {
+                return context.Shipments.Single(s => s.ShipmentCode == code);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Greška prilikom učitavanja pošiljke na osnovu njenog koda! Greška: {ex.Message}");
+            }
         }
 
         public List<Shipment> GetAllOfSpecifiedUser(int? userId)
         {
-            if (userId != null)
+            try
             {
                 return context.Shipments.Where(s => s.CustomerId == userId).ToList();
             }
-            else
+            catch (Exception ex)
             {
-                return null;
+                throw new Exception($"Greška prilikom vraćanja svih pošiljki određenog korisnika! Greška: {ex.Message}");
             }
-        }
-
-        public List<Shipment> GetAllOfSpecifiedDeliverer(int? delivererId)
-        {
-            if(delivererId != null)
-            {
-                return context.Shipments.Where(s => s.DelivererId == delivererId).ToList();
-            }
-            else
-            {
-                return null;
-            }
+            
         }
 
     }

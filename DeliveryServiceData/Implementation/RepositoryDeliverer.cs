@@ -18,22 +18,50 @@ namespace DeliveryServiceData.Implementation
 
         public void Add(Deliverer entity)
         {
-            context.Deliverers.Add(entity);
+            try
+            {
+              context.Deliverers.Add(entity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Greška prilikom čuvanja novog kurira! Greška: {ex.Message}");
+            }
         }
 
         public void Delete(Deliverer entity)
         {
-            context.Deliverers.Remove(entity);
+            try
+            {
+                context.Deliverers.Remove(entity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Greška prilikom brisanja kurira! Greška: {ex.Message}");
+            }
         }
 
         public Deliverer FindByID(int id, params int[] ids)
         {
-            return context.Deliverers.Find(id);
+            try
+            {
+                return context.Deliverers.Find(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Greška prilikom učitavanja kurira! Greška: {ex.Message}");
+            }
         }
 
         public List<Deliverer> GetAll()
         {
-            return context.Deliverers.ToList();
+            try
+            {
+                return context.Deliverers.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Greška prilikom vraćanja svih kurira! Greška: {ex.Message}");
+            }
         }
     }
 }

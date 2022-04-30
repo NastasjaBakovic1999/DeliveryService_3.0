@@ -18,27 +18,63 @@ namespace DeliveryServiceData.Implementation
 
         public void Add(Customer entity)
         {
-            context.Customers.Add(entity);
+            try
+            {
+                 context.Customers.Add(entity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Greška prilikom čuvanja novog korisnika! Greška: {ex.Message}");
+            }
         }
 
         public void Delete(Customer entity)
         {
-            context.Customers.Remove(entity);
+            try
+            {
+                context.Customers.Remove(entity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Greška prilikom brisanja korisnika! Greška: {ex.Message}");
+            }
         }
 
         public Customer FindByID(int id, params int[] ids)
         {
-            return context.Customers.Find(id);
+            try
+            {
+                return context.Customers.Find(id);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Greška prilikom učitavanja korisnika! Greška: {ex.Message}");
+            }
         }
 
         public List<Customer> GetAll()
         {
-            return context.Customers.ToList();
+            try
+            {
+                return context.Customers.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Greška prilikom vraćanja svih korisnika! Greška: {ex.Message}");
+            }
         }
 
         public void Edit(Customer entity)
         {
-            context.Customers.Update(entity);
+            try
+            {
+                context.Customers.Update(entity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Greška prilikom promene podataka korisnika! Greška: {ex.Message}");
+            }
         }
     }
 }

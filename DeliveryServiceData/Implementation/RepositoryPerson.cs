@@ -18,22 +18,50 @@ namespace DeliveryServiceData.Implementation
 
         public void Add(Person entity)
         {
-            context.Persons.Add(entity);
+            try
+            {
+                context.Persons.Add(entity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Greška prilikom čuvanja nove osobe! Greška: {ex.Message}");
+            }
         }
 
         public void Delete(Person entity)
         {
-            context.Persons.Remove(entity);
+            try
+            {
+                context.Persons.Remove(entity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Greška prilikom brisanja osobe! Greška: {ex.Message}");
+            }
         }
 
         public Person FindByID(int id, params int[] ids)
         {
-            return context.Persons.Find(id);
+            try
+            {
+                return context.Persons.Find(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Greška prilikom učitavanja osobe! Greška: {ex.Message}");
+            }
         }
 
         public List<Person> GetAll()
         {
-            return context.Persons.ToList();
+            try
+            {
+                return context.Persons.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Greška prilikom učitavanja svih osoba! Greška: {ex.Message}");
+            }
         }
     }
 }

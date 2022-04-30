@@ -18,22 +18,50 @@ namespace DeliveryServiceData.Implementation
 
         public void Add(ShipmentWeight entity)
         {
-            context.ShipmentWeights.Add(entity);
+            try
+            {
+                context.ShipmentWeights.Add(entity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Greška prilikom čuvanja nove težine pošiljke! Greška: {ex.Message}");
+            }
         }
 
         public void Delete(ShipmentWeight entity)
         {
-            context.ShipmentWeights.Remove(entity);
+            try
+            {
+                context.ShipmentWeights.Remove(entity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Greška prilikom brisanja težine pošiljke! Greška: {ex.Message}");
+            }
         }
 
         public ShipmentWeight FindByID(int id, params int[] ids)
         {
-            return context.ShipmentWeights.Find(id);
+            try
+            {
+                return context.ShipmentWeights.Find(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Greška prilikom učitavanja težine pošiljke! Greška: {ex.Message}");
+            }
         }
 
         public List<ShipmentWeight> GetAll()
         {
-            return context.ShipmentWeights.ToList();
+            try
+            {
+                return context.ShipmentWeights.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Greška prilikom vraćanja svih težina pošiljki! Greška: {ex.Message}");
+            }
         }
     }
 }

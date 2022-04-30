@@ -19,37 +19,86 @@ namespace DeliveryServiceData.Implementation
 
         public void Add(AdditionalServiceShipment additionalServiceShipment)
         {
-            context.AdditionalServiceShipments.Add(additionalServiceShipment);
+            try
+            {
+                context.AdditionalServiceShipments.Add(additionalServiceShipment);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Greška prilikom čuvanja pošiljke i njene dodatne usluge! Greška: {ex.Message}");
+            }
         }
 
         public void Delete(AdditionalServiceShipment additionalServiceShipment)
         {
-            context.AdditionalServiceShipments.Remove(additionalServiceShipment);
+            try
+            {
+                context.AdditionalServiceShipments.Remove(additionalServiceShipment);
+            }
+            catch(Exception ex)
+            {
+                throw new Exception($"Greška prilikom brisanja pošiljke i njene dodatne uluge! Greška: {ex.Message}");
+            }
         }
 
         public AdditionalServiceShipment FindByID(int id, params int[] ids)
         {
-            return context.AdditionalServiceShipments.Find(id, ids[0]);
+            try
+            {
+                return context.AdditionalServiceShipments.Find(id, ids[0]);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Greška prilikom učitavanja pošiljke i njene dodatne uluge! Greška: {ex.Message}");
+            }
         }
 
         public List<AdditionalServiceShipment> GetAll()
         {
-            return context.AdditionalServiceShipments.ToList();
+            try
+            {
+               return context.AdditionalServiceShipments.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Greška prilikom vraćanja svih pošiljki i njihovih dodatnih uluga! Greška: {ex.Message}");
+            }
         }
 
         public void Edit(AdditionalServiceShipment additionalServiceShipment)
         {
-            context.AdditionalServiceShipments.Update(additionalServiceShipment);
+            try
+            {
+                context.AdditionalServiceShipments.Update(additionalServiceShipment);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Greška prilikom promene podataka pošiljke i njene dodatne uluge! Greška: {ex.Message}");
+            }
         }
 
         public List<AdditionalServiceShipment> GetByShipmentId(int shipmentId)
         {
-            return context.AdditionalServiceShipments.Where(ass => ass.ShipmentId == shipmentId).ToList();
+            try
+            {
+                 return context.AdditionalServiceShipments.Where(ass => ass.ShipmentId == shipmentId).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Greška prilikom učitavanja pošiljki i njihovih dodatnih uluga na osnovu id-ja pošiljke! Greška: {ex.Message}");
+            }
         }
 
         public List<AdditionalServiceShipment> Search(Expression<Func<AdditionalServiceShipment, bool>> pred)
         {
-            return context.AdditionalServiceShipments.Where(pred).ToList();
+            try
+            {
+               return context.AdditionalServiceShipments.Where(pred).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Greška prilikom pretrage pošiljaka i njihovih dodatnih uluga! Greška: {ex.Message}");
+            }
         }
     }
 }
