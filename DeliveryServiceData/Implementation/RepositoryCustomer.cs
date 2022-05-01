@@ -16,30 +16,6 @@ namespace DeliveryServiceData.Implementation
             this.context = context;
         }
 
-        public void Add(Customer entity)
-        {
-            try
-            {
-                 context.Customers.Add(entity);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Greška prilikom čuvanja novog korisnika! Greška: {ex.Message}");
-            }
-        }
-
-        public void Delete(Customer entity)
-        {
-            try
-            {
-                context.Customers.Remove(entity);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Greška prilikom brisanja korisnika! Greška: {ex.Message}");
-            }
-        }
-
         public Customer FindByID(int id, params int[] ids)
         {
             try

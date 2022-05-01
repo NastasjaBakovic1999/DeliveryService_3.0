@@ -9,8 +9,6 @@ namespace DeliveryServiceData
 {
     public interface IRepositoryCustomer:IRepository<Customer>
     {
-        public void Add(Customer customer);
-        public void Delete(Customer customer);
         public void Edit(Customer customer);
     }
 }

@@ -16,30 +16,6 @@ namespace DeliveryServiceData.Implementation
             this.context = context;
         }
 
-        public void Add(Deliverer entity)
-        {
-            try
-            {
-              context.Deliverers.Add(entity);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Greška prilikom čuvanja novog kurira! Greška: {ex.Message}");
-            }
-        }
-
-        public void Delete(Deliverer entity)
-        {
-            try
-            {
-                context.Deliverers.Remove(entity);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Greška prilikom brisanja kurira! Greška: {ex.Message}");
-            }
-        }
-
         public Deliverer FindByID(int id, params int[] ids)
         {
             try

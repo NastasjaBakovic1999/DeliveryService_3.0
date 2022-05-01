@@ -11,5 +11,6 @@ namespace DeliveryServiceData.UnitOfWork
         public IRepositoryCustomer Customer { get; set; }
         public IRepositoryDeliverer Deliverer { get; set; }
         public IRepositoryPerson Person { get; set; }
+        void Commit();
     }
 }

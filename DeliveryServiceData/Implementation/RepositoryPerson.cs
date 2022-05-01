@@ -16,30 +16,6 @@ namespace DeliveryServiceData.Implementation
             this.context = context;
         }
 
-        public void Add(Person entity)
-        {
-            try
-            {
-                context.Persons.Add(entity);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Greška prilikom čuvanja nove osobe! Greška: {ex.Message}");
-            }
-        }
-
-        public void Delete(Person entity)
-        {
-            try
-            {
-                context.Persons.Remove(entity);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Greška prilikom brisanja osobe! Greška: {ex.Message}");
-            }
-        }
-
         public Person FindByID(int id, params int[] ids)
         {
             try
