@@ -1,4 +1,5 @@
 ﻿using DeliveryServiceApp.Filters;
+using DeliveryServiceApp.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,6 +18,12 @@ namespace DeliveryServiceApp.Controllers
         public IActionResult AccesDenied()
         {
             return View();
+        }
+
+        public IActionResult Error(string message)
+        {
+            ErrorViewModel model = new ErrorViewModel { Message = message };
+            return View(model);
         }
     }
 }
