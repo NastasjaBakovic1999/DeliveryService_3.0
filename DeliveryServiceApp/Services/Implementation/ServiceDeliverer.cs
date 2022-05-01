@@ -1,6 +1,7 @@
 ﻿using DeliveryServiceApp.Services.Interfaces;
 using DeliveryServiceData.UnitOfWork;
 using DeliveryServiceDomain;
+using System;
 using System.Collections.Generic;
 
 namespace DeliveryServiceApp.Services.Implementation
@@ -14,24 +15,13 @@ namespace DeliveryServiceApp.Services.Implementation
             this.unitOfWork = unitOfWork;
         }
 
-        public void Add(Deliverer deliverer)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void Delete(Deliverer deliverer)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public Deliverer FindByID(int id, params int[] ids)
         {
-            throw new System.NotImplementedException();
+            return unitOfWork.Deliverer.FindByID(id, ids);
         }
 
         public List<Deliverer> GetAll()
         {
-            throw new System.NotImplementedException();
-        }
+            return unitOfWork.Deliverer.GetAll();
     }
 }

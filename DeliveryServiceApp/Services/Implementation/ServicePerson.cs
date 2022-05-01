@@ -13,25 +13,14 @@ namespace DeliveryServiceApp.Services.Implementation
         {
             this.unitOfWork = unitOfWork;
         }
-
-        public void Add(Person person)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void Delete(Person person)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public Person FindByID(int id, params int[] ids)
         {
-            throw new System.NotImplementedException();
+            return unitOfWork.Person.FindByID(id, ids);
         }
 
         public List<Person> GetAll()
         {
-            throw new System.NotImplementedException();
+            return unitOfWork.Person.GetAll();
         }
     }
 }

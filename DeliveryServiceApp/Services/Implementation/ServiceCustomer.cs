@@ -1,6 +1,7 @@
 ﻿using DeliveryServiceApp.Services.Interfaces;
 using DeliveryServiceData.UnitOfWork;
 using DeliveryServiceDomain;
+using System;
 using System.Collections.Generic;
 
 namespace DeliveryServiceApp.Services.Implementation
@@ -15,29 +16,35 @@ namespace DeliveryServiceApp.Services.Implementation
             this.unitOfWork = unitOfWork;
         }
 
-        public void Add(Customer customer)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void Delete(Customer customer)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public void Edit(Customer customer)
         {
-            throw new System.NotImplementedException();
+            if (IsValid(customer) == false) throw new ArgumentOutOfRangeException("Nevalidan unos!");
+            unitOfWork.Customer.Edit(customer);
+            unitOfWork.Commit();
         }
+
+        private bool IsValid(Customer customer)
+        {
+            bool valid = true;
+
+            if (customer == null) return false;
+            if (string.IsNullOrEmpty(customer.Address) || string.IsNullOrEmpty(customer.PostalCode))
+            {
+                return false;
+            }
+
+            return valid;
+        }
+
 
         public Customer FindByID(int id, params int[] ids)
         {
-            throw new System.NotImplementedException();
+            return unitOfWork.Customer.FindByID(id, ids);
         }
 
         public List<Customer> GetAll()
         {
-            throw new System.NotImplementedException();
+            return unitOfWork.Customer.GetAll();
         }
     }
 }
