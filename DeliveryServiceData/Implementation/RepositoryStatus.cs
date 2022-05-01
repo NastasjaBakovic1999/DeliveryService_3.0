@@ -40,18 +40,6 @@ namespace DeliveryServiceData.Implementation
             }
         }
 
-        public void Edit(Status status)
-        {
-            try
-            {
-                context.Statuses.Update(status);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Greška prilikom izmene podataka o statusu! Greška: {ex.Message}");
-            }
-        }
-
         public Status GetByName(string name)
         {
             try
