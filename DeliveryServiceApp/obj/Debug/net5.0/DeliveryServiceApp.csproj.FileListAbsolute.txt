@@ -145,7 +145,6 @@ G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\bin\Debug\ne
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\bin\Debug\net5.0\runtimes\win-arm64\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\obj\Debug\net5.0\refint\DeliveryServiceApp.dll
-G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\obj\Debug\net5.0\Razor\Views\Error.cshtml.g.cs
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.Internal.dll
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 G:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceApp\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll

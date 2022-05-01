@@ -1,3 +1,5 @@
+using DeliveryServiceApp.Services.Implementation;
+using DeliveryServiceApp.Services.Interfaces;
 using DeliveryServiceData.UnitOfWork;
 using DeliveryServiceData.UnitOfWork.Implementation;
 using DeliveryServiceDomain;
@@ -29,6 +31,19 @@ namespace DeliveryServiceApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IServiceAdditonalService, ServiceAdditionalService>();
+            services.AddScoped<IServiceAddionalServiceShipment, ServiceAdditionalServiceShipment>();
+            services.AddScoped<IServiceCustomer, ServiceCustomer>();
+            services.AddScoped<IServiceDeliverer, ServiceDeliverer>();
+            services.AddScoped<IServicePerson, ServicePerson>();
+            services.AddScoped<IServiceShipment, ServiceShipment>();
+            services.AddScoped<IServiceShipmentWeight, ServiceShipmentWeight>();
+            services.AddScoped<IServiceStatus, ServiceStatus>();
+            services.AddScoped<IServiceStatusShipment, ServiceStatusShipment>();
+
+            services.AddControllersWithViews(
+            ).AddJsonOptions(x => x.JsonSerializerOptions.MaxDepth = Int32.MaxValue);
+
             services.AddControllersWithViews();
             services.AddDistributedMemoryCache();
             services.AddSession(opt => opt.IdleTimeout = TimeSpan.FromMinutes(10));
