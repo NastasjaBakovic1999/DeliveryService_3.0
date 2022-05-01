@@ -33,8 +33,7 @@ namespace DeliveryServiceApp.Services.Implementation
             bool valid = true;
 
             if (additionalServiceShipment == null) return false;
-            if(additionalServiceShipment.Shipment == null || additionalServiceShipment.AdditionalService == null 
-               || additionalServiceShipment.AdditionalServiceId == 0 || additionalServiceShipment.ShipmentId == 0)
+            if(additionalServiceShipment.AdditionalServiceId == 0 || additionalServiceShipment.ShipmentId == 0)
             {
                 return false;
             }

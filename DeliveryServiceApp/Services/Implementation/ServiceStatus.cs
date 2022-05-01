@@ -14,24 +14,19 @@ namespace DeliveryServiceApp.Services.Implementation
             this.unitOfWork = unitOfWork;
         }
 
-        public void Edit(Status status)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public Status FindByID(int id, params int[] ids)
         {
-            throw new System.NotImplementedException();
+            return unitOfWork.Status.FindByID(id, ids);
         }
 
         public List<Status> GetAll()
         {
-            throw new System.NotImplementedException();
+            return unitOfWork.Status.GetAll();
         }
 
         public Status GetByName(string name)
         {
-            throw new System.NotImplementedException();
+            return unitOfWork.Status.GetByName(name);
         }
     }
 }
