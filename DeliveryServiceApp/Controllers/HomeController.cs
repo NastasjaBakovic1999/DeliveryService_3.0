@@ -20,6 +20,7 @@ namespace DeliveryServiceApp.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         public IActionResult Error(string message)
         {
             ErrorViewModel model = new ErrorViewModel { Message = message };
