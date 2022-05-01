@@ -16,12 +16,12 @@ namespace DeliveryServiceApp.Services.Implementation
 
         public ShipmentWeight FindByID(int id, params int[] ids)
         {
-            throw new System.NotImplementedException();
+            return unitOfWork.ShipmentWeight.FindByID(id, ids);
         }
 
         public List<ShipmentWeight> GetAll()
         {
-            throw new System.NotImplementedException();
+            return unitOfWork.ShipmentWeight.GetAll();
         }
     }
 }
