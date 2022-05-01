@@ -1,9 +1,11 @@
 ﻿using DeliveryServiceApp.Models;
 using DeliveryServiceDomain;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace DeliveryServiceApp.Controllers
@@ -39,6 +41,12 @@ namespace DeliveryServiceApp.Controllers
                 Address = model.Address,
                 PostalCode = model.PostalCode
             };
+
+            if(string.IsNullOrEmpty(model.Password) || string.IsNullOrEmpty(model.PasswordConfirm) || !model.Password.Equals(model.PasswordConfirm))
+            {
+                ModelState.AddModelError("Password", "Password not added");
+                return View();
+            }
 
             var result = await userManager.CreateAsync(customer, model.Password);
 
@@ -109,5 +117,54 @@ namespace DeliveryServiceApp.Controllers
             return RedirectToAction("Index", "Home");
         }
         #endregion
+
+        [AcceptVerbs("Get", "Post")]
+        [AllowAnonymous]
+        public async Task<IActionResult> IsEmailValid(string email)
+        {
+            bool valid = true;
+
+            if (email != null)
+            {
+                if (!Regex.IsMatch(email.ToString(), @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"))
+                {
+                    valid = false;
+                }
+            }
+
+            var user = await userManager.FindByEmailAsync(email);
+
+            if(user == null && valid == true)
+            {
+                return Json(true);
+            }
+            else
+            {
+                if(valid==true && user != null)
+                {
+                    return Json($"{email} is already registered!");
+                } else
+                {
+                    return Json($"{email} is not in the correct format!");
+                }
+            }
+        }
+
+        [AcceptVerbs("Get", "Post")]
+        [AllowAnonymous]
+        public async Task<IActionResult> IsUsernameInUse(string username)
+        {
+            var user = await userManager.FindByNameAsync(username);
+            if (user == null)
+            {
+                return Json(true);
+            }
+            else
+            {
+                return Json($"{username} is already in use!");
+            }
+        }
+
+
     }
 }

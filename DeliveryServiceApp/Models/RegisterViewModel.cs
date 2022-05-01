@@ -1,4 +1,5 @@
 ﻿using DeliveryServiceApp.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -15,10 +16,12 @@ namespace DeliveryServiceApp.Models
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "This field is required")]
+        [Remote(action: "IsUsernameInUse", controller: "Authentication")]
         public string Username { get; set; }
 
         [EmailAddress]
         [Required(ErrorMessage = "This field is required")]
+        [Remote(action: "IsEmailValid", controller: "Authentication")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "This field is required")]

@@ -23,5 +23,6 @@ namespace DeliveryServiceApp.Services.Implementation
         public List<Deliverer> GetAll()
         {
             return unitOfWork.Deliverer.GetAll();
+        }
     }
 }
