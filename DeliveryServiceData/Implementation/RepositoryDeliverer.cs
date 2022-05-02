@@ -24,7 +24,8 @@ namespace DeliveryServiceData.Implementation
             }
             catch (Exception ex)
             {
-                throw new Exception($"Greška prilikom učitavanja kurira! Greška: {ex.Message}");
+                throw new Exception($"Error loading courier! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
             }
         }
 
@@ -36,7 +37,8 @@ namespace DeliveryServiceData.Implementation
             }
             catch (Exception ex)
             {
-                throw new Exception($"Greška prilikom vraćanja svih kurira! Greška: {ex.Message}");
+                throw new Exception($"Error loading all couriers! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
             }
         }
     }

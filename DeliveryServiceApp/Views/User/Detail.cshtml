@@ -65,9 +65,11 @@
         }
     </dl>
 </div>
-<div>
-   <a href="@Url.Action("Edit", "User", @Model)">
-        <i class="bi bi-gear-fill pr-1"></i>
-            Edit account
-   </a>
-</div>
+ @if(User.IsInRole("Customer")){
+    <div>
+       <a href="@Url.Action("Edit", "User", @Model)">
+            <i class="bi bi-gear-fill pr-1"></i>
+                Edit account
+       </a>
+    </div>
+ }

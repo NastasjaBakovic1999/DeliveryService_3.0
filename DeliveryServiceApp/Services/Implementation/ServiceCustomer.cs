@@ -3,6 +3,7 @@ using DeliveryServiceData.UnitOfWork;
 using DeliveryServiceDomain;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace DeliveryServiceApp.Services.Implementation
 {
@@ -18,7 +19,11 @@ namespace DeliveryServiceApp.Services.Implementation
 
         public void Edit(Customer customer)
         {
-            if (IsValid(customer) == false) throw new ArgumentOutOfRangeException("Nevalidan unos!");
+            if (!IsValid(customer))
+            {
+                throw new ArgumentOutOfRangeException("Invalid entry!");
+            }
+
             unitOfWork.Customer.Edit(customer);
             unitOfWork.Commit();
         }

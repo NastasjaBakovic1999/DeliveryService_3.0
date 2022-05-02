@@ -24,7 +24,8 @@ namespace DeliveryServiceData.Implementation
             }
             catch (Exception ex)
             {
-                throw new Exception($"Greška prilikom čuvanja nove pošiljke! Greška: {ex.Message}");
+                throw new Exception($"Error saving new shipment! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
             }
         }
 
@@ -36,7 +37,8 @@ namespace DeliveryServiceData.Implementation
             }
             catch (Exception ex)
             {
-                throw new Exception($"Greška prilikom brisanja pošiljke! Greška: {ex.Message}");
+                throw new Exception($"Error deleting shipment! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
             }
         }
 
@@ -48,7 +50,8 @@ namespace DeliveryServiceData.Implementation
             }
             catch (Exception ex)
             {
-                throw new Exception($"Greška prilikom učitavanja pošiljle! Greška: {ex.Message}");
+                throw new Exception($"Error loading shipment!{Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
             }
         }
 
@@ -60,7 +63,8 @@ namespace DeliveryServiceData.Implementation
             }
             catch (Exception ex)
             {
-                throw new Exception($"Greška prilikom vraćanja svih pošiljaka! Greška: {ex.Message}");
+                throw new Exception($"Error loading all shipments!{Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
             }
         }
 
@@ -68,11 +72,12 @@ namespace DeliveryServiceData.Implementation
         {
             try
             {
-                return context.Shipments.Single(s => s.ShipmentCode == code);
+                return context.Shipments.SingleOrDefault(s => s.ShipmentCode == code);
             }
             catch (Exception ex)
             {
-                throw new Exception($"Greška prilikom učitavanja pošiljke na osnovu njenog koda! Greška: {ex.Message}");
+                throw new Exception($"Error loading shipment based on its code!{Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
             }
         }
 
@@ -84,7 +89,8 @@ namespace DeliveryServiceData.Implementation
             }
             catch (Exception ex)
             {
-                throw new Exception($"Greška prilikom vraćanja svih pošiljki određenog korisnika! Greška: {ex.Message}");
+                throw new Exception($"Error returning all shipments of a specific user!{Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
             }
             
         }

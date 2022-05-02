@@ -24,7 +24,8 @@ namespace DeliveryServiceData.Implementation
             }
             catch(Exception ex)
             {
-                throw new Exception($"Greška prilikom učitavanja dodatne uluge! Greška: {ex.Message}");
+                throw new Exception($"Error loading additional service! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
             }
         }
 
@@ -36,7 +37,8 @@ namespace DeliveryServiceData.Implementation
             }
             catch(Exception ex)
             {
-                throw new Exception($"Greška prilikom vraćanja svih dodatnih uluga! Greška: {ex.Message}");
+                throw new Exception($"Error returning all additional services! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
             }
         }
     }

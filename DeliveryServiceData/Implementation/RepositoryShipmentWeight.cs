@@ -24,7 +24,8 @@ namespace DeliveryServiceData.Implementation
             }
             catch (Exception ex)
             {
-                throw new Exception($"Greška prilikom učitavanja težine pošiljke! Greška: {ex.Message}");
+                throw new Exception($"Error loading shipment weight! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
             }
         }
 
@@ -36,7 +37,8 @@ namespace DeliveryServiceData.Implementation
             }
             catch (Exception ex)
             {
-                throw new Exception($"Greška prilikom vraćanja svih težina pošiljki! Greška: {ex.Message}");
+                throw new Exception($"Error loading all shipment weights! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
             }
         }
     }

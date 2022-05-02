@@ -86,7 +86,6 @@ namespace DeliveryServiceApp.Services.Implementation
 
         public Shipment FindByCode(string code)
         {
-            if (string.IsNullOrEmpty(code)) throw new Exception();
             return unitOfWork.Shipment.FindByCode(code);
         }
 
@@ -102,7 +101,6 @@ namespace DeliveryServiceApp.Services.Implementation
 
         public List<Shipment> GetAllOfSpecifiedUser(int? userId)
         {
-            if (userId == 0) throw new Exception();
             return unitOfWork.Shipment.GetAllOfSpecifiedUser(userId);
         }
     }

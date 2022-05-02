@@ -24,7 +24,8 @@ namespace DeliveryServiceData.Implementation
             }
             catch (Exception ex)
             {
-                throw new Exception($"Greška prilikom učitavanja osobe! Greška: {ex.Message}");
+                throw new Exception($"Error loading person! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
             }
         }
 
@@ -36,7 +37,8 @@ namespace DeliveryServiceData.Implementation
             }
             catch (Exception ex)
             {
-                throw new Exception($"Greška prilikom učitavanja svih osoba! Greška: {ex.Message}");
+                throw new Exception($"Error loading all persons! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
             }
         }
     }

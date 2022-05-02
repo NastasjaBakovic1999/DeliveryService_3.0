@@ -1,17 +1,13 @@
 ﻿@model ErrorViewModel
 @{
-    ViewData["Title"] = "Error";
+    ViewData["Title"] = "Ooops!";
 }
 
-<h1 class="text-danger">Oops!</h1>
 <h2 class="text-danger">An error occurred while processing your request.</h2>
-
-<h2 class="fw-bold">@Model.StatusCode</h2>
 <h3>@Model.Message</h3>
 
  <div>
     <a asp-action="Index" asp-controller="Home" class="btn btn-warning">
-        <span class="glyphicon glyphicon-home"></span>
         Return to the Home Page
     </a>
 </div>

@@ -69,46 +69,47 @@ namespace DeliveryServiceApp.Controllers
             }
         }
 
-        [Authorize(Roles = "Customer, Deliverer")]
+        [Authorize(Roles = "Customer")]
         [HttpGet]
         public IActionResult Edit(UserProfileViewModel model)
         {
-            return View(model);
+             return View(model);
         }
 
         [HttpPost]
         public async  Task<IActionResult> Edited(UserProfileViewModel model)
         {
-            if (!ModelState.IsValid)
-            {
-                return View("Edit", model);
-            }
-
             try
             {
                 var user = await userManager.FindByIdAsync(model.Id.ToString());
 
-                if (user != null)
+                if (!ModelState.IsValid)
+                {
+                    return View("Edit", model);
+                }
+
+                if (user != null && !string.IsNullOrEmpty(model.FirstName) && !string.IsNullOrEmpty(model.LastName)
+                    && !string.IsNullOrEmpty(model.Email) && !string.IsNullOrEmpty(model.PhoneNumber))
                 {
                     user.FirstName = model.FirstName;
                     user.LastName = model.LastName;
-                    user.UserName = model.Username;
                     user.Email = model.Email;
                     user.PhoneNumber = model.PhoneNumber;
 
                     await userManager.UpdateAsync(user);
 
-                    var role = await userManager.GetRolesAsync(user);
-                    if (role.Contains("Customer"))
+                    Customer c = new Customer
                     {
-                        Customer c = new Customer
-                        {
-                            Address = model.Address,
-                            PostalCode = model.PostalCode
-                        };
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        Email = model.Email,
+                        PhoneNumber = model.PhoneNumber,
+                        Address = model.Address,
+                        PostalCode = model.PostalCode
+                    };
 
-                        serviceCustomer.Edit(c);
-                    }
+                    serviceCustomer.Edit(c);
+
                     return View("Detail", model);
                 }
                 else

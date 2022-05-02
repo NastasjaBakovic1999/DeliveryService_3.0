@@ -22,7 +22,7 @@ namespace DeliveryServiceApp.Models
         public string Username { get; set; }
 
         [Required(ErrorMessage = "This field is required")]
-        [EmailAddress]
+        [ValidEmailAddress(ErrorMessage = "The email address is not in the correct format!")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "This field is required")]

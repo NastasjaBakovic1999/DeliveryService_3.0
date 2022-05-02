@@ -16,12 +16,10 @@ namespace DeliveryServiceApp.Models
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "This field is required")]
-        [Remote(action: "IsUsernameInUse", controller: "Authentication")]
         public string Username { get; set; }
 
-        [EmailAddress]
+        [ValidEmailAddress(ErrorMessage = "The email address is not in the correct format!")]
         [Required(ErrorMessage = "This field is required")]
-        [Remote(action: "IsEmailValid", controller: "Authentication")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "This field is required")]

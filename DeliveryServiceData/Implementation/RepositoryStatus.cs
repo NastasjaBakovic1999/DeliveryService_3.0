@@ -24,7 +24,8 @@ namespace DeliveryServiceData.Implementation
             }
             catch (Exception ex)
             {
-                throw new Exception($"Greška prilikom učitavanja statusa! Greška: {ex.Message}");
+                throw new Exception($"Error loading status! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
             }
         }
 
@@ -36,7 +37,8 @@ namespace DeliveryServiceData.Implementation
             }
             catch (Exception ex)
             {
-                throw new Exception($"Greška prilikom vraćanja svih statusa! Greška: {ex.Message}");
+                throw new Exception($"Error loading all statuses! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
             }
         }
 
@@ -48,7 +50,8 @@ namespace DeliveryServiceData.Implementation
             }
             catch (Exception ex)
             {
-                throw new Exception($"Greška prilikom učitavanja statusa sa zadatim imenom! Greška: {ex.Message}");
+                throw new Exception($"Error loading status with specific name! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
             }
         }
     }

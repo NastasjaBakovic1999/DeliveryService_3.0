@@ -33,6 +33,7 @@
                     <div class="row">
                          <div class="col-md-12">
                             <div class="form-group">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                 <label asp-for="StatusId" class="control-label">Select status:</label>
                                 <select asp-for="StatusId" asp-items="@Model.StatusesSelect" class="form-control" ></select>
                             </div>

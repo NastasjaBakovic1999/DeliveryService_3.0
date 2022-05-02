@@ -25,7 +25,8 @@ namespace DeliveryServiceData.Implementation
             }
             catch (Exception ex)
             {
-                throw new Exception($"Greška prilikom čuvanja pošiljke i njene dodatne usluge! Greška: {ex.Message}");
+                throw new Exception($"Error saving shipment and its additional services! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
             }
         }
 
@@ -37,7 +38,8 @@ namespace DeliveryServiceData.Implementation
             }
             catch(Exception ex)
             {
-                throw new Exception($"Greška prilikom brisanja pošiljke i njene dodatne uluge! Greška: {ex.Message}");
+                throw new Exception($"Error deleting shipment and its additional service! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
             }
         }
 
@@ -49,7 +51,8 @@ namespace DeliveryServiceData.Implementation
             }
             catch (Exception ex)
             {
-                throw new Exception($"Greška prilikom učitavanja pošiljke i njene dodatne uluge! Greška: {ex.Message}");
+                throw new Exception($"Error loading shipment and its additional service! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
             }
         }
 
@@ -61,7 +64,8 @@ namespace DeliveryServiceData.Implementation
             }
             catch (Exception ex)
             {
-                throw new Exception($"Greška prilikom vraćanja svih pošiljki i njihovih dodatnih uluga! Greška: {ex.Message}");
+                throw new Exception($"Error returning all shipments and their additional services! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
             }
         }
 
@@ -73,7 +77,8 @@ namespace DeliveryServiceData.Implementation
             }
             catch (Exception ex)
             {
-                throw new Exception($"Greška prilikom promene podataka pošiljke i njene dodatne uluge! Greška: {ex.Message}");
+                throw new Exception($"Error changing shipment data and its additional services! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
             }
         }
 
@@ -85,7 +90,8 @@ namespace DeliveryServiceData.Implementation
             }
             catch (Exception ex)
             {
-                throw new Exception($"Greška prilikom učitavanja pošiljki i njihovih dodatnih uluga na osnovu id-ja pošiljke! Greška: {ex.Message}");
+                throw new Exception($"Error loading shipments and their additional services based on shipment id! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
             }
         }
 
@@ -97,7 +103,8 @@ namespace DeliveryServiceData.Implementation
             }
             catch (Exception ex)
             {
-                throw new Exception($"Greška prilikom pretrage pošiljaka i njihovih dodatnih uluga! Greška: {ex.Message}");
+                throw new Exception($"Error searching for shipments and their additional services! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
             }
         }
     }
