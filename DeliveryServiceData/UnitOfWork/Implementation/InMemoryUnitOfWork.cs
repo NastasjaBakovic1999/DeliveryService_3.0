@@ -15,11 +15,11 @@ namespace DeliveryServiceData.UnitOfWork.Implementation
         }
 
         public IRepositoryAdditionalService AdditionalService { get; set; } = new InMemoryRepositoryAdditonalService();
-        public IRepositoryAdditionalServiceShipment AdditionalServiceShipment { get; set; }
-        public IRepositoryShipment Shipment { get; set; }
-        public IRepositoryStatus Status { get; set; }
-        public IRepositoryStatusShipment StatusShipment { get; set; }
-        public IRepositoryShipmentWeight ShipmentWeight { get; set; }
+        public IRepositoryAdditionalServiceShipment AdditionalServiceShipment { get; set; } = new InMemoryRepositoryAdditonalServiceShipment();
+        public IRepositoryShipment Shipment { get; set; } = new InMemoryRepositoryShipment();
+        public IRepositoryStatus Status { get; set; } = new InMemoryRepositoryStatus();
+        public IRepositoryStatusShipment StatusShipment { get; set; } = new InMemoryRepositoryStatusShipment();
+        public IRepositoryShipmentWeight ShipmentWeight { get; set; } = new InMemoryRepositoryShipmentWeight();
 
         public void Commit()
         {
