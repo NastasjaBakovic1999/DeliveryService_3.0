@@ -54,22 +54,6 @@ namespace DeliveryServiceApp.Services.Implementation
             return exist;
         }
 
-        public void Delete(AdditionalServiceShipment additionalServiceShipment)
-        {
-            if (additionalServiceShipment == null) throw new ArgumentException();
-            var adds = unitOfWork.AdditionalServiceShipment.FindByID(additionalServiceShipment.AdditionalServiceId, additionalServiceShipment.ShipmentId);
-            if(adds == null) throw new Exception();
-            unitOfWork.AdditionalServiceShipment.Delete(additionalServiceShipment);
-            unitOfWork.Commit();
-        }
-
-        public void Edit(AdditionalServiceShipment additionalServiceShipment)
-        {
-            if (IsValid(additionalServiceShipment) == false) throw new ArgumentOutOfRangeException();
-            unitOfWork.AdditionalServiceShipment.Edit(additionalServiceShipment);
-            unitOfWork.Commit();
-        }
-
         public AdditionalServiceShipment FindByID(int id, params int[] ids)
         {
             var additionalServiceShipment = unitOfWork.AdditionalServiceShipment.FindByID(id, ids);
@@ -81,17 +65,5 @@ namespace DeliveryServiceApp.Services.Implementation
             return unitOfWork.AdditionalServiceShipment.GetAll();
         }
 
-        public List<AdditionalServiceShipment> GetByShipmentId(int shipmentId)
-        {
-            var adds = unitOfWork.AdditionalServiceShipment.GetByShipmentId(shipmentId);
-            return adds;
-        }
-
-        public List<AdditionalServiceShipment> Search(Expression<Func<AdditionalServiceShipment, bool>> pred)
-        {
-            if (pred == null) throw new Exception();
-            var adds = unitOfWork.AdditionalServiceShipment.Search(pred);
-            return adds;
-        }
     }
 }
