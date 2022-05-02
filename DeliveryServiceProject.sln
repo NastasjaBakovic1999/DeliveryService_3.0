@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31729.503
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeliveryServiceData", "DeliveryServiceData\DeliveryServiceData.csproj", "{390F3975-CCE0-443E-8D81-2A1192224AD3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeliveryServiceDomain", "DeliveryServiceDomain\DeliveryServiceDomain.csproj", "{07A88E03-767E-4104-B60C-58E957576D57}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeliveryServiceApp", "DeliveryServiceApp\DeliveryServiceApp.csproj", "{7A25AF51-259F-4640-8791-1CF7FAC70697}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliveryServiceAppTests", "DeliveryServiceAppTests\DeliveryServiceAppTests.csproj", "{554D3FFF-6715-49C2-A684-29A7A48D1C17}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{7A25AF51-259F-4640-8791-1CF7FAC70697}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A25AF51-259F-4640-8791-1CF7FAC70697}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A25AF51-259F-4640-8791-1CF7FAC70697}.Release|Any CPU.Build.0 = Release|Any CPU
+		{554D3FFF-6715-49C2-A684-29A7A48D1C17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{554D3FFF-6715-49C2-A684-29A7A48D1C17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{554D3FFF-6715-49C2-A684-29A7A48D1C17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{554D3FFF-6715-49C2-A684-29A7A48D1C17}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
