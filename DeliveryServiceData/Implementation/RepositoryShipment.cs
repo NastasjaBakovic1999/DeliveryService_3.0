@@ -29,19 +29,6 @@ namespace DeliveryServiceData.Implementation
             }
         }
 
-        public void Delete(Shipment shipment)
-        {
-            try
-            {
-                context.Shipments.Remove(shipment);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Error deleting shipment! {Environment.NewLine}" +
-                                    $"System Error: {ex.Message}");
-            }
-        }
-
         public Shipment FindByID(int id, params int[] ids)
         {
             try

@@ -76,14 +76,6 @@ namespace DeliveryServiceApp.Services.Implementation
             return valid;
         }
 
-        public void Delete(Shipment shipment)
-        {
-            var s = unitOfWork.Shipment.FindByID(shipment.ShipmentId);
-            if (s == null) throw new Exception();
-            unitOfWork.Shipment.Delete(shipment);
-            unitOfWork.Commit();
-        }
-
         public Shipment FindByCode(string code)
         {
             return unitOfWork.Shipment.FindByCode(code);
