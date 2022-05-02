@@ -29,18 +29,6 @@ namespace DeliveryServiceData.Implementation
             }
         }
 
-        public void Delete(StatusShipment statusShipment)
-        {
-            try
-            {
-                context.StatusShipments.Remove(statusShipment);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Error deleting shipment status! {Environment.NewLine}" +
-                                    $"System Error: {ex.Message}");
-            }
-        }
 
         public StatusShipment FindByID(int id, params int[] ids)
         {
@@ -64,19 +52,6 @@ namespace DeliveryServiceData.Implementation
             catch (Exception ex)
             {
                 throw new Exception($"Error loading all shipments with their statuses! {Environment.NewLine}" +
-                                    $"System Error: {ex.Message}");
-            }
-        }
-
-        public void Edit(StatusShipment statusShipment)
-        {
-            try
-            {
-                context.StatusShipments.Update(statusShipment);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Error modifying shipment data and its status! {Environment.NewLine}" +
                                     $"System Error: {ex.Message}");
             }
         }

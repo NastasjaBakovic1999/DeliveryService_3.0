@@ -54,22 +54,6 @@ namespace DeliveryServiceApp.Services.Implementation
             return exist;
         }
 
-        public void Delete(StatusShipment statusShipment)
-        {
-            StatusShipment ss = unitOfWork.StatusShipment.FindByID(statusShipment.StatusId, statusShipment.ShipmentId);
-            if (ss == null) throw new Exception();
-            unitOfWork.StatusShipment.Delete(statusShipment);
-            unitOfWork.Commit();
-        }
-
-        public void Edit(StatusShipment statusShipment)
-        {
-            if (IsValid(statusShipment) == false) throw new ArgumentOutOfRangeException("Nevalidan unos!");
-
-            unitOfWork.StatusShipment.Edit(statusShipment);
-            unitOfWork.Commit();
-        }
-
         public StatusShipment FindByID(int id, params int[] ids)
         {
             return unitOfWork.StatusShipment.FindByID(id, ids);
