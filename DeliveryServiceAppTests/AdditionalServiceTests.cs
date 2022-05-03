@@ -16,7 +16,7 @@ namespace DeliveryServiceAppTests
         Mock<IUnitOfWork> unitOfWork = Mocks.GetMockUnitOfWork();
 
         [Fact]
-        public void TestServiceAdditionalServiceFindBy()
+        public void TestServiceAdditionalServiceFindById()
         {
             var service = new ServiceAdditionalService(unitOfWork.Object);
             var result = service.FindByID(1);
@@ -26,12 +26,22 @@ namespace DeliveryServiceAppTests
         }
 
         [Fact]
-        public void TestServiceAdditionalServiceFindByInvalid()
+        public void TestServiceAdditionalServiceFindByIdInvalid()
         {
             var service = new ServiceAdditionalService(unitOfWork.Object);
             var result = service.FindByID(-4);
 
             Assert.Null(result);
         }
+
+        [Fact]
+        public void TestServiceAdditionalServiceGetAll()
+        {
+            var service = new ServiceAdditionalService(unitOfWork.Object);
+            var result = service.GetAll();
+            var resultList = Assert.IsAssignableFrom<List<AdditionalService>>(result);
+            Assert.Equal<int>(5, resultList.Count());
+        }
+
     }
 }
