@@ -64,7 +64,7 @@ namespace DeliveryServiceAppTests
         }
 
         [Fact]
-        public void TestServiceAdditionalServiceShipmentAddInvalid()
+        public void TestServiceAdditionalServiceShipmentAddInvalidId()
         {
             var service = new ServiceAdditionalServiceShipment(unitOfWork.Object);
             var newAdditionalServiceShipment = new AdditionalServiceShipment
@@ -73,6 +73,23 @@ namespace DeliveryServiceAppTests
                 AdditionalService = unitOfWork.Object.AdditionalService.FindByID(1),
                 ShipmentId = -2,
                 Shipment = unitOfWork.Object.Shipment.FindByID(-2)
+            };
+
+            Assert.Throws<ArgumentOutOfRangeException>(() => service.Add(newAdditionalServiceShipment));
+            unitOfWork.Verify(x => x.AdditionalServiceShipment.Add(It.IsAny<AdditionalServiceShipment>()), Times.Never);
+            unitOfWork.Verify(x => x.Commit(), Times.Never);
+        }
+
+        [Fact]
+        public void TestServiceAdditionalServiceShipmentAddAlreadyExist()
+        {
+            var service = new ServiceAdditionalServiceShipment(unitOfWork.Object);
+            var newAdditionalServiceShipment = new AdditionalServiceShipment
+            {
+                AdditionalServiceId = 1,
+                AdditionalService = unitOfWork.Object.AdditionalService.FindByID(1),
+                ShipmentId = 1,
+                Shipment = unitOfWork.Object.Shipment.FindByID(1)
             };
 
             Assert.Throws<ArgumentOutOfRangeException>(() => service.Add(newAdditionalServiceShipment));

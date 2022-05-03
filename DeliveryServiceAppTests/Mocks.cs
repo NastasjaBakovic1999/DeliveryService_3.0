@@ -359,7 +359,7 @@ namespace DeliveryServiceAppTests
                     ReceivingPostalCode = "76322",
                     ContactPersonName = "Marko Markovic",
                     ContactPersonPhone = "0654433221",
-                    CustomerId = 4,
+                    CustomerId = 3,
                     DelivererId = 2,
                     Price = 330,
                     Note = "stan 8",
