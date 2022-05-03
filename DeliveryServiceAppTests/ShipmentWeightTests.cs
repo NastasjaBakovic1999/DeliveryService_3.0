@@ -40,7 +40,8 @@ namespace DeliveryServiceAppTests
             var service = new ServiceShipmentWeight(unitOfWork.Object);
             var result = service.GetAll();
             var resultList = Assert.IsAssignableFrom<List<ShipmentWeight>>(result);
-            Assert.Equal<int>(6, resultList.Count);
+            var expected = unitOfWork.Object.ShipmentWeight.GetAll();
+            Assert.Equal<int>(expected.Count, resultList.Count);
         }
     }
 }

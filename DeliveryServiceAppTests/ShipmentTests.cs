@@ -44,7 +44,8 @@ namespace DeliveryServiceAppTests
             var service = new ServiceShipment(unitOfWork.Object);
             var result = service.GetAll();
             var resultList = Assert.IsAssignableFrom<List<Shipment>>(result);
-            Assert.Equal<int>(3, resultList.Count);
+            var expected = unitOfWork.Object.Shipment.GetAll();
+            Assert.Equal(expected.Count, resultList.Count);
         }
 
         [Fact]
@@ -158,7 +159,7 @@ namespace DeliveryServiceAppTests
             var service = new ServiceShipment(unitOfWork.Object);
             var result = service.GetAllOfSpecifiedUser(3);
             var resultList = Assert.IsAssignableFrom<List<Shipment>>(result);
-            Assert.Equal<int>(2, resultList.Count);
+            Assert.Equal(2, resultList.Count);
         }
 
         [Fact]
@@ -389,6 +390,7 @@ namespace DeliveryServiceAppTests
                 Price = 330,
                 Note = "stan 8",
             } };
+            yield return new object[] { null };
 
         }
 

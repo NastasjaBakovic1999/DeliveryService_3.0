@@ -40,7 +40,8 @@ namespace DeliveryServiceAppTests
             var service = new ServiceAdditionalService(unitOfWork.Object);
             var result = service.GetAll();
             var resultList = Assert.IsAssignableFrom<List<AdditionalService>>(result);
-            Assert.Equal<int>(5, resultList.Count);
+            var expected = unitOfWork.Object.AdditionalService.GetAll();
+            Assert.Equal<int>(expected.Count, resultList.Count);
         }
 
     }

@@ -560,7 +560,7 @@ namespace DeliveryServiceAppTests
             mockStatusShipmentRepository.Setup(x => x.GetAll()).Returns(statusShipments);
             mockStatusShipmentRepository.Setup(x => x.FindByID(It.IsAny<int>(), It.IsAny<int[]>())).Returns((int i, int[] j) =>
             {
-                return statusShipments.SingleOrDefault(c => c.StatusId == i);
+                return statusShipments.SingleOrDefault(c => c.StatusId == i && c.ShipmentId == j[0]);
             });
             mockStatusShipmentRepository.Setup(x => x.GetAllByShipmentId(It.IsAny<int>())).Returns((int i) =>
             {

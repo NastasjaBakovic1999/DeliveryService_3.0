@@ -36,6 +36,10 @@ namespace DeliveryServiceApp.Services.Implementation
             {
                 return false;
             }
+            if (statusShipment.StatusId < 0 || statusShipment.ShipmentId < 0)
+            {
+                return false;
+            }
             if (statusShipment.StatusTime > DateTime.Now) return false;
 
             return valid;

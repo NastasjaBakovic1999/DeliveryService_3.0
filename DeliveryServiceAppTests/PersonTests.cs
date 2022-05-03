@@ -40,7 +40,8 @@ namespace DeliveryServiceAppTests
             var service = new ServicePerson(unitOfWork.Object);
             var result = service.GetAll();
             var resultList = Assert.IsAssignableFrom<List<Person>>(result);
-            Assert.Equal<int>(5, resultList.Count);
+            var expected = unitOfWork.Object.Person.GetAll();
+            Assert.Equal<int>(expected.Count, resultList.Count);
         }
     }
 }
