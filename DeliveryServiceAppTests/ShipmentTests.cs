@@ -167,7 +167,7 @@ namespace DeliveryServiceAppTests
             var service = new ServiceShipment(unitOfWork.Object);
             var result = service.GetAllOfSpecifiedUser(0);
 
-            Assert.Equal<int>(0, result.Count);
+            Assert.Empty(result);
         }
 
         [Fact]

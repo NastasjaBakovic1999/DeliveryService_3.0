@@ -46,7 +46,7 @@ namespace DeliveryServiceData.Implementation
         {
             try
             {
-                return context.Statuses.Single(s => s.StatusName == name);
+                return context.Statuses.SingleOrDefault(s => s.StatusName == name);
             }
             catch (Exception ex)
             {
