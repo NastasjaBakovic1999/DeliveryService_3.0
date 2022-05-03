@@ -37,6 +37,10 @@ namespace DeliveryServiceApp.Services.Implementation
             {
                 return false;
             }
+            if (additionalServiceShipment.AdditionalServiceId < 0 || additionalServiceShipment.ShipmentId < 0)
+            {
+                return false;
+            }
 
             return valid;
         }

@@ -49,7 +49,7 @@ namespace DeliveryServiceAppTests
 
             var mockAdditionalServiceRepository = new Mock<IRepositoryAdditionalService>();
             mockAdditionalServiceRepository.Setup(x => x.GetAll()).Returns(additionalServices);
-            mockAdditionalServiceRepository.Setup(x => x.FindByID(It.IsAny<int>(), It.IsAny < int[]>())).Returns((int i) => additionalServices.SingleOrDefault(x => x.AdditionalServiceId == i));
+            mockAdditionalServiceRepository.Setup(x => x.FindByID(It.IsAny<int>(), It.IsAny <int[]>())).Returns((int i, int[] j) => additionalServices.SingleOrDefault(x => x.AdditionalServiceId == i));
 
             return mockAdditionalServiceRepository;
         }
@@ -81,10 +81,10 @@ namespace DeliveryServiceAppTests
                 },
                 new AdditionalServiceShipment
                 {
-                    AdditionalServiceId = 1,
+                    AdditionalServiceId = 2,
                     ShipmentId = 2,
                     Shipment = GetMockShipmentRepository().Object.FindByID(2),
-                    AdditionalService = GetMockAdditionalServiceRepository().Object.FindByID(1)
+                    AdditionalService = GetMockAdditionalServiceRepository().Object.FindByID(2)
                 },
                 new AdditionalServiceShipment
                 {
@@ -97,7 +97,7 @@ namespace DeliveryServiceAppTests
 
             var mockAdditionalServiceShipmentRepository = new Mock<IRepositoryAdditionalServiceShipment>();
             mockAdditionalServiceShipmentRepository.Setup(x => x.GetAll()).Returns(additionalServiceShipments);
-            mockAdditionalServiceShipmentRepository.Setup(x => x.FindByID(It.IsAny<int>(), It.IsAny<int[]>())).Returns((int i, int j) => additionalServiceShipments.SingleOrDefault(x => x.AdditionalServiceId == i &&                                                                                                                                      x.ShipmentId == j));
+            mockAdditionalServiceShipmentRepository.Setup(x => x.FindByID(It.IsAny<int>(), It.IsAny<int[]>())).Returns((int i, int[] j) => additionalServiceShipments.SingleOrDefault(x => x.AdditionalServiceId == i && x.ShipmentId == j[0]));
             mockAdditionalServiceShipmentRepository.Setup(x => x.Add(It.IsAny<AdditionalServiceShipment>())).Callback((AdditionalServiceShipment adss) =>
             {
                 additionalServiceShipments.Add(adss);
@@ -169,7 +169,7 @@ namespace DeliveryServiceAppTests
 
             var mockCustomerRepository = new Mock<IRepositoryCustomer>();
             mockCustomerRepository.Setup(x => x.GetAll()).Returns(customers);
-            mockCustomerRepository.Setup(x => x.FindByID(It.IsAny<int>())).Returns((int i) =>
+            mockCustomerRepository.Setup(x => x.FindByID(It.IsAny<int>(), It.IsAny<int[]>())).Returns((int i, int[] j) =>
             {
                 return customers.SingleOrDefault(c => c.Id == i);
             });
@@ -247,7 +247,7 @@ namespace DeliveryServiceAppTests
 
             var mockDelivererRepository = new Mock<IRepositoryDeliverer>();
             mockDelivererRepository.Setup(x => x.GetAll()).Returns(deliverers);
-            mockDelivererRepository.Setup(x => x.FindByID(It.IsAny<int>())).Returns((int i) =>
+            mockDelivererRepository.Setup(x => x.FindByID(It.IsAny<int>(), It.IsAny<int[]>())).Returns((int i, int[] j) =>
             {
                 return deliverers.SingleOrDefault(c => c.Id == i);
             });
@@ -308,7 +308,7 @@ namespace DeliveryServiceAppTests
 
             var mockPersonRepository = new Mock<IRepositoryPerson>();
             mockPersonRepository.Setup(x => x.GetAll()).Returns(people);
-            mockPersonRepository.Setup(x => x.FindByID(It.IsAny<int>())).Returns((int i) =>
+            mockPersonRepository.Setup(x => x.FindByID(It.IsAny<int>(), It.IsAny<int[]>())).Returns((int i, int[] j) =>
             {
                 return people.SingleOrDefault(c => c.Id == i);
             });
@@ -392,7 +392,7 @@ namespace DeliveryServiceAppTests
 
             var mockShipmentRepository = new Mock<IRepositoryShipment>();
             mockShipmentRepository.Setup(x => x.GetAll()).Returns(shipments);
-            mockShipmentRepository.Setup(x => x.FindByID(It.IsAny<int>())).Returns((int i) =>
+            mockShipmentRepository.Setup(x => x.FindByID(It.IsAny<int>(), It.IsAny<int[]>())).Returns((int i, int[] j) =>
             {
                 return shipments.SingleOrDefault(c => c.ShipmentId == i);
             });
@@ -456,7 +456,7 @@ namespace DeliveryServiceAppTests
 
             var mockShipmentWeightRepository = new Mock<IRepositoryShipmentWeight>();
             mockShipmentWeightRepository.Setup(x => x.GetAll()).Returns(shipmentWeights);
-            mockShipmentWeightRepository.Setup(x => x.FindByID(It.IsAny<int>())).Returns((int i) =>
+            mockShipmentWeightRepository.Setup(x => x.FindByID(It.IsAny<int>(), It.IsAny<int[]>())).Returns((int i, int[] j) =>
             {
                 return shipmentWeights.SingleOrDefault(c => c.ShipmentWeightId == i);
             });
@@ -502,7 +502,7 @@ namespace DeliveryServiceAppTests
 
             var mockStatusRepository = new Mock<IRepositoryStatus>();
             mockStatusRepository.Setup(x => x.GetAll()).Returns(statuses);
-            mockStatusRepository.Setup(x => x.FindByID(It.IsAny<int>())).Returns((int i) =>
+            mockStatusRepository.Setup(x => x.FindByID(It.IsAny<int>(), It.IsAny<int[]>())).Returns((int i, int[] j) =>
             {
                 return statuses.SingleOrDefault(c => c.StatusId == i);
             });
@@ -558,7 +558,7 @@ namespace DeliveryServiceAppTests
 
             var mockStatusShipmentRepository = new Mock<IRepositoryStatusShipment>();
             mockStatusShipmentRepository.Setup(x => x.GetAll()).Returns(statusShipments);
-            mockStatusShipmentRepository.Setup(x => x.FindByID(It.IsAny<int>())).Returns((int i) =>
+            mockStatusShipmentRepository.Setup(x => x.FindByID(It.IsAny<int>(), It.IsAny<int[]>())).Returns((int i, int[] j) =>
             {
                 return statusShipments.SingleOrDefault(c => c.StatusId == i);
             });

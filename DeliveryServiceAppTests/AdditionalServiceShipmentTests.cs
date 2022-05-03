@@ -20,10 +20,10 @@ namespace DeliveryServiceAppTests
         {
             var service = new ServiceAdditionalServiceShipment(unitOfWork.Object);
             var result = service.FindByID(1, new int[] {1});
-            var resultAdditionalService = Assert.IsType<AdditionalServiceShipment>(result);
+            var resultAdditionalServiceShipment = Assert.IsType<AdditionalServiceShipment>(result);
             var expected = unitOfWork.Object.AdditionalServiceShipment.FindByID(1, new int[] { 1 });
-            Assert.Equal(expected.AdditionalServiceId, resultAdditionalService.AdditionalServiceId);
-            Assert.Equal(expected.ShipmentId, resultAdditionalService.ShipmentId);
+            Assert.Equal(expected.AdditionalServiceId, resultAdditionalServiceShipment.AdditionalServiceId);
+            Assert.Equal(expected.ShipmentId, resultAdditionalServiceShipment.ShipmentId);
         }
 
         [Fact]
@@ -41,7 +41,7 @@ namespace DeliveryServiceAppTests
             var service = new ServiceAdditionalServiceShipment(unitOfWork.Object);
             var result = service.GetAll();
             var resultList = Assert.IsAssignableFrom<List<AdditionalServiceShipment>>(result);
-            Assert.Equal<int>(5, resultList.Count());
+            Assert.Equal<int>(5, resultList.Count);
         }
 
         [Fact]
