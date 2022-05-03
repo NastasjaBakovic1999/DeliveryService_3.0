@@ -458,7 +458,7 @@ namespace DeliveryServiceAppTests
             mockShipmentWeightRepository.Setup(x => x.GetAll()).Returns(shipmentWeights);
             mockShipmentWeightRepository.Setup(x => x.FindByID(It.IsAny<int>())).Returns((int i) =>
             {
-                return shipmentWeights.SingleOrDefault(c => c.Id == i);
+                return shipmentWeights.SingleOrDefault(c => c.ShipmentWeightId == i);
             });
 
             return mockShipmentWeightRepository;
