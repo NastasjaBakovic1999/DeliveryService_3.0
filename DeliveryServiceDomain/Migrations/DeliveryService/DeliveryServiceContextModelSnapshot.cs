@@ -16,7 +16,7 @@ namespace DeliveryServiceDomain.Migrations.DeliveryService
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.15")
+                .HasAnnotation("ProductVersion", "5.0.14")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("DeliveryServiceDomain.AdditionalService", b =>
@@ -281,36 +281,6 @@ namespace DeliveryServiceDomain.Migrations.DeliveryService
                         .HasColumnType("float")
                         .HasColumnName("Price");
 
-                    b.Property<string>("ReceivingAddress")
-                        .HasMaxLength(30)
-                        .HasColumnType("varchar(30)")
-                        .HasColumnName("ReceivingAddress");
-
-                    b.Property<string>("ReceivingCity")
-                        .HasMaxLength(30)
-                        .HasColumnType("varchar(30)")
-                        .HasColumnName("ReceivingCity");
-
-                    b.Property<string>("ReceivingPostalCode")
-                        .HasMaxLength(5)
-                        .HasColumnType("varchar(5)")
-                        .HasColumnName("ReceivingPostalCode");
-
-                    b.Property<string>("SendingAddress")
-                        .HasMaxLength(30)
-                        .HasColumnType("varchar(30)")
-                        .HasColumnName("SendingAddress");
-
-                    b.Property<string>("SendingCity")
-                        .HasMaxLength(30)
-                        .HasColumnType("varchar(30)")
-                        .HasColumnName("SendingCity");
-
-                    b.Property<string>("SendingPostalCode")
-                        .HasMaxLength(5)
-                        .HasColumnType("varchar(5)")
-                        .HasColumnName("SendingPostalCode");
-
                     b.Property<string>("ShipmentCode")
                         .IsRequired()
                         .HasMaxLength(12)
@@ -520,9 +490,71 @@ namespace DeliveryServiceDomain.Migrations.DeliveryService
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.OwnsOne("DeliveryServiceDomain.Address", "Receiving", b1 =>
+                        {
+                            b1.Property<int>("ShipmentId")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int")
+                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                            b1.Property<string>("City")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<int>("Id")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("PostalCode")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("Street")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.HasKey("ShipmentId");
+
+                            b1.ToTable("Shipments");
+
+                            b1.WithOwner("Shipment")
+                                .HasForeignKey("ShipmentId");
+
+                            b1.Navigation("Shipment");
+                        });
+
+                    b.OwnsOne("DeliveryServiceDomain.Address", "Sending", b1 =>
+                        {
+                            b1.Property<int>("ShipmentId")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int")
+                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                            b1.Property<string>("City")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<int>("Id")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("PostalCode")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("Street")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.HasKey("ShipmentId");
+
+                            b1.ToTable("Shipments");
+
+                            b1.WithOwner("Shipment")
+                                .HasForeignKey("ShipmentId");
+
+                            b1.Navigation("Shipment");
+                        });
+
                     b.Navigation("Customer");
 
                     b.Navigation("Deliverer");
+
+                    b.Navigation("Receiving");
+
+                    b.Navigation("Sending");
 
                     b.Navigation("ShipmentWeight");
                 });

@@ -34,36 +34,6 @@ namespace DeliveryServiceDomain.Configurations
                 .HasColumnType("varchar")
                 .HasMaxLength(30);
 
-            entity.Property(e => e.SendingAddress)
-               .HasColumnName("SendingAddress")
-               .HasColumnType("varchar")
-               .HasMaxLength(30);
-
-            entity.Property(e => e.SendingCity)
-              .HasColumnName("SendingCity")
-              .HasColumnType("varchar")
-              .HasMaxLength(30);
-
-            entity.Property(e => e.SendingPostalCode)
-              .HasColumnName("SendingPostalCode")
-              .HasColumnType("varchar")
-              .HasMaxLength(5);
-
-            entity.Property(e => e.ReceivingAddress)
-             .HasColumnName("ReceivingAddress")
-             .HasColumnType("varchar")
-             .HasMaxLength(30);
-
-            entity.Property(e => e.ReceivingCity)
-              .HasColumnName("ReceivingCity")
-              .HasColumnType("varchar")
-              .HasMaxLength(30);
-
-            entity.Property(e => e.ReceivingPostalCode)
-              .HasColumnName("ReceivingPostalCode")
-              .HasColumnType("varchar")
-              .HasMaxLength(5);
-
             entity.Property(e => e.ContactPersonName)
                 .HasColumnName("ContactPersonName")
                 .HasColumnType("varchar")

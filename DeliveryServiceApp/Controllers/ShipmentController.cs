@@ -89,12 +89,12 @@ namespace DeliveryServiceApp.Controllers
                     ContactPersonName = model.ContactPersonName,
                     ContactPersonPhone = model.ContactPersonPhone,
                     Note = model.Note,
-                    ReceivingAddress = model.ReceivingAddress,
-                    ReceivingCity = model.ReceivingCity,
-                    ReceivingPostalCode = model.ReceivingPostalCode,
-                    SendingAddress = model.SendingAddress,
-                    SendingCity = model.SendingCity,
-                    SendingPostalCode = model.SendingPostalCode,
+                    //ReceivingAddress = model.ReceivingAddress,
+                    //ReceivingCity = model.ReceivingCity,
+                    //ReceivingPostalCode = model.ReceivingPostalCode,
+                    //SendingAddress = model.SendingAddress,
+                    //SendingCity = model.SendingCity,
+                    //SendingPostalCode = model.SendingPostalCode,
                     DelivererId = 3
                 };
 

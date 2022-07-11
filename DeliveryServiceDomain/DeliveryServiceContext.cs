@@ -51,17 +51,23 @@ namespace DeliveryServiceDomain
                .WithOne(s => s.ShipmentWeight)
                .OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<Shipment>()
+                .OwnsOne(s => s.Sending);
+
+            modelBuilder.Entity<Shipment>()
+             .OwnsOne(s => s.Receiving);
+
             modelBuilder.ApplyConfiguration(new ShipmentConfiguration());
             modelBuilder.ApplyConfiguration(new StatusConfiguration());
             modelBuilder.ApplyConfiguration(new StatusShipmentConfiguration());
             modelBuilder.ApplyConfiguration(new AdditionalServiceConfiguration());
             modelBuilder.ApplyConfiguration(new AdditionalServiceShipmentConfiguration());
             modelBuilder.ApplyConfiguration(new ShipmentWeightConfiguration());
- 
+
             Seed(modelBuilder);
         }
 
-        private void Seed(ModelBuilder modelBuilder)
+        private static void Seed(ModelBuilder modelBuilder)
         {
 
             modelBuilder.Entity<Status>().HasData(

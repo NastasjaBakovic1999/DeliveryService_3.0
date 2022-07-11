@@ -13,12 +13,8 @@ namespace DeliveryServiceDomain
         public int ShipmentWeightId { get; set; }
         public ShipmentWeight ShipmentWeight { get; set; }
         public string ShipmentContent { get; set; }
-        public string SendingCity { get; set; }
-        public string SendingAddress { get; set; }
-        public string SendingPostalCode { get; set; }
-        public string ReceivingCity { get; set; }
-        public string ReceivingAddress { get; set; }
-        public string ReceivingPostalCode { get; set; }
+        public Address Sending { get; set; }
+        public Address Receiving { get; set; }
         public string ContactPersonName { get; set; }
         public string ContactPersonPhone { get; set; }
         public int CustomerId { get; set; }
