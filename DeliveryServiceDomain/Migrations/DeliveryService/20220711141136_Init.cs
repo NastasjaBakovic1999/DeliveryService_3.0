@@ -57,18 +57,20 @@ namespace DeliveryServiceDomain.Migrations.DeliveryService
                     ShipmentCode = table.Column<string>(type: "varchar(12)", maxLength: 12, nullable: false),
                     ShipmentWeightId = table.Column<int>(type: "int", nullable: false),
                     ShipmentContent = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true),
-                    SendingCity = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true),
-                    SendingAddress = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true),
-                    SendingPostalCode = table.Column<string>(type: "varchar(5)", maxLength: 5, nullable: true),
-                    ReceivingCity = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true),
-                    ReceivingAddress = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true),
-                    ReceivingPostalCode = table.Column<string>(type: "varchar(5)", maxLength: 5, nullable: true),
+                    Sending_Id = table.Column<int>(type: "int", nullable: true),
+                    Sending_City = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Sending_Street = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Sending_PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Receiving_Id = table.Column<int>(type: "int", nullable: true),
+                    Receiving_City = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Receiving_Street = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Receiving_PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ContactPersonName = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
                     ContactPersonPhone = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false),
                     CustomerId = table.Column<int>(type: "int", nullable: false),
                     DelivererId = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<double>(type: "float", nullable: false),
-                    Note = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                    Note = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true)
                 },
                 constraints: table =>
                 {

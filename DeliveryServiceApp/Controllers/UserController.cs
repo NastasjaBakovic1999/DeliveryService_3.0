@@ -23,7 +23,7 @@ namespace DeliveryServiceApp.Controllers
             this.serviceDeliverer = serviceDeliverer;
         }
 
-        [Authorize(Roles = "Customer, Deliverer")]
+        [Authorize(Roles = "User, Deliverer")]
         public async Task<IActionResult> Index()
         {
             UserProfileViewModel model = new UserProfileViewModel();
@@ -43,7 +43,7 @@ namespace DeliveryServiceApp.Controllers
                     model.PhoneNumber = user.PhoneNumber;
 
                     var role = await userManager.GetRolesAsync(user);
-                    if (role.Contains("Customer"))
+                    if (role.Contains("User"))
                     {
                         var customer = serviceCustomer.FindByID(userId);
                         model.Address = customer.Address;
@@ -69,7 +69,7 @@ namespace DeliveryServiceApp.Controllers
             }
         }
 
-        [Authorize(Roles = "Customer")]
+        [Authorize(Roles = "User")]
         [HttpGet]
         public IActionResult Edit(UserProfileViewModel model)
         {

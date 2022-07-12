@@ -26,8 +26,8 @@ else {
 			   <tr>
 				<td>@item.ShipmentCode</td>
 				<td>@item.ShipmentContent</td>
-				<td>@item.SendingAddress, @item.SendingCity @item.SendingPostalCode</td>
-				<td>@item.ReceivingAddress, @item.ReceivingCity @item.ReceivingPostalCode</td>
+				<td>@item.Sending.Street, @item.Sending.City @item.Sending.PostalCode</td>
+				<td>@item.Receiving.Street, @item.Receiving.City @item.Receiving.PostalCode</td>
 				<td>@item.Price RSD</td>
 				<td><a href="EditStatus/@item.ShipmentId">Edit Status</a></td>
 				</tr>

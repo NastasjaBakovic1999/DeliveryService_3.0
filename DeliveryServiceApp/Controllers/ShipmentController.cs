@@ -37,7 +37,7 @@ namespace DeliveryServiceApp.Controllers
             this.serviceStatusShipment = serviceStatusShipment;
         }
 
-        [Authorize(Roles = "Customer")]
+        [Authorize(Roles = "User")]
         public IActionResult Create()
         {
             try
@@ -63,7 +63,7 @@ namespace DeliveryServiceApp.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Customer")]
+        [Authorize(Roles = "User")]
         public IActionResult Create(CreateShipmentViewModel model)
         {
             try
@@ -89,12 +89,18 @@ namespace DeliveryServiceApp.Controllers
                     ContactPersonName = model.ContactPersonName,
                     ContactPersonPhone = model.ContactPersonPhone,
                     Note = model.Note,
-                    //ReceivingAddress = model.ReceivingAddress,
-                    //ReceivingCity = model.ReceivingCity,
-                    //ReceivingPostalCode = model.ReceivingPostalCode,
-                    //SendingAddress = model.SendingAddress,
-                    //SendingCity = model.SendingCity,
-                    //SendingPostalCode = model.SendingPostalCode,
+                    Sending  = new Address
+                    {
+                        City = model.SendingCity,
+                        Street = model.SendingAddress,
+                        PostalCode = model.SendingPostalCode
+                    },
+                    Receiving = new Address
+                    {
+                        City = model.ReceivingCity,
+                        Street = model.ReceivingAddress,
+                        PostalCode = model.ReceivingPostalCode
+                    },
                     DelivererId = 3
                 };
 
@@ -156,7 +162,7 @@ namespace DeliveryServiceApp.Controllers
             }
         }
 
-        [Authorize(Roles = "Customer")]
+        [Authorize(Roles = "User")]
         public IActionResult AddService(int additionalServiceId, int number)
         {
             try
@@ -179,7 +185,7 @@ namespace DeliveryServiceApp.Controllers
             }
         }
 
-        [Authorize(Roles = "Customer")]
+        [Authorize(Roles = "User")]
         public IActionResult CustomerShipments()
         {
             try
@@ -204,7 +210,7 @@ namespace DeliveryServiceApp.Controllers
             return View(model);
         }
 
-        [Authorize(Roles = "Customer, Deliverer")]
+        [Authorize(Roles = "User, Deliverer")]
         public IActionResult ShipmentMonitoring()
         {
             ShipmentMonitoringViewModel model = new ShipmentMonitoringViewModel();

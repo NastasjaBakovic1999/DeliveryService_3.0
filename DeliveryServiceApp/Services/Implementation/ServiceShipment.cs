@@ -18,7 +18,7 @@ namespace DeliveryServiceApp.Services.Implementation
 
         public void Add(Shipment shipment)
         {
-            if (!IsValid(shipment) || !IsValidPostalCode(shipment.SendingPostalCode) || !IsValidPostalCode(shipment.ReceivingPostalCode) || !IsValidPhoneNumber(shipment.ContactPersonPhone))
+            if (!IsValid(shipment) || !IsValidPostalCode(shipment.Sending.PostalCode) || !IsValidPostalCode(shipment.Receiving.PostalCode) || !IsValidPhoneNumber(shipment.ContactPersonPhone))
             {
                 throw new ArgumentOutOfRangeException("Nevalidan unos!");
             }
@@ -32,9 +32,9 @@ namespace DeliveryServiceApp.Services.Implementation
             bool valid = true;
 
             if (shipment == null) return false;
-            if (string.IsNullOrEmpty(shipment.ShipmentCode) || string.IsNullOrEmpty(shipment.ShipmentContent) || string.IsNullOrEmpty(shipment.SendingCity) ||
-                string.IsNullOrEmpty(shipment.SendingAddress) || string.IsNullOrEmpty(shipment.SendingPostalCode) || string.IsNullOrEmpty(shipment.ReceivingCity) ||
-                string.IsNullOrEmpty(shipment.ReceivingPostalCode) || string.IsNullOrEmpty(shipment.ReceivingAddress) || string.IsNullOrEmpty(shipment.ContactPersonName) ||
+            if (string.IsNullOrEmpty(shipment.ShipmentCode) || string.IsNullOrEmpty(shipment.ShipmentContent) || string.IsNullOrEmpty(shipment.Sending.City) ||
+                string.IsNullOrEmpty(shipment.Sending.Street) || string.IsNullOrEmpty(shipment.Sending.PostalCode) || string.IsNullOrEmpty(shipment.Receiving.City) ||
+                string.IsNullOrEmpty(shipment.Receiving.PostalCode) || string.IsNullOrEmpty(shipment.Receiving.Street) || string.IsNullOrEmpty(shipment.ContactPersonName) ||
                 string.IsNullOrEmpty(shipment.ContactPersonPhone)) 
             {
                 return false;

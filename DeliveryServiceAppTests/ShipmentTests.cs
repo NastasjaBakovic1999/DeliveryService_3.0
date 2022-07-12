@@ -14,10 +14,10 @@ namespace DeliveryServiceAppTests
 {
     public class ShipmentTests
     {
-        Mock<IUnitOfWork> unitOfWork = Mocks.GetMockUnitOfWork();
-        Mock<IRepositoryCustomer> customerRepository = Mocks.GetMockCustomerRepository();
-        Mock<IRepositoryDeliverer> delivererRepository = Mocks.GetMockDelivererRepository();
-        Mock<IRepositoryShipmentWeight> shipmentWeightRepository = Mocks.GetMockShipmentWeightRepository();
+        readonly Mock<IUnitOfWork> unitOfWork = Mocks.GetMockUnitOfWork();
+        readonly Mock<IRepositoryCustomer> customerRepository = Mocks.GetMockCustomerRepository();
+        readonly Mock<IRepositoryDeliverer> delivererRepository = Mocks.GetMockDelivererRepository();
+        readonly Mock<IRepositoryShipmentWeight> shipmentWeightRepository = Mocks.GetMockShipmentWeightRepository();
 
         [Fact]
         public void TestServiceShipmentFindById()
@@ -51,7 +51,7 @@ namespace DeliveryServiceAppTests
         [Fact]
         public void TestServiceShipmentAdd()
         {
-            Random rand = new Random();
+            Random rand = new();
             const string chars = "0123456789QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm";
 
             var service = new ServiceShipment(unitOfWork.Object);
@@ -61,12 +61,18 @@ namespace DeliveryServiceAppTests
                 ShipmentCode = new string(Enumerable.Repeat(chars, 11).Select(s => s[rand.Next(chars.Length)]).ToArray()),
                 ShipmentWeightId = 1,
                 ShipmentContent = "racunar",
-                SendingCity = "Beograd",
-                SendingAddress = "Arsenija Carnojevica 17",
-                SendingPostalCode = "11060",
-                ReceivingCity = "Kragujevac",
-                ReceivingAddress = "Jablanicka 13",
-                ReceivingPostalCode = "76322",
+                Sending = new Address
+                {
+                    City = "Beograd",
+                    Street = "Arsenija Carnojevica 17",
+                    PostalCode = "11060",
+                },
+                Receiving = new Address
+                {
+                    City = "Kragujevac",
+                    Street = "Jablanicka 13",
+                    PostalCode = "76322",
+                },
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
@@ -81,12 +87,12 @@ namespace DeliveryServiceAppTests
             var shipment = service.FindByID(4);
             Assert.Equal(shipment.ShipmentCode, newShipment.ShipmentCode);
             Assert.Equal(shipment.ShipmentContent, newShipment.ShipmentContent);
-            Assert.Equal(shipment.SendingCity, newShipment.SendingCity);
-            Assert.Equal(shipment.SendingAddress, newShipment.SendingAddress);
-            Assert.Equal(shipment.SendingPostalCode, newShipment.SendingPostalCode);
-            Assert.Equal(shipment.ReceivingCity, newShipment.ReceivingCity);
-            Assert.Equal(shipment.ReceivingAddress, newShipment.ReceivingAddress);
-            Assert.Equal(shipment.ReceivingPostalCode, newShipment.ReceivingPostalCode);
+            Assert.Equal(shipment.Sending.City, newShipment.Sending.City);
+            Assert.Equal(shipment.Sending.Street, newShipment.Sending.Street);
+            Assert.Equal(shipment.Sending.PostalCode, newShipment.Sending.PostalCode);
+            Assert.Equal(shipment.Receiving.City, newShipment.Receiving.City);
+            Assert.Equal(shipment.Receiving.Street, newShipment.Receiving.Street);
+            Assert.Equal(shipment.Receiving.PostalCode, newShipment.Receiving.PostalCode);
             Assert.Equal(shipment.ContactPersonName, newShipment.ContactPersonName);
             Assert.Equal(shipment.ContactPersonPhone, newShipment.ContactPersonPhone);
             Assert.Equal(shipment.Note, newShipment.Note);
@@ -181,12 +187,12 @@ namespace DeliveryServiceAppTests
             Assert.Equal(shipment.ShipmentId, result.ShipmentId);
             Assert.Equal(shipment.ShipmentCode, result.ShipmentCode);
             Assert.Equal(shipment.ShipmentContent, result.ShipmentContent);
-            Assert.Equal(shipment.SendingCity, result.SendingCity);
-            Assert.Equal(shipment.SendingAddress, result.SendingAddress);
-            Assert.Equal(shipment.SendingPostalCode, result.SendingPostalCode);
-            Assert.Equal(shipment.ReceivingCity, result.ReceivingCity);
-            Assert.Equal(shipment.ReceivingAddress, result.ReceivingAddress);
-            Assert.Equal(shipment.ReceivingPostalCode, result.ReceivingPostalCode);
+            Assert.Equal(shipment.Sending.City, result.Sending.City);
+            Assert.Equal(shipment.Sending.Street, result.Sending.Street);
+            Assert.Equal(shipment.Sending.PostalCode, result.Sending.PostalCode);
+            Assert.Equal(shipment.Receiving.City, result.Receiving.City);
+            Assert.Equal(shipment.Receiving.Street, result.Receiving.Street);
+            Assert.Equal(shipment.Receiving.PostalCode, result.Receiving.PostalCode);
             Assert.Equal(shipment.ContactPersonName, result.ContactPersonName);
             Assert.Equal(shipment.ContactPersonPhone, result.ContactPersonPhone);
             Assert.Equal(shipment.Note, result.Note);
@@ -207,7 +213,7 @@ namespace DeliveryServiceAppTests
 
         public static IEnumerable<object[]> ShipmentData()
         {
-            Random rand = new Random();
+            Random rand = new();
             const string chars = "0123456789QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm";
 
             yield return new object[] {  new Shipment
@@ -215,12 +221,18 @@ namespace DeliveryServiceAppTests
                 ShipmentId = 4,
                 ShipmentWeightId = 1,
                 ShipmentContent = "racunar",
-                SendingCity = "Beograd",
-                SendingAddress = "Arsenija Carnojevica 17",
-                SendingPostalCode = "11060",
-                ReceivingCity = "Kragujevac",
-                ReceivingAddress = "Jablanicka 13",
-                ReceivingPostalCode = "76322",
+                Sending = new Address
+                {
+                    City = "Beograd",
+                    Street = "Arsenija Carnojevica 17",
+                    PostalCode = "11060"
+                },
+                Receiving = new Address
+                {
+                    City = "Kragujevac",
+                    Street = "Jablanicka 13",
+                    PostalCode = "76322",
+                },
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
@@ -233,12 +245,18 @@ namespace DeliveryServiceAppTests
                 ShipmentId = 4,
                 ShipmentCode = new string(Enumerable.Repeat(chars, 11).Select(s => s[rand.Next(chars.Length)]).ToArray()),
                 ShipmentWeightId = 1,
-                SendingCity = "Beograd",
-                SendingAddress = "Arsenija Carnojevica 17",
-                SendingPostalCode = "11060",
-                ReceivingCity = "Kragujevac",
-                ReceivingAddress = "Jablanicka 13",
-                ReceivingPostalCode = "76322",
+                Sending = new Address
+                {
+                    City = "Beograd",
+                    Street = "Arsenija Carnojevica 17",
+                    PostalCode = "11060"
+                },
+                Receiving = new Address
+                {
+                    City = "Kragujevac",
+                    Street = "Jablanicka 13",
+                    PostalCode = "76322"
+                },
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
@@ -252,11 +270,17 @@ namespace DeliveryServiceAppTests
                 ShipmentCode = new string(Enumerable.Repeat(chars, 11).Select(s => s[rand.Next(chars.Length)]).ToArray()),
                 ShipmentWeightId = 1,
                 ShipmentContent = "racunar",
-                SendingAddress = "Arsenija Carnojevica 17",
-                SendingPostalCode = "11060",
-                ReceivingCity = "Kragujevac",
-                ReceivingAddress = "Jablanicka 13",
-                ReceivingPostalCode = "76322",
+                Sending = new Address
+                {
+                    Street = "Arsenija Carnojevica 17",
+                    PostalCode = "11060",
+                },
+                Receiving = new Address
+                {
+                    City = "Kragujevac",
+                    Street = "Jablanicka 13",
+                    PostalCode = "76322",
+                },
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
@@ -270,11 +294,17 @@ namespace DeliveryServiceAppTests
                 ShipmentCode = new string(Enumerable.Repeat(chars, 11).Select(s => s[rand.Next(chars.Length)]).ToArray()),
                 ShipmentWeightId = 1,
                 ShipmentContent = "racunar",
-                SendingCity = "Beograd",
-                SendingPostalCode = "11060",
-                ReceivingCity = "Kragujevac",
-                ReceivingAddress = "Jablanicka 13",
-                ReceivingPostalCode = "76322",
+                Sending = new Address
+                {
+                    City = "Beograd",
+                    PostalCode = "11060"
+                },
+                Receiving = new Address
+                {
+                    City = "Kragujevac",
+                    Street = "Jablanicka 13",
+                    PostalCode = "76322"
+                },
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
@@ -288,11 +318,17 @@ namespace DeliveryServiceAppTests
                 ShipmentCode = new string(Enumerable.Repeat(chars, 11).Select(s => s[rand.Next(chars.Length)]).ToArray()),
                 ShipmentWeightId = 1,
                 ShipmentContent = "racunar",
-                SendingCity = "Beograd",
-                SendingAddress = "Arsenija Carnojevica 17",
-                ReceivingCity = "Kragujevac",
-                ReceivingAddress = "Jablanicka 13",
-                ReceivingPostalCode = "76322",
+                Sending = new Address
+                {
+                    City = "Beograd",
+                    Street = "Arsenija Carnojevica 17",
+                },
+                Receiving = new Address
+                {
+                    City = "Kragujevac",
+                    Street = "Jablanicka 13",
+                    PostalCode = "76322"
+                },
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
@@ -306,11 +342,17 @@ namespace DeliveryServiceAppTests
                 ShipmentCode = new string(Enumerable.Repeat(chars, 11).Select(s => s[rand.Next(chars.Length)]).ToArray()),
                 ShipmentWeightId = 1,
                 ShipmentContent = "racunar",
-                SendingCity = "Beograd",
-                SendingAddress = "Arsenija Carnojevica 17",
-                SendingPostalCode = "11060",
-                ReceivingAddress = "Jablanicka 13",
-                ReceivingPostalCode = "76322",
+                Sending = new Address
+                {
+                    City = "Beograd",
+                    Street = "Arsenija Carnojevica 17",
+                    PostalCode = "11060",
+                },
+                Receiving = new Address
+                {
+                    Street = "Jablanicka 13",
+                    PostalCode = "76322",
+                },
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
@@ -324,11 +366,17 @@ namespace DeliveryServiceAppTests
                 ShipmentCode = new string(Enumerable.Repeat(chars, 11).Select(s => s[rand.Next(chars.Length)]).ToArray()),
                 ShipmentWeightId = 1,
                 ShipmentContent = "racunar",
-                SendingCity = "Beograd",
-                SendingAddress = "Arsenija Carnojevica 17",
-                SendingPostalCode = "11060",
-                ReceivingCity = "Kragujevac",
-                ReceivingPostalCode = "76322",
+                Sending = new Address
+                {
+                    City = "Beograd",
+                    Street = "Arsenija Carnojevica 17",
+                    PostalCode = "11060",
+                },
+                Receiving = new Address
+                {
+                    City = "Kragujevac",
+                    PostalCode = "76322",
+                },
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
@@ -342,11 +390,17 @@ namespace DeliveryServiceAppTests
                 ShipmentCode = new string(Enumerable.Repeat(chars, 11).Select(s => s[rand.Next(chars.Length)]).ToArray()),
                 ShipmentWeightId = 1,
                 ShipmentContent = "racunar",
-                SendingCity = "Beograd",
-                SendingAddress = "Arsenija Carnojevica 17",
-                SendingPostalCode = "11060",
-                ReceivingCity = "Kragujevac",
-                ReceivingAddress = "Jablanicka 13",
+                Sending = new Address
+                {
+                    City = "Beograd",
+                    Street = "Arsenija Carnojevica 17",
+                    PostalCode = "11060",
+                },
+                Receiving = new Address
+                {
+                    City = "Kragujevac",
+                    Street = "Jablanicka 13"
+                },
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
@@ -360,12 +414,18 @@ namespace DeliveryServiceAppTests
                 ShipmentCode = new string(Enumerable.Repeat(chars, 11).Select(s => s[rand.Next(chars.Length)]).ToArray()),
                 ShipmentWeightId = 1,
                 ShipmentContent = "racunar",
-                SendingCity = "Beograd",
-                SendingAddress = "Arsenija Carnojevica 17",
-                SendingPostalCode = "11060",
-                ReceivingCity = "Kragujevac",
-                ReceivingAddress = "Jablanicka 13",
-                ReceivingPostalCode = "76322",
+                Sending = new Address
+                {
+                    City = "Beograd",
+                    Street = "Arsenija Carnojevica 17",
+                    PostalCode = "11060",
+                },
+                Receiving = new Address
+                {
+                    City = "Kragujevac",
+                    Street = "Jablanicka 13",
+                    PostalCode = "76322",
+                },
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
                 DelivererId = 3,
@@ -378,12 +438,18 @@ namespace DeliveryServiceAppTests
                 ShipmentCode = new string(Enumerable.Repeat(chars, 11).Select(s => s[rand.Next(chars.Length)]).ToArray()),
                 ShipmentWeightId = 1,
                 ShipmentContent = "racunar",
-                SendingCity = "Beograd",
-                SendingAddress = "Arsenija Carnojevica 17",
-                SendingPostalCode = "11060",
-                ReceivingCity = "Kragujevac",
-                ReceivingAddress = "Jablanicka 13",
-                ReceivingPostalCode = "76322",
+                Sending = new Address
+                {
+                    City = "Beograd",
+                    Street = "Arsenija Carnojevica 17",
+                    PostalCode = "11060",
+                },
+                Receiving = new Address
+                {
+                    City = "Kragujevac",
+                    Street = "Jablanicka 13",
+                    PostalCode = "76322",
+                },
                 ContactPersonName = "Marko Markovic",
                 CustomerId = 4,
                 DelivererId = 3,
@@ -396,7 +462,7 @@ namespace DeliveryServiceAppTests
 
         public static IEnumerable<object[]> ShipmentDataIds()
         {
-            Random rand = new Random();
+            Random rand = new();
             const string chars = "0123456789QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm";
 
             yield return new object[] {  new Shipment
@@ -404,12 +470,18 @@ namespace DeliveryServiceAppTests
                 ShipmentId = 4,
                 ShipmentContent = "racunar",
                 ShipmentCode = new string(Enumerable.Repeat(chars, 11).Select(s => s[rand.Next(chars.Length)]).ToArray()),
-                SendingCity = "Beograd",
-                SendingAddress = "Arsenija Carnojevica 17",
-                SendingPostalCode = "11060",
-                ReceivingCity = "Kragujevac",
-                ReceivingAddress = "Jablanicka 13",
-                ReceivingPostalCode = "76322",
+                Sending = new Address
+                {
+                    City = "Beograd",
+                    Street = "Arsenija Carnojevica 17",
+                    PostalCode = "11060",
+                },
+                Receiving = new Address
+                {
+                     City = "Kragujevac",
+                    Street = "Jablanicka 13",
+                    PostalCode = "76322"
+                },
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
@@ -423,12 +495,18 @@ namespace DeliveryServiceAppTests
                 ShipmentCode = new string(Enumerable.Repeat(chars, 11).Select(s => s[rand.Next(chars.Length)]).ToArray()),
                 ShipmentWeightId = 1,
                 ShipmentContent = "racunar",
-                SendingCity = "Beograd",
-                SendingAddress = "Arsenija Carnojevica 17",
-                SendingPostalCode = "11060",
-                ReceivingCity = "Kragujevac",
-                ReceivingAddress = "Jablanicka 13",
-                ReceivingPostalCode = "76322",
+                Sending = new Address
+                {
+                    City = "Beograd",
+                    Street = "Arsenija Carnojevica 17",
+                    PostalCode = "11060",
+                },
+                Receiving = new Address
+                {
+                     City = "Kragujevac",
+                    Street = "Jablanicka 13",
+                    PostalCode = "76322"
+                },
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 DelivererId = 3,
@@ -441,12 +519,18 @@ namespace DeliveryServiceAppTests
                 ShipmentCode = new string(Enumerable.Repeat(chars, 11).Select(s => s[rand.Next(chars.Length)]).ToArray()),
                 ShipmentWeightId = 1,
                 ShipmentContent = "racunar",
-                SendingCity = "Beograd",
-                SendingAddress = "Arsenija Carnojevica 17",
-                SendingPostalCode = "11060",
-                ReceivingCity = "Kragujevac",
-                ReceivingAddress = "Jablanicka 13",
-                ReceivingPostalCode = "76322",
+                Sending = new Address
+                {
+                    City = "Beograd",
+                    Street = "Arsenija Carnojevica 17",
+                    PostalCode = "11060",
+                },
+                Receiving = new Address
+                {
+                     City = "Kragujevac",
+                    Street = "Jablanicka 13",
+                    PostalCode = "76322"
+                },
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
@@ -458,7 +542,7 @@ namespace DeliveryServiceAppTests
 
         public static IEnumerable<object[]> ShipmentDataPrice()
         {
-            Random rand = new Random();
+            Random rand = new();
             const string chars = "0123456789QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm";
 
             yield return new object[] {  new Shipment
@@ -467,12 +551,18 @@ namespace DeliveryServiceAppTests
                 ShipmentContent = "racunar",
                 ShipmentWeightId = 1,
                 ShipmentCode = new string(Enumerable.Repeat(chars, 11).Select(s => s[rand.Next(chars.Length)]).ToArray()),
-                SendingCity = "Beograd",
-                SendingAddress = "Arsenija Carnojevica 17",
-                SendingPostalCode = "11060",
-                ReceivingCity = "Kragujevac",
-                ReceivingAddress = "Jablanicka 13",
-                ReceivingPostalCode = "76322",
+                Sending = new Address
+                {
+                    City = "Beograd",
+                    Street = "Arsenija Carnojevica 17",
+                    PostalCode = "11060",
+                },
+                Receiving = new Address
+                {
+                     City = "Kragujevac",
+                    Street = "Jablanicka 13",
+                    PostalCode = "76322"
+                },
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
@@ -485,12 +575,18 @@ namespace DeliveryServiceAppTests
                 ShipmentContent = "racunar",
                 ShipmentWeightId = 1,
                 ShipmentCode = new string(Enumerable.Repeat(chars, 11).Select(s => s[rand.Next(chars.Length)]).ToArray()),
-                SendingCity = "Beograd",
-                SendingAddress = "Arsenija Carnojevica 17",
-                SendingPostalCode = "11060",
-                ReceivingCity = "Kragujevac",
-                ReceivingAddress = "Jablanicka 13",
-                ReceivingPostalCode = "76322",
+                Sending = new Address
+                {
+                    City = "Beograd",
+                    Street = "Arsenija Carnojevica 17",
+                    PostalCode = "11060",
+                },
+                Receiving = new Address
+                {
+                     City = "Kragujevac",
+                    Street = "Jablanicka 13",
+                    PostalCode = "76322"
+                },
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
@@ -502,7 +598,7 @@ namespace DeliveryServiceAppTests
 
         public static IEnumerable<object[]> ShipmentDataPhoneNumber()
         {
-            Random rand = new Random();
+            Random rand = new();
             const string chars = "0123456789QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm";
 
             yield return new object[] {  new Shipment
@@ -511,12 +607,18 @@ namespace DeliveryServiceAppTests
                 ShipmentContent = "racunar",
                 ShipmentWeightId = 1,
                 ShipmentCode = new string(Enumerable.Repeat(chars, 11).Select(s => s[rand.Next(chars.Length)]).ToArray()),
-                SendingCity = "Beograd",
-                SendingAddress = "Arsenija Carnojevica 17",
-                SendingPostalCode = "11060",
-                ReceivingCity = "Kragujevac",
-                ReceivingAddress = "Jablanicka 13",
-                ReceivingPostalCode = "76322",
+                Sending = new Address
+                {
+                    City = "Beograd",
+                    Street = "Arsenija Carnojevica 17",
+                    PostalCode = "11060",
+                },
+                Receiving = new Address
+                {
+                    City = "Kragujevac",
+                    Street = "Jablanicka 13",
+                    PostalCode = "76322"
+                },
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "+381654433221",
                 CustomerId = 4,
@@ -530,12 +632,18 @@ namespace DeliveryServiceAppTests
                 ShipmentContent = "racunar",
                 ShipmentWeightId = 1,
                 ShipmentCode = new string(Enumerable.Repeat(chars, 11).Select(s => s[rand.Next(chars.Length)]).ToArray()),
-                SendingCity = "Beograd",
-                SendingAddress = "Arsenija Carnojevica 17",
-                SendingPostalCode = "11060",
-                ReceivingCity = "Kragujevac",
-                ReceivingAddress = "Jablanicka 13",
-                ReceivingPostalCode = "76322",
+                Sending = new Address
+                {
+                    City = "Beograd",
+                    Street = "Arsenija Carnojevica 17",
+                    PostalCode = "11060",
+                },
+                Receiving = new Address
+                {
+                    City = "Kragujevac",
+                    Street = "Jablanicka 13",
+                    PostalCode = "76322"
+                },
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654477889908",
                 CustomerId = 4,
@@ -547,7 +655,7 @@ namespace DeliveryServiceAppTests
 
         public static IEnumerable<object[]> ShipmentDataPostalCode()
         {
-            Random rand = new Random();
+            Random rand = new();
             const string chars = "0123456789QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm";
 
             yield return new object[] {  new Shipment
@@ -556,12 +664,18 @@ namespace DeliveryServiceAppTests
                 ShipmentContent = "racunar",
                 ShipmentWeightId = 1,
                 ShipmentCode = new string(Enumerable.Repeat(chars, 11).Select(s => s[rand.Next(chars.Length)]).ToArray()),
-                SendingCity = "Beograd",
-                SendingAddress = "Arsenija Carnojevica 17",
-                SendingPostalCode = "1106",
-                ReceivingCity = "Kragujevac",
-                ReceivingAddress = "Jablanicka 13",
-                ReceivingPostalCode = "76322",
+                Sending = new Address
+                {
+                    City = "Beograd",
+                    Street = "Arsenija Carnojevica 17",
+                    PostalCode = "1106",
+                },
+                Receiving = new Address
+                {
+                    City = "Kragujevac",
+                    Street = "Jablanicka 13",
+                    PostalCode = "76322"
+                },
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
@@ -575,12 +689,18 @@ namespace DeliveryServiceAppTests
                 ShipmentCode = new string(Enumerable.Repeat(chars, 11).Select(s => s[rand.Next(chars.Length)]).ToArray()),
                 ShipmentWeightId = 1,
                 ShipmentContent = "racunar",
-                SendingCity = "Beograd",
-                SendingAddress = "Arsenija Carnojevica 17",
-                SendingPostalCode = "110600",
-                ReceivingCity = "Kragujevac",
-                ReceivingAddress = "Jablanicka 13",
-                ReceivingPostalCode = "76322",
+                Sending = new Address
+                {
+                    City = "Beograd",
+                    Street = "Arsenija Carnojevica 17",
+                    PostalCode = "110600",
+                },
+                Receiving = new Address
+                {
+                    City = "Kragujevac",
+                    Street = "Jablanicka 13",
+                    PostalCode = "76322"
+                },
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
@@ -594,12 +714,18 @@ namespace DeliveryServiceAppTests
                 ShipmentCode = new string(Enumerable.Repeat(chars, 11).Select(s => s[rand.Next(chars.Length)]).ToArray()),
                 ShipmentWeightId = 1,
                 ShipmentContent = "racunar",
-                SendingCity = "Beograd",
-                SendingAddress = "Arsenija Carnojevica 17",
-                SendingPostalCode = "postanski broj",
-                ReceivingCity = "Kragujevac",
-                ReceivingAddress = "Jablanicka 13",
-                ReceivingPostalCode = "76322",
+                Sending = new Address
+                {
+                    City = "Beograd",
+                    Street = "Arsenija Carnojevica 17",
+                    PostalCode = "postanski broj",
+                },
+                Receiving = new Address
+                {
+                    City = "Kragujevac",
+                    Street = "Jablanicka 13",
+                    PostalCode = "76322"
+                },
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
@@ -613,12 +739,18 @@ namespace DeliveryServiceAppTests
                 ShipmentCode = new string(Enumerable.Repeat(chars, 11).Select(s => s[rand.Next(chars.Length)]).ToArray()),
                 ShipmentWeightId = 1,
                 ShipmentContent = "racunar",
-                SendingCity = "Beograd",
-                SendingAddress = "Arsenija Carnojevica 17",
-                SendingPostalCode = "11000",
-                ReceivingCity = "Kragujevac",
-                ReceivingAddress = "Jablanicka 13",
-                ReceivingPostalCode = "7632",
+                Sending = new Address
+                {
+                    City = "Beograd",
+                    Street = "Arsenija Carnojevica 17",
+                    PostalCode = "11060",
+                },
+                Receiving = new Address
+                {
+                    City = "Kragujevac",
+                    Street = "Jablanicka 13",
+                    PostalCode = "7632"
+                },
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
@@ -632,12 +764,18 @@ namespace DeliveryServiceAppTests
                 ShipmentCode = new string(Enumerable.Repeat(chars, 11).Select(s => s[rand.Next(chars.Length)]).ToArray()),
                 ShipmentWeightId = 1,
                 ShipmentContent = "racunar",
-                SendingCity = "Beograd",
-                SendingAddress = "Arsenija Carnojevica 17",
-                SendingPostalCode = "11000",
-                ReceivingCity = "Kragujevac",
-                ReceivingAddress = "Jablanicka 13",
-                ReceivingPostalCode = "763299",
+                Sending = new Address
+                {
+                    City = "Beograd",
+                    Street = "Arsenija Carnojevica 17",
+                    PostalCode = "11060",
+                },
+                Receiving = new Address
+                {
+                    City = "Kragujevac",
+                    Street = "Jablanicka 13",
+                    PostalCode = "7632299"
+                },
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
@@ -651,12 +789,18 @@ namespace DeliveryServiceAppTests
                 ShipmentCode = new string(Enumerable.Repeat(chars, 11).Select(s => s[rand.Next(chars.Length)]).ToArray()),
                 ShipmentWeightId = 1,
                 ShipmentContent = "racunar",
-                SendingCity = "Beograd",
-                SendingAddress = "Arsenija Carnojevica 17",
-                SendingPostalCode = "11000",
-                ReceivingCity = "Kragujevac",
-                ReceivingAddress = "Jablanicka 13",
-                ReceivingPostalCode = "broj",
+                Sending = new Address
+                {
+                    City = "Beograd",
+                    Street = "Arsenija Carnojevica 17",
+                    PostalCode = "11060",
+                },
+                Receiving = new Address
+                {
+                    City = "Kragujevac",
+                    Street = "Jablanicka 13",
+                    PostalCode = "broj"
+                },
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,

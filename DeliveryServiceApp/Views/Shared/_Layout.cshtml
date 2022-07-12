@@ -26,7 +26,7 @@
                     <ul class="navbar-nav">
                         @if(signInManager.IsSignedIn(User))
                         {
-                            @if(User.IsInRole("Customer")){
+                            @if(User.IsInRole("User")){
                                 <li class="nav-item flex-grow-1 justify-content-sm-end">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Shipment" asp-action="CustomerShipments">My Shipments</a>
                                 </li>

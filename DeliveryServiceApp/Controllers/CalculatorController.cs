@@ -22,7 +22,7 @@ namespace DeliveryServiceApp.Controllers
             this.serviceShipmentWeight = serviceShipmentWeight;
         }
 
-        [Authorize(Roles = "Customer")]
+        [Authorize(Roles = "User")]
         public IActionResult CalculateShipment()
         {
             try

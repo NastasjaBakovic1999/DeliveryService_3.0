@@ -54,7 +54,7 @@ namespace DeliveryServiceApp.Controllers
             {
                 var currentUser = await userManager.FindByNameAsync(customer.UserName);
 
-                var roleresult = await userManager.AddToRoleAsync(currentUser, "Customer");
+                var roleresult = await userManager.AddToRoleAsync(currentUser, "User");
 
                 return RedirectToAction("Login", "Authentication");
             }
@@ -96,9 +96,9 @@ namespace DeliveryServiceApp.Controllers
                     HttpContext.Session.SetString("userrole", "Deliverer");
                 }
 
-                if (roles.Contains("Customer"))
+                if (roles.Contains("User"))
                 {
-                    HttpContext.Session.SetString("userrole", "Customer");
+                    HttpContext.Session.SetString("userrole", "User");
                 }
 
                 return RedirectToAction("Index", "Home");
