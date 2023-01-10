@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "E:\\NapredneDotNetProjekat\\DeliveryServiceProject\\DeliveryServiceDomain\\DeliveryServiceDomain.csproj": {}
+    "C:\\Users\\Luka\\Desktop\\DELIVERY SERVICE MY LITTLE BABY\\DeliveryService\\DeliveryServiceDomain\\DeliveryServiceDomain.csproj": {}
   },
   "projects": {
-    "E:\\NapredneDotNetProjekat\\DeliveryServiceProject\\DeliveryServiceDomain\\DeliveryServiceDomain.csproj": {
+    "C:\\Users\\Luka\\Desktop\\DELIVERY SERVICE MY LITTLE BABY\\DeliveryService\\DeliveryServiceDomain\\DeliveryServiceDomain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\NapredneDotNetProjekat\\DeliveryServiceProject\\DeliveryServiceDomain\\DeliveryServiceDomain.csproj",
+        "projectUniqueName": "C:\\Users\\Luka\\Desktop\\DELIVERY SERVICE MY LITTLE BABY\\DeliveryService\\DeliveryServiceDomain\\DeliveryServiceDomain.csproj",
         "projectName": "DeliveryServiceDomain",
-        "projectPath": "E:\\NapredneDotNetProjekat\\DeliveryServiceProject\\DeliveryServiceDomain\\DeliveryServiceDomain.csproj",
+        "projectPath": "C:\\Users\\Luka\\Desktop\\DELIVERY SERVICE MY LITTLE BABY\\DeliveryService\\DeliveryServiceDomain\\DeliveryServiceDomain.csproj",
         "packagesPath": "C:\\Users\\Luka\\.nuget\\packages\\",
-        "outputPath": "E:\\NapredneDotNetProjekat\\DeliveryServiceProject\\DeliveryServiceDomain\\obj\\",
+        "outputPath": "C:\\Users\\Luka\\Desktop\\DELIVERY SERVICE MY LITTLE BABY\\DeliveryService\\DeliveryServiceDomain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages",
+          "C:\\Program Files\\DevExpress 22.1\\Components\\Offline Packages",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
           "C:\\Users\\Luka\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 21.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.1.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,6 +30,7 @@
         "sources": {
           "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\DevExpress 22.1\\Components\\System\\Components\\Packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

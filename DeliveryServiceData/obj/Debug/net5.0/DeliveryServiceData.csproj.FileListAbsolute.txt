@@ -28,3 +28,18 @@ E:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceData\obj\Debug\n
 E:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceData\obj\Debug\net5.0\refint\DeliveryServiceData.dll
 E:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceData\obj\Debug\net5.0\DeliveryServiceData.pdb
 E:\NapredneDotNetProjekat\DeliveryServiceProject\DeliveryServiceData\obj\Debug\net5.0\ref\DeliveryServiceData.dll
+C:\Users\Luka\Desktop\DELIVERY SERVICE MY LITTLE BABY\DeliveryService\DeliveryServiceData\bin\Debug\net5.0\DeliveryServiceData.deps.json
+C:\Users\Luka\Desktop\DELIVERY SERVICE MY LITTLE BABY\DeliveryService\DeliveryServiceData\bin\Debug\net5.0\DeliveryServiceData.dll
+C:\Users\Luka\Desktop\DELIVERY SERVICE MY LITTLE BABY\DeliveryService\DeliveryServiceData\bin\Debug\net5.0\DeliveryServiceData.pdb
+C:\Users\Luka\Desktop\DELIVERY SERVICE MY LITTLE BABY\DeliveryService\DeliveryServiceData\bin\Debug\net5.0\DeliveryServiceDomain.dll
+C:\Users\Luka\Desktop\DELIVERY SERVICE MY LITTLE BABY\DeliveryService\DeliveryServiceData\bin\Debug\net5.0\DeliveryServiceDomain.pdb
+C:\Users\Luka\Desktop\DELIVERY SERVICE MY LITTLE BABY\DeliveryService\DeliveryServiceData\obj\Debug\net5.0\DeliveryServiceData.csproj.AssemblyReference.cache
+C:\Users\Luka\Desktop\DELIVERY SERVICE MY LITTLE BABY\DeliveryService\DeliveryServiceData\obj\Debug\net5.0\DeliveryServiceData.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Luka\Desktop\DELIVERY SERVICE MY LITTLE BABY\DeliveryService\DeliveryServiceData\obj\Debug\net5.0\DeliveryServiceData.AssemblyInfoInputs.cache
+C:\Users\Luka\Desktop\DELIVERY SERVICE MY LITTLE BABY\DeliveryService\DeliveryServiceData\obj\Debug\net5.0\DeliveryServiceData.AssemblyInfo.cs
+C:\Users\Luka\Desktop\DELIVERY SERVICE MY LITTLE BABY\DeliveryService\DeliveryServiceData\obj\Debug\net5.0\DeliveryServiceData.csproj.CoreCompileInputs.cache
+C:\Users\Luka\Desktop\DELIVERY SERVICE MY LITTLE BABY\DeliveryService\DeliveryServiceData\obj\Debug\net5.0\DeliveryServiceData.csproj.CopyComplete
+C:\Users\Luka\Desktop\DELIVERY SERVICE MY LITTLE BABY\DeliveryService\DeliveryServiceData\obj\Debug\net5.0\DeliveryServiceData.dll
+C:\Users\Luka\Desktop\DELIVERY SERVICE MY LITTLE BABY\DeliveryService\DeliveryServiceData\obj\Debug\net5.0\refint\DeliveryServiceData.dll
+C:\Users\Luka\Desktop\DELIVERY SERVICE MY LITTLE BABY\DeliveryService\DeliveryServiceData\obj\Debug\net5.0\DeliveryServiceData.pdb
+C:\Users\Luka\Desktop\DELIVERY SERVICE MY LITTLE BABY\DeliveryService\DeliveryServiceData\obj\Debug\net5.0\ref\DeliveryServiceData.dll
