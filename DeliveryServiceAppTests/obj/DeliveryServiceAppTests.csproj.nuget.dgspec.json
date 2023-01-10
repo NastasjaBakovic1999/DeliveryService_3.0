@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Luka\\Desktop\\DELIVERY SERVICE MY LITTLE BABY\\DeliveryService\\DeliveryServiceAppTests\\DeliveryServiceAppTests.csproj": {}
+    "C:\\Users\\Luka\\Desktop\\delivery3.0\\DeliveryService_3.0\\DeliveryServiceAppTests\\DeliveryServiceAppTests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Luka\\Desktop\\DELIVERY SERVICE MY LITTLE BABY\\DeliveryService\\DeliveryServiceAppTests\\DeliveryServiceAppTests.csproj": {
+    "C:\\Users\\Luka\\Desktop\\delivery3.0\\DeliveryService_3.0\\DeliveryServiceAppTests\\DeliveryServiceAppTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Luka\\Desktop\\DELIVERY SERVICE MY LITTLE BABY\\DeliveryService\\DeliveryServiceAppTests\\DeliveryServiceAppTests.csproj",
+        "projectUniqueName": "C:\\Users\\Luka\\Desktop\\delivery3.0\\DeliveryService_3.0\\DeliveryServiceAppTests\\DeliveryServiceAppTests.csproj",
         "projectName": "DeliveryServiceAppTests",
-        "projectPath": "C:\\Users\\Luka\\Desktop\\DELIVERY SERVICE MY LITTLE BABY\\DeliveryService\\DeliveryServiceAppTests\\DeliveryServiceAppTests.csproj",
+        "projectPath": "C:\\Users\\Luka\\Desktop\\delivery3.0\\DeliveryService_3.0\\DeliveryServiceAppTests\\DeliveryServiceAppTests.csproj",
         "packagesPath": "C:\\Users\\Luka\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Luka\\Desktop\\DELIVERY SERVICE MY LITTLE BABY\\DeliveryService\\DeliveryServiceAppTests\\obj\\",
+        "outputPath": "C:\\Users\\Luka\\Desktop\\delivery3.0\\DeliveryService_3.0\\DeliveryServiceAppTests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages",
@@ -25,7 +25,7 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net5.0"
+          "net6.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\System\\Components\\Packages": {},
@@ -34,14 +34,14 @@
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
+          "net6.0": {
+            "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Luka\\Desktop\\DELIVERY SERVICE MY LITTLE BABY\\DeliveryService\\DeliveryServiceApp\\DeliveryServiceApp.csproj": {
-                "projectPath": "C:\\Users\\Luka\\Desktop\\DELIVERY SERVICE MY LITTLE BABY\\DeliveryService\\DeliveryServiceApp\\DeliveryServiceApp.csproj"
+              "C:\\Users\\Luka\\Desktop\\delivery3.0\\DeliveryService_3.0\\DeliveryServiceApp\\DeliveryServiceApp.csproj": {
+                "projectPath": "C:\\Users\\Luka\\Desktop\\delivery3.0\\DeliveryService_3.0\\DeliveryServiceApp\\DeliveryServiceApp.csproj"
               },
-              "C:\\Users\\Luka\\Desktop\\DELIVERY SERVICE MY LITTLE BABY\\DeliveryService\\DeliveryServiceData\\DeliveryServiceData.csproj": {
-                "projectPath": "C:\\Users\\Luka\\Desktop\\DELIVERY SERVICE MY LITTLE BABY\\DeliveryService\\DeliveryServiceData\\DeliveryServiceData.csproj"
+              "C:\\Users\\Luka\\Desktop\\delivery3.0\\DeliveryService_3.0\\DeliveryServiceData\\DeliveryServiceData.csproj": {
+                "projectPath": "C:\\Users\\Luka\\Desktop\\delivery3.0\\DeliveryService_3.0\\DeliveryServiceData\\DeliveryServiceData.csproj"
               }
             }
           }
@@ -53,8 +53,8 @@
         }
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "net6.0": {
+          "targetAlias": "net6.0",
           "dependencies": {
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
@@ -100,14 +100,14 @@
         }
       }
     },
-    "C:\\Users\\Luka\\Desktop\\DELIVERY SERVICE MY LITTLE BABY\\DeliveryService\\DeliveryServiceApp\\DeliveryServiceApp.csproj": {
+    "C:\\Users\\Luka\\Desktop\\delivery3.0\\DeliveryService_3.0\\DeliveryServiceApp\\DeliveryServiceApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Luka\\Desktop\\DELIVERY SERVICE MY LITTLE BABY\\DeliveryService\\DeliveryServiceApp\\DeliveryServiceApp.csproj",
+        "projectUniqueName": "C:\\Users\\Luka\\Desktop\\delivery3.0\\DeliveryService_3.0\\DeliveryServiceApp\\DeliveryServiceApp.csproj",
         "projectName": "DeliveryServiceApp",
-        "projectPath": "C:\\Users\\Luka\\Desktop\\DELIVERY SERVICE MY LITTLE BABY\\DeliveryService\\DeliveryServiceApp\\DeliveryServiceApp.csproj",
+        "projectPath": "C:\\Users\\Luka\\Desktop\\delivery3.0\\DeliveryService_3.0\\DeliveryServiceApp\\DeliveryServiceApp.csproj",
         "packagesPath": "C:\\Users\\Luka\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Luka\\Desktop\\DELIVERY SERVICE MY LITTLE BABY\\DeliveryService\\DeliveryServiceApp\\obj\\",
+        "outputPath": "C:\\Users\\Luka\\Desktop\\delivery3.0\\DeliveryService_3.0\\DeliveryServiceApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages",
@@ -121,7 +121,7 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net5.0"
+          "net6.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\System\\Components\\Packages": {},
@@ -130,11 +130,11 @@
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
+          "net6.0": {
+            "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Luka\\Desktop\\DELIVERY SERVICE MY LITTLE BABY\\DeliveryService\\DeliveryServiceData\\DeliveryServiceData.csproj": {
-                "projectPath": "C:\\Users\\Luka\\Desktop\\DELIVERY SERVICE MY LITTLE BABY\\DeliveryService\\DeliveryServiceData\\DeliveryServiceData.csproj"
+              "C:\\Users\\Luka\\Desktop\\delivery3.0\\DeliveryService_3.0\\DeliveryServiceData\\DeliveryServiceData.csproj": {
+                "projectPath": "C:\\Users\\Luka\\Desktop\\delivery3.0\\DeliveryService_3.0\\DeliveryServiceData\\DeliveryServiceData.csproj"
               }
             }
           }
@@ -146,8 +146,8 @@
         }
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "net6.0": {
+          "targetAlias": "net6.0",
           "dependencies": {
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
@@ -198,14 +198,14 @@
         }
       }
     },
-    "C:\\Users\\Luka\\Desktop\\DELIVERY SERVICE MY LITTLE BABY\\DeliveryService\\DeliveryServiceData\\DeliveryServiceData.csproj": {
+    "C:\\Users\\Luka\\Desktop\\delivery3.0\\DeliveryService_3.0\\DeliveryServiceData\\DeliveryServiceData.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Luka\\Desktop\\DELIVERY SERVICE MY LITTLE BABY\\DeliveryService\\DeliveryServiceData\\DeliveryServiceData.csproj",
+        "projectUniqueName": "C:\\Users\\Luka\\Desktop\\delivery3.0\\DeliveryService_3.0\\DeliveryServiceData\\DeliveryServiceData.csproj",
         "projectName": "DeliveryServiceData",
-        "projectPath": "C:\\Users\\Luka\\Desktop\\DELIVERY SERVICE MY LITTLE BABY\\DeliveryService\\DeliveryServiceData\\DeliveryServiceData.csproj",
+        "projectPath": "C:\\Users\\Luka\\Desktop\\delivery3.0\\DeliveryService_3.0\\DeliveryServiceData\\DeliveryServiceData.csproj",
         "packagesPath": "C:\\Users\\Luka\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Luka\\Desktop\\DELIVERY SERVICE MY LITTLE BABY\\DeliveryService\\DeliveryServiceData\\obj\\",
+        "outputPath": "C:\\Users\\Luka\\Desktop\\delivery3.0\\DeliveryService_3.0\\DeliveryServiceData\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages",
@@ -219,7 +219,7 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net5.0"
+          "net6.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\System\\Components\\Packages": {},
@@ -228,11 +228,11 @@
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
+          "net6.0": {
+            "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Luka\\Desktop\\DELIVERY SERVICE MY LITTLE BABY\\DeliveryService\\DeliveryServiceDomain\\DeliveryServiceDomain.csproj": {
-                "projectPath": "C:\\Users\\Luka\\Desktop\\DELIVERY SERVICE MY LITTLE BABY\\DeliveryService\\DeliveryServiceDomain\\DeliveryServiceDomain.csproj"
+              "C:\\Users\\Luka\\Desktop\\delivery3.0\\DeliveryService_3.0\\DeliveryServiceDomain\\DeliveryServiceDomain.csproj": {
+                "projectPath": "C:\\Users\\Luka\\Desktop\\delivery3.0\\DeliveryService_3.0\\DeliveryServiceDomain\\DeliveryServiceDomain.csproj"
               }
             }
           }
@@ -244,8 +244,8 @@
         }
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "net6.0": {
+          "targetAlias": "net6.0",
           "imports": [
             "net461",
             "net462",
@@ -265,14 +265,14 @@
         }
       }
     },
-    "C:\\Users\\Luka\\Desktop\\DELIVERY SERVICE MY LITTLE BABY\\DeliveryService\\DeliveryServiceDomain\\DeliveryServiceDomain.csproj": {
+    "C:\\Users\\Luka\\Desktop\\delivery3.0\\DeliveryService_3.0\\DeliveryServiceDomain\\DeliveryServiceDomain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Luka\\Desktop\\DELIVERY SERVICE MY LITTLE BABY\\DeliveryService\\DeliveryServiceDomain\\DeliveryServiceDomain.csproj",
+        "projectUniqueName": "C:\\Users\\Luka\\Desktop\\delivery3.0\\DeliveryService_3.0\\DeliveryServiceDomain\\DeliveryServiceDomain.csproj",
         "projectName": "DeliveryServiceDomain",
-        "projectPath": "C:\\Users\\Luka\\Desktop\\DELIVERY SERVICE MY LITTLE BABY\\DeliveryService\\DeliveryServiceDomain\\DeliveryServiceDomain.csproj",
+        "projectPath": "C:\\Users\\Luka\\Desktop\\delivery3.0\\DeliveryService_3.0\\DeliveryServiceDomain\\DeliveryServiceDomain.csproj",
         "packagesPath": "C:\\Users\\Luka\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Luka\\Desktop\\DELIVERY SERVICE MY LITTLE BABY\\DeliveryService\\DeliveryServiceDomain\\obj\\",
+        "outputPath": "C:\\Users\\Luka\\Desktop\\delivery3.0\\DeliveryService_3.0\\DeliveryServiceDomain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages",
@@ -286,7 +286,7 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net5.0"
+          "net6.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\System\\Components\\Packages": {},
@@ -295,8 +295,8 @@
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
+          "net6.0": {
+            "targetAlias": "net6.0",
             "projectReferences": {}
           }
         },
@@ -307,8 +307,8 @@
         }
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "net6.0": {
+          "targetAlias": "net6.0",
           "dependencies": {
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "E93eCr7QrY8xe59pffZ8HeFYB7kWftnICnBoCQpDYKCK/KyojYHWQSbPegcGdR62bUBFe0XbCqA2j9BLI8ck/w==",
+  "dgSpecHash": "x+x/ygM3K+5ZNqV689mDF9UrNmNekwy+snWBjModnFSRf9QzsYi84CbVy9yOtFV2HcwIKheKRQ4cK/mTgXYE2A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Luka\\Desktop\\DELIVERY SERVICE MY LITTLE BABY\\DeliveryService\\DeliveryServiceAppTests\\DeliveryServiceAppTests.csproj",
+  "projectFilePath": "C:\\Users\\Luka\\Desktop\\delivery3.0\\DeliveryService_3.0\\DeliveryServiceAppTests\\DeliveryServiceAppTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Luka\\.nuget\\packages\\castle.core\\4.4.1\\castle.core.4.4.1.nupkg.sha512",
     "C:\\Users\\Luka\\.nuget\\packages\\coverlet.collector\\3.1.0\\coverlet.collector.3.1.0.nupkg.sha512",

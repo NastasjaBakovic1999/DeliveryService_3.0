@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "MHM6sShUoP+F//8GQ/IBgln9tiOfmqGMtuH+S66OEVhe5zbPhbkFR3zA/gWgf4pKJVj9VQgZIaiKwIJqqAfbug==",
+  "dgSpecHash": "nbDSCvn4lO1WJ0GLVYuxelMYpjjdVM8Ev6/ofax9lNJuvuoy7sEBIlsmEqzzw/aRExN7wujvpz3zOWYOV3RYmQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Luka\\Desktop\\DELIVERY SERVICE MY LITTLE BABY\\DeliveryService\\DeliveryServiceApp\\DeliveryServiceApp.csproj",
+  "projectFilePath": "C:\\Users\\Luka\\Desktop\\delivery3.0\\DeliveryService_3.0\\DeliveryServiceApp\\DeliveryServiceApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Luka\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Luka\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.15\\microsoft.aspnetcore.cryptography.internal.5.0.15.nupkg.sha512",
