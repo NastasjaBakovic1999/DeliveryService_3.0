@@ -1,4 +1,6 @@
-﻿using DeliveryServiceApp.Services.Implementation;
+﻿using AutoMapper;
+using DataTransferObjects;
+using DeliveryServiceApp.Services.Implementation;
 using DeliveryServiceData.UnitOfWork;
 using DeliveryServiceDomain;
 using Moq;
@@ -14,21 +16,22 @@ namespace DeliveryServiceAppTests
     public class AdditionalServiceTests
     {
         Mock<IUnitOfWork> unitOfWork = Mocks.GetMockUnitOfWork();
+        Mock<IMapper> mapper = new();
 
         [Fact]
         public void TestServiceAdditionalServiceFindById()
         {
-            var service = new ServiceAdditionalService(unitOfWork.Object);
+            var service = new ServiceAdditionalService(unitOfWork.Object, mapper.Object);
             var result = service.FindByID(1);
-            var resultAdditionalService = Assert.IsType<AdditionalService>(result);
-            var expected = unitOfWork.Object.AdditionalService.FindByID(1);
+            var resultAdditionalService = Assert.IsType<AdditionalServiceDto>(result);
+            var expected = mapper.Object.Map<AdditionalServiceDto>(unitOfWork.Object.AdditionalService.FindByID(1));
             Assert.Equal(expected.AdditionalServiceId, resultAdditionalService.AdditionalServiceId);
         }
 
         [Fact]
         public void TestServiceAdditionalServiceFindByIdInvalid()
         {
-            var service = new ServiceAdditionalService(unitOfWork.Object);
+            var service = new ServiceAdditionalService(unitOfWork.Object, mapper.Object);
             var result = service.FindByID(-4);
 
             Assert.Null(result);
@@ -37,10 +40,10 @@ namespace DeliveryServiceAppTests
         [Fact]
         public void TestServiceAdditionalServiceGetAll()
         {
-            var service = new ServiceAdditionalService(unitOfWork.Object);
+            var service = new ServiceAdditionalService(unitOfWork.Object, mapper.Object);
             var result = service.GetAll();
-            var resultList = Assert.IsAssignableFrom<List<AdditionalService>>(result);
-            var expected = unitOfWork.Object.AdditionalService.GetAll();
+            var resultList = Assert.IsAssignableFrom<List<AdditionalServiceDto>>(result);
+            var expected = mapper.Object.Map<List<AdditionalServiceDto>>(unitOfWork.Object.AdditionalService.GetAll());
             Assert.Equal<int>(expected.Count, resultList.Count);
         }
 

@@ -1,4 +1,6 @@
-﻿using DeliveryServiceApp.Services.Implementation;
+﻿using AutoMapper;
+using DataTransferObjects;
+using DeliveryServiceApp.Services.Implementation;
 using DeliveryServiceData;
 using DeliveryServiceData.UnitOfWork;
 using DeliveryServiceDomain;
@@ -18,21 +20,22 @@ namespace DeliveryServiceAppTests
         readonly Mock<IRepositoryCustomer> customerRepository = Mocks.GetMockCustomerRepository();
         readonly Mock<IRepositoryDeliverer> delivererRepository = Mocks.GetMockDelivererRepository();
         readonly Mock<IRepositoryShipmentWeight> shipmentWeightRepository = Mocks.GetMockShipmentWeightRepository();
+        Mock<IMapper> mapper = new();
 
         [Fact]
         public void TestServiceShipmentFindById()
         {
-            var service = new ServiceShipment(unitOfWork.Object);
+            var service = new ServiceShipment(unitOfWork.Object, mapper.Object);
             var result = service.FindByID(1);
-            var resultShipment = Assert.IsType<Shipment>(result);
-            var expected = unitOfWork.Object.Shipment.FindByID(1);
+            var resultShipment = Assert.IsType<ShipmentDto>(result);
+            var expected = mapper.Object.Map<ShipmentDto>(unitOfWork.Object.Shipment.FindByID(1));
             Assert.Equal(expected.ShipmentId, resultShipment.ShipmentId);
         }
 
         [Fact]
         public void TestServiceShipmentFindByIdInvalid()
         {
-            var service = new ServiceShipment(unitOfWork.Object);
+            var service = new ServiceShipment(unitOfWork.Object, mapper.Object);
             var result = service.FindByID(-4);
 
             Assert.Null(result);
@@ -41,10 +44,10 @@ namespace DeliveryServiceAppTests
         [Fact]
         public void TestServiceShipmentGetAll()
         {
-            var service = new ServiceShipment(unitOfWork.Object);
+            var service = new ServiceShipment(unitOfWork.Object, mapper.Object);
             var result = service.GetAll();
-            var resultList = Assert.IsAssignableFrom<List<Shipment>>(result);
-            var expected = unitOfWork.Object.Shipment.GetAll();
+            var resultList = Assert.IsAssignableFrom<List<ShipmentDto>>(result);
+            var expected = mapper.Object.Map<List<ShipmentDto>>(unitOfWork.Object.Shipment.GetAll());
             Assert.Equal(expected.Count, resultList.Count);
         }
 
@@ -54,7 +57,7 @@ namespace DeliveryServiceAppTests
             Random rand = new();
             const string chars = "0123456789QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm";
 
-            var service = new ServiceShipment(unitOfWork.Object);
+            var service = new ServiceShipment(unitOfWork.Object, mapper.Object);
             var newShipment = new Shipment
             {
                 ShipmentId = 4,
@@ -83,8 +86,8 @@ namespace DeliveryServiceAppTests
                 Customer = customerRepository.Object.FindByID(4),
                 Deliverer = delivererRepository.Object.FindByID(3)
             };
-            service.Add(newShipment);
-            var shipment = service.FindByID(4);
+            service.Add(mapper.Object.Map<ShipmentDto>(newShipment));
+            var shipment = unitOfWork.Object.Shipment.FindByID(4);
             Assert.Equal(shipment.ShipmentCode, newShipment.ShipmentCode);
             Assert.Equal(shipment.ShipmentContent, newShipment.ShipmentContent);
             Assert.Equal(shipment.Sending.City, newShipment.Sending.City);
@@ -108,9 +111,9 @@ namespace DeliveryServiceAppTests
         [MemberData(nameof(ShipmentData))]
         public void TestServiceShipmentAddEmptyProps(Shipment newShipment)
         {
-            var service = new ServiceShipment(unitOfWork.Object);
+            var service = new ServiceShipment(unitOfWork.Object, mapper.Object);
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => service.Add(newShipment));
+            Assert.Throws<ArgumentOutOfRangeException>(() => service.Add(mapper.Object.Map<ShipmentDto>(newShipment)));
             unitOfWork.Verify(x => x.Shipment.Add(It.IsAny<Shipment>()), Times.Never);
             unitOfWork.Verify(s => s.Commit(), Times.Never);
         }
@@ -119,9 +122,9 @@ namespace DeliveryServiceAppTests
         [MemberData(nameof(ShipmentDataIds))]
         public void TestServiceShipmentAddZeroIds(Shipment newShipment)
         {
-            var service = new ServiceShipment(unitOfWork.Object);
+            var service = new ServiceShipment(unitOfWork.Object, mapper.Object);
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => service.Add(newShipment));
+            Assert.Throws<ArgumentOutOfRangeException>(() => service.Add(mapper.Object.Map<ShipmentDto>(newShipment)));
             unitOfWork.Verify(x => x.Shipment.Add(It.IsAny<Shipment>()), Times.Never);
             unitOfWork.Verify(s => s.Commit(), Times.Never);
         }
@@ -130,9 +133,9 @@ namespace DeliveryServiceAppTests
         [MemberData(nameof(ShipmentDataPrice))]
         public void TestServiceShipmentAddInvalidPrice(Shipment newShipment)
         {
-            var service = new ServiceShipment(unitOfWork.Object);
+            var service = new ServiceShipment(unitOfWork.Object, mapper.Object);
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => service.Add(newShipment));
+            Assert.Throws<ArgumentOutOfRangeException>(() => service.Add(mapper.Object.Map<ShipmentDto>(newShipment)));
             unitOfWork.Verify(x => x.Shipment.Add(It.IsAny<Shipment>()), Times.Never);
             unitOfWork.Verify(s => s.Commit(), Times.Never);
         }
@@ -141,9 +144,9 @@ namespace DeliveryServiceAppTests
         [MemberData(nameof(ShipmentDataPostalCode))]
         public void TestServiceShipmentAddInvalidPostalCode(Shipment newShipment)
         {
-            var service = new ServiceShipment(unitOfWork.Object);
+            var service = new ServiceShipment(unitOfWork.Object, mapper.Object);
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => service.Add(newShipment));
+            Assert.Throws<ArgumentOutOfRangeException>(() => service.Add(mapper.Object.Map<ShipmentDto>(newShipment)));
             unitOfWork.Verify(x => x.Shipment.Add(It.IsAny<Shipment>()), Times.Never);
             unitOfWork.Verify(s => s.Commit(), Times.Never);
         }
@@ -152,9 +155,9 @@ namespace DeliveryServiceAppTests
         [MemberData(nameof(ShipmentDataPhoneNumber))]
         public void TestServiceShipmentAddInvalidPhoneNumber(Shipment newShipment)
         {
-            var service = new ServiceShipment(unitOfWork.Object);
+            var service = new ServiceShipment(unitOfWork.Object, mapper.Object);
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => service.Add(newShipment));
+            Assert.Throws<ArgumentOutOfRangeException>(() => service.Add(mapper.Object.Map<ShipmentDto>(newShipment)));
             unitOfWork.Verify(x => x.Shipment.Add(It.IsAny<Shipment>()), Times.Never);
             unitOfWork.Verify(s => s.Commit(), Times.Never);
         }
@@ -162,16 +165,16 @@ namespace DeliveryServiceAppTests
         [Fact]
         public void TestServiceShipmentGetAllOfSpecifiedUser()
         {
-            var service = new ServiceShipment(unitOfWork.Object);
+            var service = new ServiceShipment(unitOfWork.Object, mapper.Object);
             var result = service.GetAllOfSpecifiedUser(3);
-            var resultList = Assert.IsAssignableFrom<List<Shipment>>(result);
+            var resultList = Assert.IsAssignableFrom<List<ShipmentDto>>(result);
             Assert.Equal(2, resultList.Count);
         }
 
         [Fact]
         public void TestServiceShipmentGetAllOfSpecifiedUserNull()
         {
-            var service = new ServiceShipment(unitOfWork.Object);
+            var service = new ServiceShipment(unitOfWork.Object, mapper.Object);
             var result = service.GetAllOfSpecifiedUser(0);
 
             Assert.Empty(result);
@@ -180,7 +183,7 @@ namespace DeliveryServiceAppTests
         [Fact]
         public void TestServiceShipmentFindByCode()
         {
-            var service = new ServiceShipment(unitOfWork.Object);
+            var service = new ServiceShipment(unitOfWork.Object, mapper.Object);
             var shipment = service.FindByID(1);
             var result = service.FindByCode(shipment.ShipmentCode);
 
@@ -205,7 +208,7 @@ namespace DeliveryServiceAppTests
         [Fact]
         public void TestServiceShipmentFindByCodeNull()
         {
-            var service = new ServiceShipment(unitOfWork.Object);
+            var service = new ServiceShipment(unitOfWork.Object, mapper.Object);
             var result = service.FindByCode("");
 
             Assert.Null(result);

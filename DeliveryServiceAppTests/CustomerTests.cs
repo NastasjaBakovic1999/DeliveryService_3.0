@@ -1,4 +1,6 @@
-﻿using DeliveryServiceApp.Services.Implementation;
+﻿using AutoMapper;
+using DataTransferObjects;
+using DeliveryServiceApp.Services.Implementation;
 using DeliveryServiceData.UnitOfWork;
 using DeliveryServiceDomain;
 using Moq;
@@ -14,21 +16,22 @@ namespace DeliveryServiceAppTests
     public class CustomerTests
     {
         Mock<IPersonUnitOfWork> unitOfWork = Mocks.GetMockPersonUnitOfWork();
+        Mock<IMapper> mapper = new();
 
         [Fact]
         public void TestServiceCustomerFindById()
         {
-            var service = new ServiceCustomer(unitOfWork.Object);
+            var service = new ServiceCustomer(unitOfWork.Object, mapper.Object);
             var result = service.FindByID(1);
-            var resultCustomer = Assert.IsType<Customer>(result);
-            var expected = unitOfWork.Object.Customer.FindByID(1);
+            var resultCustomer = Assert.IsType<CustomerDto>(result);
+            var expected = mapper.Object.Map<CustomerDto>(unitOfWork.Object.Customer.FindByID(1));
             Assert.Equal(expected.Id, resultCustomer.Id);
         }
 
         [Fact]
         public void TestServiceCustomerFindByIdInvalid()
         {
-            var service = new ServiceCustomer(unitOfWork.Object);
+            var service = new ServiceCustomer(unitOfWork.Object, mapper.Object);
             var result = service.FindByID(-4);
 
             Assert.Null(result);
@@ -37,17 +40,17 @@ namespace DeliveryServiceAppTests
         [Fact]
         public void TestServiceCustomerGetAll()
         {
-            var service = new ServiceCustomer(unitOfWork.Object);
+            var service = new ServiceCustomer(unitOfWork.Object, mapper.Object);
             var result = service.GetAll();
-            var resultList = Assert.IsAssignableFrom<List<Customer>>(result);
-            var expected = unitOfWork.Object.Customer.GetAll();
+            var resultList = Assert.IsAssignableFrom<List<CustomerDto>>(result);
+            var expected = mapper.Object.Map<List<CustomerDto>>(unitOfWork.Object.Customer.GetAll());
             Assert.Equal<int>(expected.Count, resultList.Count);
         }
 
         [Fact]
         public void TestServiceCustomerEdit()
         {
-            var service = new ServiceCustomer(unitOfWork.Object);
+            var service = new ServiceCustomer(unitOfWork.Object, mapper.Object);
             var customer = new Customer
             {
                 Id = 1,
@@ -59,7 +62,7 @@ namespace DeliveryServiceAppTests
                 PostalCode = "11000",
                 PhoneNumber = "0652233445"
             };
-            service.Edit(customer);
+            service.Edit(mapper.Object.Map<CustomerDto>(customer));
             var customerUpdated = unitOfWork.Object.Customer.FindByID(1);
 
             Assert.Equal(customer.FirstName, customerUpdated.FirstName);
@@ -77,7 +80,7 @@ namespace DeliveryServiceAppTests
         [Fact]
         public void TestServiceCustomerEditInvalid()
         {
-            var service = new ServiceCustomer(unitOfWork.Object);
+            var service = new ServiceCustomer(unitOfWork.Object, mapper.Object);
             var customer = new Customer
             {
                 Id = 1,
@@ -89,7 +92,7 @@ namespace DeliveryServiceAppTests
                 PhoneNumber = "0652233445"
             };
             
-            Assert.Throws<ArgumentOutOfRangeException>(() => service.Edit(customer));
+            Assert.Throws<ArgumentOutOfRangeException>(() => service.Edit(mapper.Object.Map<CustomerDto>(customer)));
             unitOfWork.Verify(x => x.Customer.Edit(It.IsAny<Customer>()), Times.Never);
             unitOfWork.Verify(x => x.Commit(), Times.Never);
         }

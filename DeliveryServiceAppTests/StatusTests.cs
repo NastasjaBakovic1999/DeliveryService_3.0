@@ -1,4 +1,6 @@
-﻿using DeliveryServiceApp.Services.Implementation;
+﻿using AutoMapper;
+using DataTransferObjects;
+using DeliveryServiceApp.Services.Implementation;
 using DeliveryServiceData.UnitOfWork;
 using DeliveryServiceDomain;
 using Moq;
@@ -14,21 +16,22 @@ namespace DeliveryServiceAppTests
     public class StatusTests
     {
         Mock<IUnitOfWork> unitOfWork = Mocks.GetMockUnitOfWork();
+        Mock<IMapper> mapper = new();
 
         [Fact]
         public void TestServiceStatusFindById()
         {
-            var service = new ServiceStatus(unitOfWork.Object);
+            var service = new ServiceStatus(unitOfWork.Object, mapper.Object);
             var result = service.FindByID(1);
-            var resultStatus = Assert.IsType<Status>(result);
-            var expected = unitOfWork.Object.Status.FindByID(1);
+            var resultStatus = Assert.IsType<StatusDto>(result);
+            var expected = mapper.Object.Map< StatusDto>(unitOfWork.Object.Status.FindByID(1));
             Assert.Equal(expected.StatusId, resultStatus.StatusId);
         }
 
         [Fact]
         public void TestServiceStatusFindByIdInvalid()
         {
-            var service = new ServiceStatus(unitOfWork.Object);
+            var service = new ServiceStatus(unitOfWork.Object, mapper.Object);
             var result = service.FindByID(-4);
 
             Assert.Null(result);
@@ -37,18 +40,18 @@ namespace DeliveryServiceAppTests
         [Fact]
         public void TestServiceStatusGetAll()
         {
-            var service = new ServiceStatus(unitOfWork.Object);
+            var service = new ServiceStatus(unitOfWork.Object, mapper.Object);
             var result = service.GetAll();
-            var resultList = Assert.IsAssignableFrom<List<Status>>(result);
-            var expected = unitOfWork.Object.Status.GetAll();
+            var resultList = Assert.IsAssignableFrom<List<StatusDto>>(result);
+            var expected = mapper.Object.Map<List<StatusDto>>(unitOfWork.Object.Status.GetAll());
             Assert.Equal<int>(expected.Count, resultList.Count);
         }
 
         [Fact]
         public void TestServiceStatusGetByName()
         {
-            var service = new ServiceStatus(unitOfWork.Object);
-            var status = unitOfWork.Object.Status.FindByID(1);
+            var service = new ServiceStatus(unitOfWork.Object, mapper.Object);
+            var status = mapper.Object.Map<StatusDto>(unitOfWork.Object.Status.FindByID(1));
             var result = service.GetByName(status.StatusName);
 
             Assert.Equal(status.StatusId, result.StatusId);
@@ -58,7 +61,7 @@ namespace DeliveryServiceAppTests
         [Fact]
         public void TestServiceStatusGetByNameNull()
         {
-            var service = new ServiceStatus(unitOfWork.Object);
+            var service = new ServiceStatus(unitOfWork.Object, mapper.Object);
             var result = service.GetByName("");
 
             Assert.Null(result);

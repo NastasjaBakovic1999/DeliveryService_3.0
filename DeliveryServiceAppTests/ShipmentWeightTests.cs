@@ -1,4 +1,6 @@
-﻿using DeliveryServiceApp.Services.Implementation;
+﻿using AutoMapper;
+using DataTransferObjects;
+using DeliveryServiceApp.Services.Implementation;
 using DeliveryServiceData.UnitOfWork;
 using DeliveryServiceDomain;
 using Moq;
@@ -14,21 +16,22 @@ namespace DeliveryServiceAppTests
     public class ShipmentWeightTests
     {
         Mock<IUnitOfWork> unitOfWork = Mocks.GetMockUnitOfWork();
+        Mock<IMapper> mapper = new();
 
         [Fact]
         public void TestServiceShipmentWeightFindById()
         {
-            var service = new ServiceShipmentWeight(unitOfWork.Object);
+            var service = new ServiceShipmentWeight(unitOfWork.Object, mapper.Object);
             var result = service.FindByID(1);
-            var resultShipmentWeight = Assert.IsType<ShipmentWeight>(result);
-            var expected = unitOfWork.Object.ShipmentWeight.FindByID(1);
+            var resultShipmentWeight = Assert.IsType<ShipmentWeightDto>(result);
+            var expected = mapper.Object.Map<ShipmentWeightDto>(unitOfWork.Object.ShipmentWeight.FindByID(1));
             Assert.Equal(expected.ShipmentWeightId, resultShipmentWeight.ShipmentWeightId);
         }
 
         [Fact]
         public void TestServiceShipmentWeightFindByIdInvalid()
         {
-            var service = new ServiceShipmentWeight(unitOfWork.Object);
+            var service = new ServiceShipmentWeight(unitOfWork.Object, mapper.Object);
             var result = service.FindByID(-4);
 
             Assert.Null(result);
@@ -37,10 +40,10 @@ namespace DeliveryServiceAppTests
         [Fact]
         public void TestServicePersonGetAll()
         {
-            var service = new ServiceShipmentWeight(unitOfWork.Object);
+            var service = new ServiceShipmentWeight(unitOfWork.Object, mapper.Object);
             var result = service.GetAll();
-            var resultList = Assert.IsAssignableFrom<List<ShipmentWeight>>(result);
-            var expected = unitOfWork.Object.ShipmentWeight.GetAll();
+            var resultList = Assert.IsAssignableFrom<List<ShipmentWeightDto>>(result);
+            var expected = mapper.Object.Map<List<ShipmentWeightDto>>(unitOfWork.Object.ShipmentWeight.GetAll());
             Assert.Equal<int>(expected.Count, resultList.Count);
         }
     }
