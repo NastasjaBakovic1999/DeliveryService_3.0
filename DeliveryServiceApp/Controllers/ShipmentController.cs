@@ -1,4 +1,6 @@
-﻿using DeliveryServiceApp.Models;
+﻿using AutoMapper;
+using DataTransferObjects;
+using DeliveryServiceApp.Models;
 using DeliveryServiceApp.Services.Interfaces;
 using DeliveryServiceData.UnitOfWork;
 using DeliveryServiceData.UnitOfWork.Implementation;
@@ -23,10 +25,11 @@ namespace DeliveryServiceApp.Controllers
         private readonly IServiceAddionalServiceShipment serviceAddionalServiceShipment;
         private readonly IServiceStatus serviceStatus;
         private readonly IServiceStatusShipment serviceStatusShipment;
+        private readonly IMapper mapper;
 
         public ShipmentController(UserManager<Person> userManager, IServiceAdditonalService serviceAdditonalService, IServiceShipmentWeight serviceShipmentWeight,
                                   IServiceShipment serviceShipment, IServiceAddionalServiceShipment serviceAddionalServiceShipment, IServiceStatus serviceStatus,
-                                  IServiceStatusShipment serviceStatusShipment)
+                                  IServiceStatusShipment serviceStatusShipment, IMapper mapper)
         {
             this.userManager = userManager;
             this.serviceAdditonalService = serviceAdditonalService;
@@ -35,6 +38,7 @@ namespace DeliveryServiceApp.Controllers
             this.serviceAddionalServiceShipment = serviceAddionalServiceShipment;
             this.serviceStatus = serviceStatus;
             this.serviceStatusShipment = serviceStatusShipment;
+            this.mapper = mapper;
         }
 
         [Authorize(Roles = "User")]
@@ -42,10 +46,10 @@ namespace DeliveryServiceApp.Controllers
         {
             try
             {
-                List<AdditionalService> additionalServicesList = serviceAdditonalService.GetAll();
+                List<AdditionalServiceDto> additionalServicesList = serviceAdditonalService.GetAll();
                 List<SelectListItem> selectAdditionalServicesList = additionalServicesList.Select(s => new SelectListItem { Text = s.AdditionalServiceName + " - " + s.AdditionalServicePrice + " RSD", Value = s.AdditionalServiceId.ToString() }).ToList();
 
-                List<ShipmentWeight> shipmentWeightList = serviceShipmentWeight.GetAll();
+                List<ShipmentWeightDto> shipmentWeightList = serviceShipmentWeight.GetAll();
                 List<SelectListItem> selectShipmentWeightList = shipmentWeightList.Select(s => new SelectListItem { Text = s.ShipmentWeightDescpription, Value = s.ShipmentWeightId.ToString() }).ToList();
 
                 CreateShipmentViewModel model = new CreateShipmentViewModel
@@ -70,10 +74,10 @@ namespace DeliveryServiceApp.Controllers
             {
                 if (!ModelState.IsValid)
                 {
-                    List<AdditionalService> additionalServicesList = serviceAdditonalService.GetAll();
+                    List<AdditionalServiceDto> additionalServicesList = serviceAdditonalService.GetAll();
                     List<SelectListItem> selectAdditionalServicesList = additionalServicesList.Select(s => new SelectListItem { Text = s.AdditionalServiceName + " - " + s.AdditionalServicePrice + " RSD", Value = s.AdditionalServiceId.ToString() }).ToList();
 
-                    List<ShipmentWeight> shipmentWeightList = serviceShipmentWeight.GetAll();
+                    List<ShipmentWeightDto> shipmentWeightList = serviceShipmentWeight.GetAll();
                     List<SelectListItem> selectShipmentWeightList = shipmentWeightList.Select(s => new SelectListItem { Text = s.ShipmentWeightDescpription, Value = s.ShipmentWeightId.ToString() }).ToList();
 
                     model.AdditionalServices = selectAdditionalServicesList;
@@ -124,7 +128,7 @@ namespace DeliveryServiceApp.Controllers
 
                 if (model.Services != null && model.Services.Count() > 0)
                 {
-                    List<AdditionalService> additionalServices = serviceAdditonalService.GetAll();
+                    List<AdditionalServiceDto> additionalServices = serviceAdditonalService.GetAll();
 
                     foreach (AdditonalServiceViewModel sa in model.Services)
                     {
@@ -134,14 +138,14 @@ namespace DeliveryServiceApp.Controllers
 
                 shipment.Price = weightPrice + additionalServicesPrice;
 
-                serviceShipment.Add(shipment);
+                serviceShipment.Add(mapper.Map<ShipmentDto>(shipment));
 
                 foreach (AdditonalServiceViewModel sa in model.Services)
                 {
                     AdditionalServiceShipment ass = new AdditionalServiceShipment();
                     ass.AdditionalServiceId = sa.AdditionalServiceId;
                     ass.ShipmentId = shipment.ShipmentId;
-                    serviceAddionalServiceShipment.Add(ass);
+                    serviceAddionalServiceShipment.Add(mapper.Map<AdditionalServiceShipmentDto>(ass));
                 }
 
                 StatusShipment ss = new StatusShipment
@@ -151,7 +155,7 @@ namespace DeliveryServiceApp.Controllers
                     StatusTime = DateTime.Now
                 };
 
-                serviceStatusShipment.Add(ss);
+                serviceStatusShipment.Add(mapper.Map<StatusShipmentDto>(ss));
 
                 return RedirectToAction("CustomerShipments");
 
@@ -167,7 +171,7 @@ namespace DeliveryServiceApp.Controllers
         {
             try
             {
-                AdditionalService service = serviceAdditonalService.FindByID(additionalServiceId);
+                AdditionalServiceDto service = serviceAdditonalService.FindByID(additionalServiceId);
 
                 AdditonalServiceViewModel model = new AdditonalServiceViewModel
                 {
@@ -192,7 +196,7 @@ namespace DeliveryServiceApp.Controllers
             {
                 var userId = int.Parse(userManager.GetUserId(HttpContext.User));
 
-                List<Shipment> model = serviceShipment.GetAllOfSpecifiedUser(userId);
+                List<ShipmentDto> model = serviceShipment.GetAllOfSpecifiedUser(userId);
 
                 return View(model);
             }
@@ -205,7 +209,7 @@ namespace DeliveryServiceApp.Controllers
         [Authorize(Roles = "Deliverer")]
         public IActionResult AllShipments()
         {
-            List<Shipment> model = serviceShipment.GetAll();
+            List<ShipmentDto> model = serviceShipment.GetAll();
 
             return View(model);
         }
@@ -222,7 +226,7 @@ namespace DeliveryServiceApp.Controllers
         {
             try
             {
-                Shipment shipment = serviceShipment.FindByCode(model.ShipmentCode);
+                ShipmentDto shipment = serviceShipment.FindByCode(model.ShipmentCode);
 
                 if(shipment == null)
                 {
@@ -230,11 +234,11 @@ namespace DeliveryServiceApp.Controllers
                     return View("ShipmentMonitoring");
                 }
 
-                List<StatusShipment> statusShipmentList = serviceStatusShipment.GetAllByShipmentId(shipment.ShipmentId);
+                List<StatusShipmentDto> statusShipmentList = serviceStatusShipment.GetAllByShipmentId(shipment.ShipmentId);
 
-                List<Status> statusesList = serviceStatus.GetAll();
+                List<StatusDto> statusesList = serviceStatus.GetAll();
 
-                foreach (StatusShipment ss in statusShipmentList)
+                foreach (StatusShipmentDto ss in statusShipmentList)
                 {
                     StatusShipmentViewModel ssvm = new StatusShipmentViewModel
                     {
@@ -258,10 +262,10 @@ namespace DeliveryServiceApp.Controllers
         {
             try
             {
-                Shipment shipment = serviceShipment.FindByID(id);
+                ShipmentDto shipment = serviceShipment.FindByID(id);
 
-                List<StatusShipment> statusShipmentList = serviceStatusShipment.GetAllByShipmentId(shipment.ShipmentId);
-                List<Status> statusesList = serviceStatus.GetAll();
+                List<StatusShipmentDto> statusShipmentList = serviceStatusShipment.GetAllByShipmentId(shipment.ShipmentId);
+                List<StatusDto> statusesList = serviceStatus.GetAll();
                 List<SelectListItem> statusesSelectList = statusesList.Select(s => new SelectListItem { Text = s.StatusName, Value = s.StatusId.ToString() }).ToList();
 
                 ShipmentMonitoringViewModel model = new ShipmentMonitoringViewModel
@@ -270,7 +274,7 @@ namespace DeliveryServiceApp.Controllers
                     StatusesSelect = statusesSelectList
                 };
 
-                foreach (StatusShipment ss in statusShipmentList)
+                foreach (StatusShipmentDto ss in statusShipmentList)
                 {
                     StatusShipmentViewModel ssvm = new StatusShipmentViewModel
                     {
@@ -294,14 +298,14 @@ namespace DeliveryServiceApp.Controllers
         {
             try
             {
-                Shipment shipment = serviceShipment.FindByID(id);
-                List<StatusShipment> statusShipmentList = serviceStatusShipment.GetAllByShipmentId(shipment.ShipmentId);
+                ShipmentDto shipment = serviceShipment.FindByID(id);
+                List<StatusShipmentDto> statusShipmentList = serviceStatusShipment.GetAllByShipmentId(shipment.ShipmentId);
 
                 if(statusShipmentList.Any(ss => ss.StatusId == model.StatusId))
                 {
                     ModelState.AddModelError(string.Empty, "You cannot add a status that is already in the shipment status list.");
 
-                    List<Status> statusesList = serviceStatus.GetAll();
+                    List<StatusDto> statusesList = serviceStatus.GetAll();
                     List<SelectListItem> statusesSelectList = statusesList.Select(s => new SelectListItem { Text = s.StatusName, Value = s.StatusId.ToString() }).ToList();
 
                     ShipmentMonitoringViewModel m = new ShipmentMonitoringViewModel
@@ -310,7 +314,7 @@ namespace DeliveryServiceApp.Controllers
                         StatusesSelect = statusesSelectList
                     };
 
-                    foreach (StatusShipment ss in statusShipmentList)
+                    foreach (StatusShipmentDto ss in statusShipmentList)
                     {
                         StatusShipmentViewModel ssvm = new StatusShipmentViewModel
                         {
@@ -323,13 +327,14 @@ namespace DeliveryServiceApp.Controllers
                     return View(m);
                 }
 
-               serviceStatusShipment.Add(new StatusShipment
+                var statusShipment = new StatusShipment
                 {
                     ShipmentId = id,
                     StatusId = model.StatusId,
                     StatusTime = DateTime.Now
-                });
+                };
 
+                serviceStatusShipment.Add(mapper.Map<StatusShipmentDto>(statusShipment));
 
                 return RedirectToAction("EditStatus");
             }

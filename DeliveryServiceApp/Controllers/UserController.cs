@@ -1,4 +1,6 @@
-﻿using DeliveryServiceApp.Models;
+﻿using AutoMapper;
+using DataTransferObjects;
+using DeliveryServiceApp.Models;
 using DeliveryServiceApp.Services.Interfaces;
 using DeliveryServiceData.UnitOfWork;
 using DeliveryServiceDomain;
@@ -15,12 +17,14 @@ namespace DeliveryServiceApp.Controllers
         private readonly UserManager<Person> userManager;
         private readonly IServiceCustomer serviceCustomer;
         private readonly IServiceDeliverer serviceDeliverer;
+        private readonly IMapper mapper;
 
-        public UserController(UserManager<Person> userManager, IServiceCustomer serviceCustomer, IServiceDeliverer serviceDeliverer)
+        public UserController(UserManager<Person> userManager, IServiceCustomer serviceCustomer, IServiceDeliverer serviceDeliverer, IMapper mapper)
         {
             this.userManager = userManager;
             this.serviceCustomer = serviceCustomer;
             this.serviceDeliverer = serviceDeliverer;
+            this.mapper = mapper;
         }
 
         [Authorize(Roles = "User, Deliverer")]
@@ -108,7 +112,7 @@ namespace DeliveryServiceApp.Controllers
                         PostalCode = model.PostalCode
                     };
 
-                    serviceCustomer.Edit(c);
+                    serviceCustomer.Edit(mapper.Map<CustomerDto>(c));
 
                     return View("Detail", model);
                 }

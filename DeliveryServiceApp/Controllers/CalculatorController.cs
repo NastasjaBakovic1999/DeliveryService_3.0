@@ -1,4 +1,5 @@
-﻿using DeliveryServiceApp.Models;
+﻿using DataTransferObjects;
+using DeliveryServiceApp.Models;
 using DeliveryServiceApp.Services.Interfaces;
 using DeliveryServiceData.UnitOfWork;
 using DeliveryServiceDomain;
@@ -27,10 +28,10 @@ namespace DeliveryServiceApp.Controllers
         {
             try
             {
-                List<AdditionalService> additionalServicesList = serviceAdditonalService.GetAll();
+                List<AdditionalServiceDto> additionalServicesList = serviceAdditonalService.GetAll();
                 List<SelectListItem> selectAdditionalServicesList = additionalServicesList.Select(s => new SelectListItem { Text = s.AdditionalServiceName + " - " + s.AdditionalServicePrice + " RSD", Value = s.AdditionalServiceId.ToString() }).ToList();
 
-                List<ShipmentWeight> shipmentWeightList = serviceShipmentWeight.GetAll();
+                List<ShipmentWeightDto> shipmentWeightList = serviceShipmentWeight.GetAll();
                 List<SelectListItem> selectShipmentWeightList = shipmentWeightList.Select(s => new SelectListItem { Text = s.ShipmentWeightDescpription, Value = s.ShipmentWeightId.ToString() }).ToList();
 
                 CalculatorViewModel model = new CalculatorViewModel
@@ -52,10 +53,10 @@ namespace DeliveryServiceApp.Controllers
         {
             try
             {
-                List<AdditionalService> additionalServicesList = serviceAdditonalService.GetAll();
+                List<AdditionalServiceDto> additionalServicesList = serviceAdditonalService.GetAll();
                 List<SelectListItem> selectAdditionalServicesList = additionalServicesList.Select(s => new SelectListItem { Text = s.AdditionalServiceName + " - " + s.AdditionalServicePrice + " RSD", Value = s.AdditionalServiceId.ToString() }).ToList();
 
-                List<ShipmentWeight> shipmentWeightList = serviceShipmentWeight.GetAll();
+                List<ShipmentWeightDto> shipmentWeightList = serviceShipmentWeight.GetAll();
                 List<SelectListItem> selectShipmentWeightList = shipmentWeightList.Select(s => new SelectListItem { Text = s.ShipmentWeightDescpription, Value = s.ShipmentWeightId.ToString() }).ToList();
            
                 if (!ModelState.IsValid)
@@ -71,7 +72,7 @@ namespace DeliveryServiceApp.Controllers
 
                 if (model.Services != null && model.Services.Count() > 0)
                 {
-                    List<AdditionalService> additionalServices = serviceAdditonalService.GetAll();
+                    List<AdditionalServiceDto> additionalServices = serviceAdditonalService.GetAll();
 
                     foreach (AdditonalServiceViewModel sa in model.Services)
                     {

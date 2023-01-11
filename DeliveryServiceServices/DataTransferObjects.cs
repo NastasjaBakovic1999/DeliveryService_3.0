@@ -10,7 +10,7 @@
 
     public record PersonDto(string FirstName, string LastName);
 
-    public record DelivererDto(string FirstName, string LastName, DateTime DateOfEmpoyment);
+    public record DelivererDto(string FirstName, string LastName, DateTime DateOfEmployment);
 
     public record ShipmentDto(int ShipmentId, string ShipmentCode, int ShipmentWeightId, string ShipmentContent, string ContactPersonName, string ContactPersonPhone, int CustomerId, int DelivererId, double Price, string Note,
         AddressDto Sending, AddressDto Receiving, List<AdditionalServiceDto> AdditionalServices, List<StatusShipmentDto> ShipmentStatuses);
