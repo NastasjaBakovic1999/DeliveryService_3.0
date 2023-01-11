@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeliveryServiceDomain", "De
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeliveryServiceApp", "DeliveryServiceApp\DeliveryServiceApp.csproj", "{7A25AF51-259F-4640-8791-1CF7FAC70697}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliveryServiceAppTests", "DeliveryServiceAppTests\DeliveryServiceAppTests.csproj", "{554D3FFF-6715-49C2-A684-29A7A48D1C17}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeliveryServiceAppTests", "DeliveryServiceAppTests\DeliveryServiceAppTests.csproj", "{554D3FFF-6715-49C2-A684-29A7A48D1C17}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliveryServiceServices", "DeliveryServiceServices\DeliveryServiceServices.csproj", "{39418BA5-410D-42A2-B6FE-DFE32B7F5808}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{554D3FFF-6715-49C2-A684-29A7A48D1C17}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{554D3FFF-6715-49C2-A684-29A7A48D1C17}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{554D3FFF-6715-49C2-A684-29A7A48D1C17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39418BA5-410D-42A2-B6FE-DFE32B7F5808}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39418BA5-410D-42A2-B6FE-DFE32B7F5808}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39418BA5-410D-42A2-B6FE-DFE32B7F5808}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39418BA5-410D-42A2-B6FE-DFE32B7F5808}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
