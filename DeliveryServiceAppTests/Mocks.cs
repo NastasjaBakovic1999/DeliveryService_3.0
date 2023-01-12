@@ -1,6 +1,9 @@
+using AutoMapper;
+using DataTransferObjects;
 using DeliveryServiceData;
 using DeliveryServiceData.UnitOfWork;
 using DeliveryServiceDomain;
+using DeliveryServiceServices.Profiles;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -614,5 +617,25 @@ namespace DeliveryServiceAppTests
             personUnitOfWork.Setup(x => x.Commit()).Verifiable();
             return personUnitOfWork;
         }
+
+        public static IMapper GetMockAutoMapper()
+        {
+            var profiles = new List<Profile>() { 
+                new AdditionalServiceProfile(), 
+                new AdditionalServiceShipmentProfile(),
+                new AddressProfile(),
+                new CustomerProfile(),
+                new DelivererProfile(),
+                new PersonProfile(),
+                new ShipmentProfile(),
+                new ShipmentWeightProfile(),
+                new StatusProfile(),
+                new StatusShipmentProfile()
+            };
+            var configuration = new MapperConfiguration(cfg => cfg.AddProfiles(profiles));
+            IMapper mapper = new Mapper(configuration); 
+            return mapper;
+        }
+
     }
 }
