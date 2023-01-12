@@ -60,7 +60,7 @@ namespace DeliveryServiceAppTests
                 Shipment = unitOfWork.Object.Shipment.FindByID(2)
             };
             service.Add(mapper.Object.Map<AdditionalServiceShipmentDto>(newAdditionalServiceShipment));
-            var additionalServiceShipment = service.FindByID(1, new int[] { 2 });
+            var additionalServiceShipment = unitOfWork.Object.AdditionalServiceShipment.FindByID(1, new int[] { 2 });
             Assert.Equal(newAdditionalServiceShipment.AdditionalServiceId, additionalServiceShipment.AdditionalServiceId);
             Assert.Equal(newAdditionalServiceShipment.ShipmentId, additionalServiceShipment.ShipmentId);
             unitOfWork.Verify(x => x.AdditionalServiceShipment.Add(It.Is<AdditionalServiceShipment>(p => p.AdditionalServiceId == 1 && p.ShipmentId == 2)), Times.Once);
@@ -90,7 +90,7 @@ namespace DeliveryServiceAppTests
                 Shipment = unitOfWork.Object.Shipment.FindByID(1)
             };
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => service.Add(mapper.Object.Map<AdditionalServiceShipmentDto>(newAdditionalServiceShipment)));
+            Assert.Throws<ArgumentOutOfRangeException>(() => service.Add(mapper.Object.Map<AdditionalServiceShipmentDto>(newAdditionalServiceShipment) ));
             unitOfWork.Verify(x => x.AdditionalServiceShipment.Add(It.IsAny<AdditionalServiceShipment>()), Times.Never);
             unitOfWork.Verify(x => x.Commit(), Times.Never);
         }
