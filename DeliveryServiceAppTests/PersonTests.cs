@@ -16,22 +16,22 @@ namespace DeliveryServiceAppTests
     public class PersonTests
     {
         Mock<IPersonUnitOfWork> unitOfWork = Mocks.GetMockPersonUnitOfWork();
-        Mock<IMapper> mapper = new();
+        IMapper mapper = Mocks.GetMockAutoMapper();
 
         [Fact]
         public void TestServicePersonFindById()
         {
-            var service = new ServicePerson(unitOfWork.Object, mapper.Object);
+            var service = new ServicePerson(unitOfWork.Object, mapper);
             var result = service.FindByID(1);
             var resultPerson = Assert.IsType<PersonDto>(result);
-            var expected = mapper.Object.Map<PersonDto>(unitOfWork.Object.Person.FindByID(1));
+            var expected = mapper.Map<PersonDto>(unitOfWork.Object.Person.FindByID(1));
             Assert.Equal(expected.Id, resultPerson.Id);
         }
 
         [Fact]
         public void TestServicePersonFindByIdInvalid()
         {
-            var service = new ServicePerson(unitOfWork.Object, mapper.Object);
+            var service = new ServicePerson(unitOfWork.Object, mapper);
             var result = service.FindByID(-4);
 
             Assert.Null(result);
@@ -40,10 +40,10 @@ namespace DeliveryServiceAppTests
         [Fact]
         public void TestServicePersonGetAll()
         {
-            var service = new ServicePerson(unitOfWork.Object, mapper.Object);
+            var service = new ServicePerson(unitOfWork.Object, mapper);
             var result = service.GetAll();
             var resultList = Assert.IsAssignableFrom<List<PersonDto>>(result);
-            var expected = mapper.Object.Map<List<PersonDto>>(unitOfWork.Object.Person.GetAll());
+            var expected = mapper.Map<List<PersonDto>>(unitOfWork.Object.Person.GetAll());
             Assert.Equal<int>(expected.Count, resultList.Count);
         }
     }

@@ -16,22 +16,22 @@ namespace DeliveryServiceAppTests
     public class ShipmentWeightTests
     {
         Mock<IUnitOfWork> unitOfWork = Mocks.GetMockUnitOfWork();
-        Mock<IMapper> mapper = new();
+        IMapper mapper = Mocks.GetMockAutoMapper();
 
         [Fact]
         public void TestServiceShipmentWeightFindById()
         {
-            var service = new ServiceShipmentWeight(unitOfWork.Object, mapper.Object);
+            var service = new ServiceShipmentWeight(unitOfWork.Object, mapper);
             var result = service.FindByID(1);
             var resultShipmentWeight = Assert.IsType<ShipmentWeightDto>(result);
-            var expected = mapper.Object.Map<ShipmentWeightDto>(unitOfWork.Object.ShipmentWeight.FindByID(1));
+            var expected = mapper.Map<ShipmentWeightDto>(unitOfWork.Object.ShipmentWeight.FindByID(1));
             Assert.Equal(expected.ShipmentWeightId, resultShipmentWeight.ShipmentWeightId);
         }
 
         [Fact]
         public void TestServiceShipmentWeightFindByIdInvalid()
         {
-            var service = new ServiceShipmentWeight(unitOfWork.Object, mapper.Object);
+            var service = new ServiceShipmentWeight(unitOfWork.Object, mapper);
             var result = service.FindByID(-4);
 
             Assert.Null(result);
@@ -40,10 +40,10 @@ namespace DeliveryServiceAppTests
         [Fact]
         public void TestServicePersonGetAll()
         {
-            var service = new ServiceShipmentWeight(unitOfWork.Object, mapper.Object);
+            var service = new ServiceShipmentWeight(unitOfWork.Object, mapper);
             var result = service.GetAll();
             var resultList = Assert.IsAssignableFrom<List<ShipmentWeightDto>>(result);
-            var expected = mapper.Object.Map<List<ShipmentWeightDto>>(unitOfWork.Object.ShipmentWeight.GetAll());
+            var expected = mapper.Map<List<ShipmentWeightDto>>(unitOfWork.Object.ShipmentWeight.GetAll());
             Assert.Equal<int>(expected.Count, resultList.Count);
         }
     }

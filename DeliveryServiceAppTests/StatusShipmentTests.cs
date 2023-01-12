@@ -16,15 +16,15 @@ namespace DeliveryServiceAppTests
     public class StatusShipmentTests
     {
         Mock<IUnitOfWork> unitOfWork = Mocks.GetMockUnitOfWork();
-        Mock<IMapper> mapper = new();
+        IMapper mapper = Mocks.GetMockAutoMapper();
 
         [Fact]
         public void TestServiceStatusShipmentFindById()
         {
-            var service = new ServiceStatusShipment(unitOfWork.Object, mapper.Object);
+            var service = new ServiceStatusShipment(unitOfWork.Object, mapper);
             var result = service.FindByID(1, 1);
             var resultStatus = Assert.IsType<StatusShipmentDto>(result);
-            var expected = mapper.Object.Map<StatusShipmentDto>(unitOfWork.Object.StatusShipment.FindByID(1, 1));
+            var expected = mapper.Map<StatusShipmentDto>(unitOfWork.Object.StatusShipment.FindByID(1, 1));
             Assert.Equal(expected.StatusId, resultStatus.StatusId);
             Assert.Equal(expected.ShipmentId, resultStatus.ShipmentId);
             Assert.Equal(expected.StatusTime, resultStatus.StatusTime);
@@ -33,7 +33,7 @@ namespace DeliveryServiceAppTests
         [Fact]
         public void TestServiceStatusShipmentFindByIdInvalid()
         {
-            var service = new ServiceStatus(unitOfWork.Object, mapper.Object);
+            var service = new ServiceStatus(unitOfWork.Object, mapper);
             var result = service.FindByID(-4, 1);
 
             Assert.Null(result);
@@ -42,17 +42,17 @@ namespace DeliveryServiceAppTests
         [Fact]
         public void TestServiceStatusShipmentGetAll()
         {
-            var service = new ServiceStatusShipment(unitOfWork.Object, mapper.Object);
+            var service = new ServiceStatusShipment(unitOfWork.Object, mapper);
             var result = service.GetAll();
             var resultList = Assert.IsAssignableFrom<List<StatusShipmentDto>>(result);
-            var expected = mapper.Object.Map<List<StatusShipmentDto>>(unitOfWork.Object.StatusShipment.GetAll());
+            var expected = mapper.Map<List<StatusShipmentDto>>(unitOfWork.Object.StatusShipment.GetAll());
             Assert.Equal<int>(expected.Count, resultList.Count);
         }
 
         [Fact]
         public void TestServiceStatusShipmentAdd()
         {
-            var service = new ServiceStatusShipment(unitOfWork.Object, mapper.Object);
+            var service = new ServiceStatusShipment(unitOfWork.Object, mapper);
             var newStatusShipment = new StatusShipment
             {
                 StatusId = 6,
@@ -61,7 +61,7 @@ namespace DeliveryServiceAppTests
                 Shipment = unitOfWork.Object.Shipment.FindByID(2),
                 StatusTime = DateTime.Now
             };
-            service.Add(mapper.Object.Map<StatusShipmentDto>(newStatusShipment));
+            service.Add(mapper.Map<StatusShipmentDto>(newStatusShipment));
             var statusShipment = unitOfWork.Object.StatusShipment.FindByID(6, new int[] { 2 });
             Assert.Equal(newStatusShipment.StatusId, statusShipment.StatusId);
             Assert.Equal(newStatusShipment.ShipmentId, statusShipment.ShipmentId);
@@ -75,9 +75,9 @@ namespace DeliveryServiceAppTests
         [MemberData(nameof(StatusShipmentData))]
         public void TestServiceStatusShipmentAddInvalidId(StatusShipment newStatusShipment)
         {
-            var service = new ServiceStatusShipment(unitOfWork.Object, mapper.Object);
+            var service = new ServiceStatusShipment(unitOfWork.Object, mapper);
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => service.Add(mapper.Object.Map<StatusShipmentDto>(newStatusShipment)));
+            Assert.Throws<ArgumentOutOfRangeException>(() => service.Add(mapper.Map<StatusShipmentDto>(newStatusShipment)));
             unitOfWork.Verify(x => x.StatusShipment.Add(It.IsAny<StatusShipment>()), Times.Never);
             unitOfWork.Verify(x => x.Commit(), Times.Never);
         }
@@ -85,7 +85,7 @@ namespace DeliveryServiceAppTests
         [Fact]
         public void TestServiceStatusShipmentAddAlreadyExist()
         {
-            var service = new ServiceStatusShipment(unitOfWork.Object, mapper.Object);
+            var service = new ServiceStatusShipment(unitOfWork.Object, mapper);
             var newStatusShipment = new StatusShipment
             {
                 StatusId = 1,
@@ -94,7 +94,7 @@ namespace DeliveryServiceAppTests
                 Shipment = unitOfWork.Object.Shipment.FindByID(1)
             };
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => service.Add(mapper.Object.Map<StatusShipmentDto>(newStatusShipment)));
+            Assert.Throws<ArgumentOutOfRangeException>(() => service.Add(mapper.Map<StatusShipmentDto>(newStatusShipment)));
             unitOfWork.Verify(x => x.StatusShipment.Add(It.IsAny<StatusShipment>()), Times.Never);
             unitOfWork.Verify(x => x.Commit(), Times.Never);
         }
@@ -102,17 +102,17 @@ namespace DeliveryServiceAppTests
         [Fact]
         public void TestServiceStatusShipmentGetAllByShipmentId()
         {
-            var service = new ServiceStatusShipment(unitOfWork.Object, mapper.Object);
+            var service = new ServiceStatusShipment(unitOfWork.Object, mapper);
             var result = service.GetAllByShipmentId(2);
             var resultList = Assert.IsAssignableFrom<List<StatusShipmentDto>>(result);
-            var expected = mapper.Object.Map<List<StatusShipmentDto>>(unitOfWork.Object.StatusShipment.GetAllByShipmentId(2));
+            var expected = mapper.Map<List<StatusShipmentDto>>(unitOfWork.Object.StatusShipment.GetAllByShipmentId(2));
             Assert.Equal(expected.Count, resultList.Count);
         }
 
         [Fact]
         public void TestServiceStatusShipmentGetAllByShipmentIdNull()
         {
-            var service = new ServiceStatusShipment(unitOfWork.Object, mapper.Object);
+            var service = new ServiceStatusShipment(unitOfWork.Object, mapper);
             var result = service.GetAllByShipmentId(0);
 
             Assert.Empty(result);
