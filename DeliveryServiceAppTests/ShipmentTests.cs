@@ -28,7 +28,7 @@ namespace DeliveryServiceAppTests
             var service = new ServiceShipment(unitOfWork.Object, mapper);
             var result = service.FindByID(1);
             var resultShipment = Assert.IsType<ShipmentDto>(result);
-            var expected = mapper.Map<ShipmentDto>(unitOfWork.Object.Shipment.FindByID(1));
+            var expected = mapper.Map<ShipmentDto>(unitOfWork.Object.Shipment.FindOneByExpression(x => x.ShipmentId == 1));
             Assert.Equal(expected.ShipmentId, resultShipment.ShipmentId);
         }
 
@@ -82,12 +82,12 @@ namespace DeliveryServiceAppTests
                 DelivererId = 3,
                 Price = 330,
                 Note = "stan 8",
-                ShipmentWeight = shipmentWeightRepository.Object.FindByID(1),
-                Customer = customerRepository.Object.FindByID(4),
-                Deliverer = delivererRepository.Object.FindByID(3)
+                ShipmentWeight = shipmentWeightRepository.Object.FindOneByExpression(x => x.ShipmentWeightId == 1),
+                Customer = customerRepository.Object.FindOneByExpression(x => x.Id == 4),
+                Deliverer = delivererRepository.Object.FindOneByExpression(x => x.Id == 3)
             };
             service.Add(mapper.Map<ShipmentDto>(newShipment));
-            var shipment = unitOfWork.Object.Shipment.FindByID(4);
+            var shipment = unitOfWork.Object.Shipment.FindOneByExpression(x=>x.ShipmentId == 4);
             Assert.Equal(shipment.ShipmentCode, newShipment.ShipmentCode);
             Assert.Equal(shipment.ShipmentContent, newShipment.ShipmentContent);
             Assert.Equal(shipment.Sending.City, newShipment.Sending.City);

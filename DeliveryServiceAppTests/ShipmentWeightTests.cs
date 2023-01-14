@@ -24,7 +24,7 @@ namespace DeliveryServiceAppTests
             var service = new ServiceShipmentWeight(unitOfWork.Object, mapper);
             var result = service.FindByID(1);
             var resultShipmentWeight = Assert.IsType<ShipmentWeightDto>(result);
-            var expected = mapper.Map<ShipmentWeightDto>(unitOfWork.Object.ShipmentWeight.FindByID(1));
+            var expected = mapper.Map<ShipmentWeightDto>(unitOfWork.Object.ShipmentWeight.FindOneByExpression(x=>x.ShipmentWeightId ==1));
             Assert.Equal(expected.ShipmentWeightId, resultShipmentWeight.ShipmentWeightId);
         }
 

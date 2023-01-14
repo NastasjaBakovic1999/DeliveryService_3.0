@@ -24,7 +24,7 @@ namespace DeliveryServiceAppTests
             var service = new ServiceStatusShipment(unitOfWork.Object, mapper);
             var result = service.FindByID(1, 1);
             var resultStatus = Assert.IsType<StatusShipmentDto>(result);
-            var expected = mapper.Map<StatusShipmentDto>(unitOfWork.Object.StatusShipment.FindByID(1, 1));
+            var expected = mapper.Map<StatusShipmentDto>(unitOfWork.Object.StatusShipment.FindOneByExpression(x=> x.StatusId == 1 && x.ShipmentId == 1));
             Assert.Equal(expected.StatusId, resultStatus.StatusId);
             Assert.Equal(expected.ShipmentId, resultStatus.ShipmentId);
             Assert.Equal(expected.StatusTime, resultStatus.StatusTime);
@@ -56,13 +56,13 @@ namespace DeliveryServiceAppTests
             var newStatusShipment = new StatusShipment
             {
                 StatusId = 6,
-                Status = unitOfWork.Object.Status.FindByID(6),
+                Status = unitOfWork.Object.Status.FindOneByExpression(x => x.StatusId == 6),
                 ShipmentId = 2,
-                Shipment = unitOfWork.Object.Shipment.FindByID(2),
+                Shipment = unitOfWork.Object.Shipment.FindOneByExpression(x=> x.ShipmentId == 2),
                 StatusTime = DateTime.Now
             };
             service.Add(mapper.Map<StatusShipmentDto>(newStatusShipment));
-            var statusShipment = unitOfWork.Object.StatusShipment.FindByID(6, new int[] { 2 });
+            var statusShipment = unitOfWork.Object.StatusShipment.FindOneByExpression(x => x.ShipmentId == 2 && x.StatusId == 6);
             Assert.Equal(newStatusShipment.StatusId, statusShipment.StatusId);
             Assert.Equal(newStatusShipment.ShipmentId, statusShipment.ShipmentId);
             Assert.Equal(newStatusShipment.StatusTime, statusShipment.StatusTime);
@@ -89,9 +89,9 @@ namespace DeliveryServiceAppTests
             var newStatusShipment = new StatusShipment
             {
                 StatusId = 1,
-                Status = unitOfWork.Object.Status.FindByID(1),
+                Status = unitOfWork.Object.Status.FindOneByExpression(x=>x.StatusId == 1),
                 ShipmentId = 1,
-                Shipment = unitOfWork.Object.Shipment.FindByID(1)
+                Shipment = unitOfWork.Object.Shipment.FindOneByExpression(x=> x.ShipmentId ==1)
             };
 
             Assert.Throws<ArgumentOutOfRangeException>(() => service.Add(mapper.Map<StatusShipmentDto>(newStatusShipment)));

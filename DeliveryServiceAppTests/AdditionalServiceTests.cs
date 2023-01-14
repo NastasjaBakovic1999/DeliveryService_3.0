@@ -24,7 +24,7 @@ namespace DeliveryServiceAppTests
             var service = new ServiceAdditionalService(unitOfWork.Object, mapper);
             var result = service.FindByID(1);
             var resultAdditionalService = Assert.IsType<AdditionalServiceDto>(result);
-            var expected = mapper.Map<AdditionalServiceDto>(unitOfWork.Object.AdditionalService.FindByID(1));
+            var expected = mapper.Map<AdditionalServiceDto>(unitOfWork.Object.AdditionalService.FindOneByExpression(x=>x.AdditionalServiceId == 1));
             Assert.Equal(expected.AdditionalServiceId, resultAdditionalService.AdditionalServiceId);
         }
 

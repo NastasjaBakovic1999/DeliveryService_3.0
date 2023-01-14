@@ -24,7 +24,7 @@ namespace DeliveryServiceAppTests
             var service = new ServiceCustomer(unitOfWork.Object, mapper);
             var result = service.FindByID(1);
             var resultCustomer = Assert.IsType<CustomerDto>(result);
-            var expected = mapper.Map<CustomerDto>(unitOfWork.Object.Customer.FindByID(1));
+            var expected = mapper.Map<CustomerDto>(unitOfWork.Object.Customer.FindOneByExpression(c => c.Id == 1));
             Assert.Equal(expected.Id, resultCustomer.Id);
         }
 
@@ -63,7 +63,7 @@ namespace DeliveryServiceAppTests
                 PhoneNumber = "0652233445"
             };
             service.Edit(mapper.Map<CustomerDto>(customer));
-            var customerUpdated = unitOfWork.Object.Customer.FindByID(1);
+            var customerUpdated = unitOfWork.Object.Customer.FindOneByExpression(c => c.Id == 1);
 
             Assert.Equal(customer.FirstName, customerUpdated.FirstName);
             Assert.Equal(customer.LastName, customerUpdated.LastName);
