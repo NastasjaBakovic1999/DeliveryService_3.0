@@ -8,6 +8,7 @@ using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using Xunit;
 
 namespace DeliveryServiceAppTests
@@ -52,7 +53,7 @@ namespace DeliveryServiceAppTests
 
             var mockAdditionalServiceRepository = new Mock<IRepositoryAdditionalService>();
             mockAdditionalServiceRepository.Setup(x => x.GetAll()).Returns(additionalServices);
-            mockAdditionalServiceRepository.Setup(x => x.FindByID(It.IsAny<int>(), It.IsAny <int[]>())).Returns((int i, int[] j) => additionalServices.SingleOrDefault(x => x.AdditionalServiceId == i));
+            mockAdditionalServiceRepository.Setup(x => x.FindOneByExpression(It.IsAny<Expression<Func<AdditionalService, bool>>>())).Returns((Expression<Func<AdditionalService, bool>> expression) => additionalServices.SingleOrDefault(expression.Compile()));
 
             return mockAdditionalServiceRepository;
         }
@@ -65,42 +66,42 @@ namespace DeliveryServiceAppTests
                 {
                     AdditionalServiceId = 1,
                     ShipmentId = 1,
-                    Shipment = GetMockShipmentRepository().Object.FindByID(1),
-                    AdditionalService = GetMockAdditionalServiceRepository().Object.FindByID(1)
+                    Shipment = GetMockShipmentRepository().Object.FindOneByExpression(x=>x.ShipmentId == 1),
+                    AdditionalService = GetMockAdditionalServiceRepository().Object.FindOneByExpression(x => x.AdditionalServiceId == 1)
                 },
                 new AdditionalServiceShipment
                 {
                     AdditionalServiceId = 2,
                     ShipmentId = 1,
-                    Shipment = GetMockShipmentRepository().Object.FindByID(1),
-                    AdditionalService = GetMockAdditionalServiceRepository().Object.FindByID(2)
+                    Shipment = GetMockShipmentRepository().Object.FindOneByExpression(x=>x.ShipmentId == 1),
+                    AdditionalService = GetMockAdditionalServiceRepository().Object.FindOneByExpression(x => x.AdditionalServiceId == 2)
                 },
                 new AdditionalServiceShipment
                 {
                     AdditionalServiceId = 3,
                     ShipmentId = 1,
-                    Shipment = GetMockShipmentRepository().Object.FindByID(1),
-                    AdditionalService = GetMockAdditionalServiceRepository().Object.FindByID(3)
+                    Shipment = GetMockShipmentRepository().Object.FindOneByExpression(x=>x.ShipmentId == 1),
+                    AdditionalService = GetMockAdditionalServiceRepository().Object.FindOneByExpression(x => x.AdditionalServiceId == 3)
                 },
                 new AdditionalServiceShipment
                 {
                     AdditionalServiceId = 2,
                     ShipmentId = 2,
-                    Shipment = GetMockShipmentRepository().Object.FindByID(2),
-                    AdditionalService = GetMockAdditionalServiceRepository().Object.FindByID(2)
+                    Shipment = GetMockShipmentRepository().Object.FindOneByExpression(x=>x.ShipmentId == 2),
+                    AdditionalService = GetMockAdditionalServiceRepository().Object.FindOneByExpression(x => x.AdditionalServiceId == 2)
                 },
                 new AdditionalServiceShipment
                 {
                     AdditionalServiceId = 4,
                     ShipmentId = 2,
-                    Shipment = GetMockShipmentRepository().Object.FindByID(2),
-                    AdditionalService = GetMockAdditionalServiceRepository().Object.FindByID(4)
+                    Shipment = GetMockShipmentRepository().Object.FindOneByExpression(x=>x.ShipmentId == 2),
+                    AdditionalService = GetMockAdditionalServiceRepository().Object.FindOneByExpression(x => x.AdditionalServiceId == 4)
                 },
             };
 
             var mockAdditionalServiceShipmentRepository = new Mock<IRepositoryAdditionalServiceShipment>();
             mockAdditionalServiceShipmentRepository.Setup(x => x.GetAll()).Returns(additionalServiceShipments);
-            mockAdditionalServiceShipmentRepository.Setup(x => x.FindByID(It.IsAny<int>(), It.IsAny<int[]>())).Returns((int i, int[] j) => additionalServiceShipments.SingleOrDefault(x => x.AdditionalServiceId == i && x.ShipmentId == j[0]));
+            mockAdditionalServiceShipmentRepository.Setup(x => x.FindOneByExpression(It.IsAny<Expression<Func<AdditionalServiceShipment, bool>>>())).Returns((Expression<Func<AdditionalServiceShipment, bool>> expression) => additionalServiceShipments.SingleOrDefault(expression.Compile()));
             mockAdditionalServiceShipmentRepository.Setup(x => x.Add(It.IsAny<AdditionalServiceShipment>())).Callback((AdditionalServiceShipment adss) =>
             {
                 additionalServiceShipments.Add(adss);
@@ -172,10 +173,7 @@ namespace DeliveryServiceAppTests
 
             var mockCustomerRepository = new Mock<IRepositoryCustomer>();
             mockCustomerRepository.Setup(x => x.GetAll()).Returns(customers);
-            mockCustomerRepository.Setup(x => x.FindByID(It.IsAny<int>(), It.IsAny<int[]>())).Returns((int i, int[] j) =>
-            {
-                return customers.SingleOrDefault(c => c.Id == i);
-            });
+            mockCustomerRepository.Setup(x => x.FindOneByExpression(It.IsAny<Expression<Func<Customer, bool>>>())).Returns((Expression<Func<Customer, bool>> expression) => { return customers.SingleOrDefault(expression.Compile()); });
             mockCustomerRepository.Setup(x => x.Edit(It.IsAny<Customer>())).Callback((Customer target) =>
             {
                 var original = customers.FirstOrDefault(c => c.Id == target.Id);
@@ -250,9 +248,9 @@ namespace DeliveryServiceAppTests
 
             var mockDelivererRepository = new Mock<IRepositoryDeliverer>();
             mockDelivererRepository.Setup(x => x.GetAll()).Returns(deliverers);
-            mockDelivererRepository.Setup(x => x.FindByID(It.IsAny<int>(), It.IsAny<int[]>())).Returns((int i, int[] j) =>
+            mockDelivererRepository.Setup(x => x.FindOneByExpression(It.IsAny<Expression<Func<Deliverer, bool>>>())).Returns((Expression<Func<Deliverer, bool>> expression) =>
             {
-                return deliverers.SingleOrDefault(c => c.Id == i);
+                return deliverers.SingleOrDefault(expression.Compile());
             });
 
             return mockDelivererRepository;
@@ -311,9 +309,9 @@ namespace DeliveryServiceAppTests
 
             var mockPersonRepository = new Mock<IRepositoryPerson>();
             mockPersonRepository.Setup(x => x.GetAll()).Returns(people);
-            mockPersonRepository.Setup(x => x.FindByID(It.IsAny<int>(), It.IsAny<int[]>())).Returns((int i, int[] j) =>
+            mockPersonRepository.Setup(x => x.FindOneByExpression(It.IsAny<Expression<Func<Person, bool>>>())).Returns((Expression<Func<Person, bool>> expression) =>
             {
-                return people.SingleOrDefault(c => c.Id == i);
+                return people.SingleOrDefault(expression.Compile());
             });
 
             return mockPersonRepository;
@@ -350,9 +348,9 @@ namespace DeliveryServiceAppTests
                     DelivererId = 1,
                     Price = 330,
                     Note = "stan 8",
-                    ShipmentWeight = GetMockShipmentWeightRepository().Object.FindByID(1),
-                    Customer = GetMockCustomerRepository().Object.FindByID(1),
-                    Deliverer = GetMockDelivererRepository().Object.FindByID(1)
+                    ShipmentWeight = GetMockShipmentWeightRepository().Object.FindOneByExpression(x => x.ShipmentWeightId == 1),
+                    Customer = GetMockCustomerRepository().Object.FindOneByExpression(x => x.Id == 1),
+                    Deliverer = GetMockDelivererRepository().Object.FindOneByExpression(x => x.Id == 1),
                 },
                 new Shipment
                 {
@@ -378,9 +376,9 @@ namespace DeliveryServiceAppTests
                     DelivererId = 2,
                     Price = 330,
                     Note = "stan 8",
-                    ShipmentWeight = GetMockShipmentWeightRepository().Object.FindByID(3),
-                    Customer = GetMockCustomerRepository().Object.FindByID(4),
-                    Deliverer = GetMockDelivererRepository().Object.FindByID(2)
+                    ShipmentWeight = GetMockShipmentWeightRepository().Object.FindOneByExpression(x => x.ShipmentWeightId == 3),
+                    Customer = GetMockCustomerRepository().Object.FindOneByExpression(x => x.Id == 4),
+                    Deliverer = GetMockDelivererRepository().Object.FindOneByExpression(x => x.Id == 2)
                 },
                 new Shipment
                 {
@@ -405,25 +403,21 @@ namespace DeliveryServiceAppTests
                     DelivererId = 4,
                     Price = 330,
                     Note = "stan 8",
-                    ShipmentWeight = GetMockShipmentWeightRepository().Object.FindByID(4),
-                    Customer = GetMockCustomerRepository().Object.FindByID(3),
-                    Deliverer = GetMockDelivererRepository().Object.FindByID(4)
+                    ShipmentWeight = GetMockShipmentWeightRepository().Object.FindOneByExpression(x => x.ShipmentWeightId == 4),
+                    Customer = GetMockCustomerRepository().Object.FindOneByExpression(x => x.Id == 3),
+                    Deliverer = GetMockDelivererRepository().Object.FindOneByExpression(x => x.Id == 4)
                 }
             };
 
             var mockShipmentRepository = new Mock<IRepositoryShipment>();
             mockShipmentRepository.Setup(x => x.GetAll()).Returns(shipments);
-            mockShipmentRepository.Setup(x => x.FindByID(It.IsAny<int>(), It.IsAny<int[]>())).Returns((int i, int[] j) =>
+            mockShipmentRepository.Setup(x => x.FindOneByExpression(It.IsAny<Expression<Func<Shipment, bool>>>())).Returns((Expression<Func<Shipment, bool>> expression) =>
             {
-                return shipments.SingleOrDefault(c => c.ShipmentId == i);
+                return shipments.SingleOrDefault(expression.Compile());
             });
             mockShipmentRepository.Setup(x => x.Add(It.IsAny<Shipment>())).Callback((Shipment shipment) =>
             {
                 shipments.Add(shipment);
-            });
-            mockShipmentRepository.Setup(x => x.FindByCode(It.IsAny<string>())).Returns((string code) =>
-            {
-                return shipments.SingleOrDefault(c => c.ShipmentCode == code);
             });
             mockShipmentRepository.Setup(x => x.GetAllOfSpecifiedUser(It.IsAny<int>())).Returns((int i) =>
             {
@@ -477,9 +471,9 @@ namespace DeliveryServiceAppTests
 
             var mockShipmentWeightRepository = new Mock<IRepositoryShipmentWeight>();
             mockShipmentWeightRepository.Setup(x => x.GetAll()).Returns(shipmentWeights);
-            mockShipmentWeightRepository.Setup(x => x.FindByID(It.IsAny<int>(), It.IsAny<int[]>())).Returns((int i, int[] j) =>
+            mockShipmentWeightRepository.Setup(x => x.FindOneByExpression(It.IsAny<Expression<Func<ShipmentWeight, bool>>>())).Returns((Expression<Func<ShipmentWeight, bool>> expression) =>
             {
-                return shipmentWeights.SingleOrDefault(c => c.ShipmentWeightId == i);
+                return shipmentWeights.SingleOrDefault(expression.Compile());
             });
 
             return mockShipmentWeightRepository;
@@ -523,13 +517,9 @@ namespace DeliveryServiceAppTests
 
             var mockStatusRepository = new Mock<IRepositoryStatus>();
             mockStatusRepository.Setup(x => x.GetAll()).Returns(statuses);
-            mockStatusRepository.Setup(x => x.FindByID(It.IsAny<int>(), It.IsAny<int[]>())).Returns((int i, int[] j) =>
+            mockStatusRepository.Setup(x => x.FindOneByExpression(It.IsAny<Expression<Func<Status, bool>>>())).Returns((Expression<Func<Status, bool>> expression) =>
             {
-                return statuses.SingleOrDefault(c => c.StatusId == i);
-            });
-            mockStatusRepository.Setup(x => x.GetByName(It.IsAny<string>())).Returns((string name) =>
-            {
-                return statuses.SingleOrDefault(s => s.StatusName == name);
+                return statuses.SingleOrDefault(expression.Compile());
             });
 
             return mockStatusRepository;
@@ -542,46 +532,46 @@ namespace DeliveryServiceAppTests
                 new StatusShipment
                 {
                     StatusId = 1,
-                    Status = GetMockStatusReposiotry().Object.FindByID(1),
+                    Status = GetMockStatusReposiotry().Object.FindOneByExpression(x => x.StatusId == 1),
                     ShipmentId = 1,
-                    Shipment = GetMockShipmentRepository().Object.FindByID(1),
+                    Shipment = GetMockShipmentRepository().Object.FindOneByExpression(x => x.ShipmentId == 1),
                 },
                 new StatusShipment
                 {
                     StatusId = 2,
-                    Status = GetMockStatusReposiotry().Object.FindByID(2),
+                    Status = GetMockStatusReposiotry().Object.FindOneByExpression(x => x.StatusId == 2),
                     ShipmentId = 1,
-                    Shipment = GetMockShipmentRepository().Object.FindByID(1),
+                    Shipment = GetMockShipmentRepository().Object.FindOneByExpression(x => x.ShipmentId == 1),
                 },
                 new StatusShipment
                 {
                     StatusId = 1,
-                    Status = GetMockStatusReposiotry().Object.FindByID(1),
+                    Status = GetMockStatusReposiotry().Object.FindOneByExpression(x => x.StatusId == 1),
                     ShipmentId = 2,
-                    Shipment = GetMockShipmentRepository().Object.FindByID(2),
+                    Shipment = GetMockShipmentRepository().Object.FindOneByExpression(x => x.ShipmentId == 2),
                 },
                 new StatusShipment
                 {
                     StatusId = 3,
-                    Status = GetMockStatusReposiotry().Object.FindByID(3),
+                    Status = GetMockStatusReposiotry().Object.FindOneByExpression(x => x.StatusId == 3),
                     ShipmentId = 2,
-                    Shipment = GetMockShipmentRepository().Object.FindByID(2),
+                    Shipment = GetMockShipmentRepository().Object.FindOneByExpression(x => x.ShipmentId == 2),
                 },
                 new StatusShipment
                 {
                     StatusId = 4,
-                    Status = GetMockStatusReposiotry().Object.FindByID(4),
+                    Status = GetMockStatusReposiotry().Object.FindOneByExpression(x => x.StatusId == 4),
                     ShipmentId = 2,
-                    Shipment = GetMockShipmentRepository().Object.FindByID(2),
+                    Shipment = GetMockShipmentRepository().Object.FindOneByExpression(x => x.ShipmentId == 2)
                 },
 
             };
 
             var mockStatusShipmentRepository = new Mock<IRepositoryStatusShipment>();
             mockStatusShipmentRepository.Setup(x => x.GetAll()).Returns(statusShipments);
-            mockStatusShipmentRepository.Setup(x => x.FindByID(It.IsAny<int>(), It.IsAny<int[]>())).Returns((int i, int[] j) =>
+            mockStatusShipmentRepository.Setup(x => x.FindOneByExpression(It.IsAny<Expression<Func<StatusShipment, bool>>>())).Returns((Expression<Func<StatusShipment, bool>> expression) =>
             {
-                return statusShipments.SingleOrDefault(c => c.StatusId == i && c.ShipmentId == j[0]);
+                return statusShipments.SingleOrDefault(expression.Compile());
             });
             mockStatusShipmentRepository.Setup(x => x.GetAllByShipmentId(It.IsAny<int>())).Returns((int i) =>
             {
