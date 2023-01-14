@@ -19,7 +19,7 @@ namespace DeliveryServiceApp.Services.Implementation
 
         public AdditionalServiceDto FindByID(int id, params int[] ids)
         {
-            var additionalService = unitOfWork.AdditionalService.FindByID(id, ids);
+            var additionalService = unitOfWork.AdditionalService.FindOneByExpression(ads => ads.AdditionalServiceId == id);
             return mapper.Map<AdditionalServiceDto>(additionalService);
         }
 

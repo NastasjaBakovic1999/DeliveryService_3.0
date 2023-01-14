@@ -82,13 +82,13 @@ namespace DeliveryServiceApp.Services.Implementation
 
         public ShipmentDto FindByCode(string code)
         {
-            var shipment = unitOfWork.Shipment.FindByCode(code);
+            var shipment = unitOfWork.Shipment.FindOneByExpression(sh => sh.ShipmentCode == code);
             return mapper.Map<ShipmentDto>(shipment);
         }
 
         public ShipmentDto FindByID(int id, params int[] ids)
         {
-            var shipment = unitOfWork.Shipment.FindByID(id, ids);
+            var shipment = unitOfWork.Shipment.FindOneByExpression(sh => sh.ShipmentId == id);
             return mapper.Map<ShipmentDto>(shipment);
         }
 

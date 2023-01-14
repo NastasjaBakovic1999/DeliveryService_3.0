@@ -21,7 +21,7 @@ namespace DeliveryServiceApp.Services.Implementation
 
         public DelivererDto FindByID(int id, params int[] ids)
         {
-            var deliverer = unitOfWork.Deliverer.FindByID(id, ids);
+            var deliverer = unitOfWork.Deliverer.FindOneByExpression(d => d.Id == id);
             return mapper.Map<DelivererDto>(deliverer);
         }
 

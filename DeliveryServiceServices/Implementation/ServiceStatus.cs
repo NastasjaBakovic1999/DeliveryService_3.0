@@ -20,7 +20,7 @@ namespace DeliveryServiceApp.Services.Implementation
 
         public StatusDto FindByID(int id, params int[] ids)
         {
-            var status = unitOfWork.Status.FindByID(id, ids);
+            var status = unitOfWork.Status.FindOneByExpression(st => st.StatusId == id);
             return mapper.Map<StatusDto>(status);
         }
 
@@ -32,7 +32,7 @@ namespace DeliveryServiceApp.Services.Implementation
 
         public StatusDto GetByName(string name)
         {
-            var status = unitOfWork.Status.GetByName(name);
+            var status = unitOfWork.Status.FindOneByExpression(st => st.StatusName == name);
             return mapper.Map<StatusDto>(status);
         }
     }

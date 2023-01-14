@@ -64,7 +64,7 @@ namespace DeliveryServiceApp.Services.Implementation
 
         public AdditionalServiceShipmentDto FindByID(int id, params int[] ids)
         {
-            var additionalServiceShipment = unitOfWork.AdditionalServiceShipment.FindByID(id, ids);
+            var additionalServiceShipment = unitOfWork.AdditionalServiceShipment.FindOneByExpression(adds=> adds.AdditionalServiceId == id && adds.ShipmentId == ids[0]);
             return mapper.Map<AdditionalServiceShipmentDto>(additionalServiceShipment);
         }
 

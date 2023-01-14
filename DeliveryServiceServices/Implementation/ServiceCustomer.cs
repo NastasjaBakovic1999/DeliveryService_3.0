@@ -48,7 +48,7 @@ namespace DeliveryServiceApp.Services.Implementation
 
         public CustomerDto FindByID(int id, params int[] ids)
         {
-            var customer = unitOfWork.Customer.FindByID(id, ids);
+            var customer = unitOfWork.Customer.FindOneByExpression(c => c.Id == id);
             return mapper.Map<CustomerDto>(customer);
         }
 

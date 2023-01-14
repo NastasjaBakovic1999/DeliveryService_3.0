@@ -64,7 +64,7 @@ namespace DeliveryServiceApp.Services.Implementation
 
         public StatusShipmentDto FindByID(int id, params int[] ids)
         {
-            var statusShipment = unitOfWork.StatusShipment.FindByID(id, ids);
+            var statusShipment = unitOfWork.StatusShipment.FindOneByExpression(ssh => ssh.StatusId == id && ssh.ShipmentId == ids[0]);
             return mapper.Map<StatusShipmentDto>(statusShipment);
         }
 

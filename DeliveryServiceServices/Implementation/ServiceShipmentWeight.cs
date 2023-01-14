@@ -20,7 +20,7 @@ namespace DeliveryServiceApp.Services.Implementation
 
         public ShipmentWeightDto FindByID(int id, params int[] ids)
         {
-            var shipmentWeight = unitOfWork.ShipmentWeight.FindByID(id, ids);
+            var shipmentWeight = unitOfWork.ShipmentWeight.FindOneByExpression(sw => sw.ShipmentWeightId == id);
             return mapper.Map<ShipmentWeightDto>(shipmentWeight);
         }
 

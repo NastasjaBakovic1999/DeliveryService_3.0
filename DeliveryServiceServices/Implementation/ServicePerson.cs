@@ -19,7 +19,7 @@ namespace DeliveryServiceApp.Services.Implementation
         }
         public PersonDto FindByID(int id, params int[] ids)
         {
-            var person = unitOfWork.Person.FindByID(id, ids);
+            var person = unitOfWork.Person.FindOneByExpression(p => p.Id == id);
             return mapper.Map<PersonDto>(person);
         }
 
