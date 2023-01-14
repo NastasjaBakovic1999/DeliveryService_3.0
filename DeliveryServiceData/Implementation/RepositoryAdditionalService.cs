@@ -1,4 +1,5 @@
 ﻿using DeliveryServiceDomain;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,39 +8,10 @@ using System.Threading.Tasks;
 
 namespace DeliveryServiceData.Implementation
 {
-    public class RepositoryAdditionalService : IRepositoryAdditionalService
+    public class RepositoryAdditionalService : GenericRepository<AdditionalService>, IRepositoryAdditionalService
     {
-        private readonly DeliveryServiceContext context;
-
-        public RepositoryAdditionalService(DeliveryServiceContext context)
+        public RepositoryAdditionalService(DbContext context) : base(context)
         {
-            this.context = context;
-        }
-
-        public AdditionalService FindByID(int id, params int[] ids)
-        {
-            try
-            {
-                return context.AdditionalServices.Find(id);
-            }
-            catch(Exception ex)
-            {
-                throw new Exception($"Error loading additional service! {Environment.NewLine}" +
-                                    $"System Error: {ex.Message}");
-            }
-        }
-
-        public List<AdditionalService> GetAll()
-        {
-            try
-            {
-              return context.AdditionalServices.ToList();
-            }
-            catch(Exception ex)
-            {
-                throw new Exception($"Error returning all additional services! {Environment.NewLine}" +
-                                    $"System Error: {ex.Message}");
-            }
         }
     }
 }

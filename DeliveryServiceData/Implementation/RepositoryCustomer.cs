@@ -1,4 +1,5 @@
 ﻿using DeliveryServiceDomain;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,53 +8,15 @@ using System.Threading.Tasks;
 
 namespace DeliveryServiceData.Implementation
 {
-    public class RepositoryCustomer : IRepositoryCustomer
+    public class RepositoryCustomer : GenericRepository<Customer>, IRepositoryCustomer
     {
-        private readonly PersonContext context;
-
-        public RepositoryCustomer(PersonContext context)
+        public RepositoryCustomer(DbContext context) : base(context)
         {
-            this.context = context;
         }
 
-        public Customer FindByID(int id, params int[] ids)
+        public void Edit(Customer customer)
         {
-            try
-            {
-                return context.Customers.Find(id);
-
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Error loading user! {Environment.NewLine}" +
-                                    $"System Error: {ex.Message}");
-            }
-        }
-
-        public List<Customer> GetAll()
-        {
-            try
-            {
-                return context.Customers.ToList();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Error loading all users! {Environment.NewLine}" +
-                                    $"System Error: {ex.Message}");
-            }
-        }
-
-        public void Edit(Customer entity)
-        {
-            try
-            {
-                context.Customers.Update(entity);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Error changing user data! {Environment.NewLine}" +
-                                    $"System Error: {ex.Message}");
-            }
+            Context.Set<Customer>().Update(customer);
         }
     }
 }

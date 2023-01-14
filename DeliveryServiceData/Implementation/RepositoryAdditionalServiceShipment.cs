@@ -1,4 +1,5 @@
 ﻿using DeliveryServiceDomain;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,54 +9,15 @@ using System.Threading.Tasks;
 
 namespace DeliveryServiceData.Implementation
 {
-    public class RepositoryAdditionalServiceShipment : IRepositoryAdditionalServiceShipment
+    public class RepositoryAdditionalServiceShipment : GenericRepository<AdditionalServiceShipment>, IRepositoryAdditionalServiceShipment
     {
-        private readonly DeliveryServiceContext context;
-
-        public RepositoryAdditionalServiceShipment(DeliveryServiceContext context)
+        public RepositoryAdditionalServiceShipment(DbContext context) : base(context)
         {
-            this.context = context;
         }
 
         public void Add(AdditionalServiceShipment additionalServiceShipment)
         {
-            try
-            {
-                context.AdditionalServiceShipments.Add(additionalServiceShipment);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Error saving shipment and its additional services! {Environment.NewLine}" +
-                                    $"System Error: {ex.Message}");
-            }
+            Context.Set<AdditionalServiceShipment>().Add(additionalServiceShipment);
         }
-
-        public AdditionalServiceShipment FindByID(int id, params int[] ids)
-        {
-            try
-            {
-                return context.AdditionalServiceShipments.Find(id, ids[0]);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Error loading shipment and its additional service! {Environment.NewLine}" +
-                                    $"System Error: {ex.Message}");
-            }
-        }
-
-        public List<AdditionalServiceShipment> GetAll()
-        {
-            try
-            {
-               return context.AdditionalServiceShipments.ToList();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Error returning all shipments and their additional services! {Environment.NewLine}" +
-                                    $"System Error: {ex.Message}");
-            }
-        }
-
-
     }
 }
