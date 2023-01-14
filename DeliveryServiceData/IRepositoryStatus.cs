@@ -9,6 +9,5 @@ namespace DeliveryServiceData
 {
     public interface IRepositoryStatus : IRepository<Status>
     {
-        public Status GetByName(string name);
     }
 }
