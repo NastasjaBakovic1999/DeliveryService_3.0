@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,9 +17,9 @@ namespace DeliveryServiceData.Implementation
 
         }
 
-        public Status FindByID(int id, params int[] ids)
+        public Status FindOneByExpression(Expression<Func<Status, bool>> expression)
         {
-            return statuses.Find(s => s.StatusId == id);
+            return statuses.SingleOrDefault(expression.Compile());
         }
 
         public List<Status> GetAll()
@@ -26,9 +27,5 @@ namespace DeliveryServiceData.Implementation
             return statuses;
         }
 
-        public Status GetByName(string name)
-        {
-            return statuses.Find(s => s.StatusName == name);
-        }
     }
 }

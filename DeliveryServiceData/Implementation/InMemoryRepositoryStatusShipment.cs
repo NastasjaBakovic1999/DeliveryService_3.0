@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,9 +22,9 @@ namespace DeliveryServiceData.Implementation
             statusShipments.Add(statusShipment);
         }
 
-        public StatusShipment FindByID(int id, params int[] ids)
+        public StatusShipment FindOneByExpression(Expression<Func<StatusShipment, bool>> expression)
         {
-            return statusShipments.Find(s => s.StatusId == id && s.ShipmentId == ids[0]);
+            return statusShipments.SingleOrDefault(expression.Compile());
         }
 
         public List<StatusShipment> GetAll()

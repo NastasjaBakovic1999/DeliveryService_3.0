@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,9 +17,9 @@ namespace DeliveryServiceData.Implementation
 
         }
 
-        public Person FindByID(int id, params int[] ids)
+        public Person FindOneByExpression(Expression<Func<Person, bool>> expression)
         {
-            return people.Find(p => p.Id == id);
+            return people.SingleOrDefault(expression.Compile());
         }
 
         public List<Person> GetAll()

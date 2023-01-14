@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,9 +28,9 @@ namespace DeliveryServiceData.Implementation
             customers.Find(c => c.Id == customer.Id).PostalCode = customer.PostalCode;
         }
 
-        public Customer FindByID(int id, params int[] ids)
+        public Customer FindOneByExpression(Expression<Func<Customer, bool>> expression)
         {
-            return customers.Find(c => c.Id == id);
+            return customers.SingleOrDefault(expression.Compile());
         }
 
         public List<Customer> GetAll()

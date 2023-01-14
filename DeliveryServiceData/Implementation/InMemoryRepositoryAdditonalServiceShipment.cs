@@ -17,9 +17,9 @@ namespace DeliveryServiceData.Implementation
             additionalServiceShipments.Add(additionalServiceShipment);
         }
 
-        public AdditionalServiceShipment FindByID(int id, params int[] ids)
+        public AdditionalServiceShipment FindOneByExpression(Expression<Func<AdditionalServiceShipment, bool>> expression)
         {
-            return additionalServiceShipments.Find(a => a.ShipmentId == id && a.AdditionalServiceId == ids[0]);
+            return additionalServiceShipments.SingleOrDefault(expression.Compile());
         }
 
         public List<AdditionalServiceShipment> GetAll()

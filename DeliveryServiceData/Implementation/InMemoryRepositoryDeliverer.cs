@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,9 +16,10 @@ namespace DeliveryServiceData.Implementation
         {
 
         }
-        public Deliverer FindByID(int id, params int[] ids)
+
+        public Deliverer FindOneByExpression(Expression<Func<Deliverer, bool>> expression)
         {
-            return deliverers.Find(d => d.Id == id);
+            return deliverers.SingleOrDefault(expression.Compile());
         }
 
         public List<Deliverer> GetAll()
