@@ -79,12 +79,10 @@ namespace DeliveryServiceAppTests
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
-                DelivererId = 3,
                 Price = 330,
                 Note = "stan 8",
                 ShipmentWeight = shipmentWeightRepository.Object.FindOneByExpression(x => x.ShipmentWeightId == 1),
-                Customer = customerRepository.Object.FindOneByExpression(x => x.Id == 4),
-                Deliverer = delivererRepository.Object.FindOneByExpression(x => x.Id == 3)
+                Customer = customerRepository.Object.FindOneByExpression(x => x.Id == 4)
             };
             service.Add(mapper.Map<ShipmentDto>(newShipment));
             var shipment = unitOfWork.Object.Shipment.FindOneByExpression(x=>x.ShipmentId == 4);
@@ -101,7 +99,6 @@ namespace DeliveryServiceAppTests
             Assert.Equal(shipment.Note, newShipment.Note);
             Assert.Equal(shipment.ShipmentWeightId, newShipment.ShipmentWeightId);
             Assert.Equal(shipment.CustomerId, newShipment.CustomerId);
-            Assert.Equal(shipment.DelivererId, newShipment.DelivererId);
             Assert.Equal(shipment.Price, newShipment.Price);
             unitOfWork.Verify(x => x.Shipment.Add(It.Is<Shipment>(p => p.ShipmentId == 4)), Times.Once);
             unitOfWork.Verify(s => s.Commit(), Times.Once);
@@ -201,7 +198,6 @@ namespace DeliveryServiceAppTests
             Assert.Equal(shipment.Note, result.Note);
             Assert.Equal(shipment.ShipmentWeightId, result.ShipmentWeightId);
             Assert.Equal(shipment.CustomerId, result.CustomerId);
-            Assert.Equal(shipment.DelivererId, result.DelivererId);
             Assert.Equal(shipment.Price, result.Price);
         }
 
@@ -239,7 +235,6 @@ namespace DeliveryServiceAppTests
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
-                DelivererId = 3,
                 Price = 330,
                 Note = "stan 8"
             }};
@@ -263,7 +258,6 @@ namespace DeliveryServiceAppTests
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
-                DelivererId = 3,
                 Price = 330,
                 Note = "stan 8"
             } };
@@ -287,7 +281,6 @@ namespace DeliveryServiceAppTests
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
-                DelivererId = 3,
                 Price = 330,
                 Note = "stan 8"
             } };
@@ -311,7 +304,6 @@ namespace DeliveryServiceAppTests
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
-                DelivererId = 3,
                 Price = 330,
                 Note = "stan 8"
             }};
@@ -335,7 +327,6 @@ namespace DeliveryServiceAppTests
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
-                DelivererId = 3,
                 Price = 330,
                 Note = "stan 8"
             } };
@@ -359,7 +350,6 @@ namespace DeliveryServiceAppTests
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
-                DelivererId = 3,
                 Price = 330,
                 Note = "stan 8",
             } };
@@ -383,7 +373,6 @@ namespace DeliveryServiceAppTests
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
-                DelivererId = 3,
                 Price = 330,
                 Note = "stan 8",
             } };
@@ -407,7 +396,6 @@ namespace DeliveryServiceAppTests
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
-                DelivererId = 3,
                 Price = 330,
                 Note = "stan 8",
             } };
@@ -431,7 +419,6 @@ namespace DeliveryServiceAppTests
                 },
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
-                DelivererId = 3,
                 Price = 330,
                 Note = "stan 8",
             } };
@@ -455,7 +442,6 @@ namespace DeliveryServiceAppTests
                 },
                 ContactPersonName = "Marko Markovic",
                 CustomerId = 4,
-                DelivererId = 3,
                 Price = 330,
                 Note = "stan 8",
             } };
@@ -488,7 +474,6 @@ namespace DeliveryServiceAppTests
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
-                DelivererId = 3,
                 Price = 330,
                 Note = "stan 8"
             }};
@@ -512,7 +497,6 @@ namespace DeliveryServiceAppTests
                 },
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
-                DelivererId = 3,
                 Price = 330,
                 Note = "stan 8"
             } };
@@ -569,7 +553,6 @@ namespace DeliveryServiceAppTests
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
-                DelivererId = 3,
                 Note = "stan 8"
             }};
             yield return new object[] {  new Shipment
@@ -593,7 +576,6 @@ namespace DeliveryServiceAppTests
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
-                DelivererId = 3,
                 Price = -20,
                 Note = "stan 8"
             } };
@@ -625,7 +607,6 @@ namespace DeliveryServiceAppTests
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "+381654433221",
                 CustomerId = 4,
-                DelivererId = 3,
                 Price = 330,
                 Note = "stan 8"
             }};
@@ -650,7 +631,6 @@ namespace DeliveryServiceAppTests
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654477889908",
                 CustomerId = 4,
-                DelivererId = 3,
                 Price = 330,
                 Note = "stan 8"
             } };
@@ -682,7 +662,6 @@ namespace DeliveryServiceAppTests
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
-                DelivererId = 3,
                 Price = 330,
                 Note = "stan 8"
             }};
@@ -707,7 +686,6 @@ namespace DeliveryServiceAppTests
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
-                DelivererId = 3,
                 Price = 330,
                 Note = "stan 8"
             } };
@@ -732,7 +710,6 @@ namespace DeliveryServiceAppTests
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
-                DelivererId = 3,
                 Price = 330,
                 Note = "stan 8"
             } };
@@ -757,7 +734,6 @@ namespace DeliveryServiceAppTests
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
-                DelivererId = 3,
                 Price = 330,
                 Note = "stan 8"
             } };
@@ -782,7 +758,6 @@ namespace DeliveryServiceAppTests
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
-                DelivererId = 3,
                 Price = 330,
                 Note = "stan 8"
             } };
@@ -807,7 +782,6 @@ namespace DeliveryServiceAppTests
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
-                DelivererId = 3,
                 Price = 330,
                 Note = "stan 8"
             } };

@@ -44,7 +44,7 @@ namespace DeliveryServiceApp.Services.Implementation
                 return false;
             }
 
-            if (shipment.ShipmentWeightId == 0 || shipment.CustomerId == 0 || shipment.DelivererId == 0) return false;
+            if (shipment.ShipmentWeightId == 0 || shipment.CustomerId == 0) return false;
             if (shipment.Price == 0 || shipment.Price < 0) return false;
 
             return valid;

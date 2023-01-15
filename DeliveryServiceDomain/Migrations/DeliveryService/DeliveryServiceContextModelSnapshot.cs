@@ -268,10 +268,6 @@ namespace DeliveryServiceDomain.Migrations.DeliveryService
                         .HasColumnType("int")
                         .HasColumnName("CustomerId");
 
-                    b.Property<int>("DelivererId")
-                        .HasColumnType("int")
-                        .HasColumnName("DelivererId");
-
                     b.Property<string>("Note")
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)")
@@ -299,8 +295,6 @@ namespace DeliveryServiceDomain.Migrations.DeliveryService
                     b.HasKey("ShipmentId");
 
                     b.HasIndex("CustomerId");
-
-                    b.HasIndex("DelivererId");
 
                     b.HasIndex("ShipmentWeightId");
 
@@ -475,12 +469,6 @@ namespace DeliveryServiceDomain.Migrations.DeliveryService
                     b.HasOne("DeliveryServiceDomain.Customer", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DeliveryServiceDomain.Deliverer", "Deliverer")
-                        .WithMany()
-                        .HasForeignKey("DelivererId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

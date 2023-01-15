@@ -1,6 +1,6 @@
-﻿@using DeliveryServiceDomain
+﻿@using DataTransferObjects
 @using DeliveryServiceApp.Models
-@model List<Shipment>
+@model List<ShipmentDto>
 
 <h3>All your shipments in one place</h3>
 
@@ -26,7 +26,7 @@ else {
 		</tr>
 	</thead>
 	<tbody>
-		@foreach (Shipment item in Model)
+		@foreach (ShipmentDto item in Model)
 		   {
 			<tr>
 			<td>@item.ShipmentCode</td>

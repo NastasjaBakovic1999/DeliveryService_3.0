@@ -19,8 +19,6 @@ namespace DeliveryServiceDomain
         public string ContactPersonPhone { get; set; }
         public int CustomerId { get; set; }
         public Customer Customer { get; set; }
-        public int DelivererId { get; set; }
-        public Deliverer Deliverer { get; set; }
         public double Price { get; set; }
         public List<AdditionalServiceShipment> AdditionalServices { get; set; }
         public List<StatusShipment> ShipmentStatuses { get; set; }

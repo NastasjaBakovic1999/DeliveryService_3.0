@@ -104,8 +104,7 @@ namespace DeliveryServiceApp.Controllers
                         City = model.ReceivingCity,
                         Street = model.ReceivingAddress,
                         PostalCode = model.ReceivingPostalCode
-                    },
-                    DelivererId = 3
+                    }
                 };
 
                 Random rand = new Random();
@@ -140,17 +139,19 @@ namespace DeliveryServiceApp.Controllers
 
                 serviceShipment.Add(mapper.Map<ShipmentDto>(shipment));
 
+                var newShipment = serviceShipment.FindByCode(shipment.ShipmentCode);
+
                 foreach (AdditonalServiceViewModel sa in model.Services)
                 {
                     AdditionalServiceShipment ass = new AdditionalServiceShipment();
                     ass.AdditionalServiceId = sa.AdditionalServiceId;
-                    ass.ShipmentId = shipment.ShipmentId;
+                    ass.ShipmentId = newShipment.ShipmentId;
                     serviceAddionalServiceShipment.Add(mapper.Map<AdditionalServiceShipmentDto>(ass));
                 }
 
                 StatusShipment ss = new StatusShipment
                 {
-                    ShipmentId = shipment.ShipmentId,
+                    ShipmentId = newShipment.ShipmentId,
                     StatusId = serviceStatus.GetByName("Scheduled").StatusId,
                     StatusTime = DateTime.Now
                 };

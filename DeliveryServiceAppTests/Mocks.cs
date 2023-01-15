@@ -345,12 +345,10 @@ namespace DeliveryServiceAppTests
                     ContactPersonName = "Luka Bakovic",
                     ContactPersonPhone = "0652244105",
                     CustomerId = 1,
-                    DelivererId = 1,
                     Price = 330,
                     Note = "stan 8",
                     ShipmentWeight = GetMockShipmentWeightRepository().Object.FindOneByExpression(x => x.ShipmentWeightId == 1),
-                    Customer = GetMockCustomerRepository().Object.FindOneByExpression(x => x.Id == 1),
-                    Deliverer = GetMockDelivererRepository().Object.FindOneByExpression(x => x.Id == 1),
+                    Customer = GetMockCustomerRepository().Object.FindOneByExpression(x => x.Id == 1)
                 },
                 new Shipment
                 {
@@ -373,12 +371,10 @@ namespace DeliveryServiceAppTests
                     ContactPersonName = "Marko Markovic",
                     ContactPersonPhone = "0654433221",
                     CustomerId = 3,
-                    DelivererId = 2,
                     Price = 330,
                     Note = "stan 8",
                     ShipmentWeight = GetMockShipmentWeightRepository().Object.FindOneByExpression(x => x.ShipmentWeightId == 3),
-                    Customer = GetMockCustomerRepository().Object.FindOneByExpression(x => x.Id == 4),
-                    Deliverer = GetMockDelivererRepository().Object.FindOneByExpression(x => x.Id == 2)
+                    Customer = GetMockCustomerRepository().Object.FindOneByExpression(x => x.Id == 4)
                 },
                 new Shipment
                 {
@@ -400,12 +396,10 @@ namespace DeliveryServiceAppTests
                     },
                     ContactPersonName = "Ante Antic",
                     CustomerId = 3,
-                    DelivererId = 4,
                     Price = 330,
                     Note = "stan 8",
                     ShipmentWeight = GetMockShipmentWeightRepository().Object.FindOneByExpression(x => x.ShipmentWeightId == 4),
-                    Customer = GetMockCustomerRepository().Object.FindOneByExpression(x => x.Id == 3),
-                    Deliverer = GetMockDelivererRepository().Object.FindOneByExpression(x => x.Id == 4)
+                    Customer = GetMockCustomerRepository().Object.FindOneByExpression(x => x.Id == 3)
                 }
             };
 

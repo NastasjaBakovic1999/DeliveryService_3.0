@@ -14,7 +14,7 @@
     public record DelivererDto(int Id, string UserName, string Email, string PhoneNumber, string FirstName, string LastName, DateTime DateOfEmployment) 
         : PersonDto(Id, UserName, Email, PhoneNumber, FirstName, LastName);
 
-    public record ShipmentDto(int ShipmentId, string ShipmentCode, int ShipmentWeightId, string ShipmentContent, string ContactPersonName, string ContactPersonPhone, int CustomerId, int DelivererId, double Price, string Note,
+    public record ShipmentDto(int ShipmentId, string ShipmentCode, int ShipmentWeightId, string ShipmentContent, string ContactPersonName, string ContactPersonPhone, int CustomerId, double Price, string Note,
         AddressDto Sending, AddressDto Receiving, List<AdditionalServiceDto> AdditionalServices, List<StatusShipmentDto> ShipmentStatuses);
 
     public record ShipmentWeightDto(int ShipmentWeightId, string ShipmentWeightDescpription, double ShipmentWeightPrice);

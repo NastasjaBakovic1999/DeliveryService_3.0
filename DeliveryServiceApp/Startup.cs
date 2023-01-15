@@ -1,8 +1,10 @@
+using AutoMapper;
 using DeliveryServiceApp.Services.Implementation;
 using DeliveryServiceApp.Services.Interfaces;
 using DeliveryServiceData.UnitOfWork;
 using DeliveryServiceData.UnitOfWork.Implementation;
 using DeliveryServiceDomain;
+using DeliveryServiceServices.Profiles;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -53,6 +55,23 @@ namespace DeliveryServiceApp
             services.AddDbContext<DeliveryServiceContext>();
             services.AddDbContext<PersonContext>();
             services.AddScoped<IPasswordHasher<Person>, PasswordHasher<Person>>();
+
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new AdditionalServiceProfile());
+                mc.AddProfile(new AdditionalServiceShipmentProfile());
+                mc.AddProfile(new AddressProfile());
+                mc.AddProfile(new CustomerProfile());
+                mc.AddProfile(new DelivererProfile());
+                mc.AddProfile(new PersonProfile());
+                mc.AddProfile(new ShipmentProfile());
+                mc.AddProfile(new ShipmentWeightProfile());
+                mc.AddProfile(new StatusProfile());
+                mc.AddProfile(new StatusShipmentProfile());
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
 
             services.AddIdentity<Person, IdentityRole<int>>().AddEntityFrameworkStores<PersonContext>();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();

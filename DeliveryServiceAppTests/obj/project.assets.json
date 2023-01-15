@@ -3799,6 +3799,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "AutoMapper": "12.0.0",
           "DeliveryServiceData": "1.0.0",
           "DeliveryServiceServices": "1.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.13",

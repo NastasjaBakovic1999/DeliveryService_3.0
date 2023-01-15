@@ -51,10 +51,6 @@ namespace DeliveryServiceDomain.Configurations
                 .IsRequired()
                 .HasColumnType("int");
 
-            entity.Property(e => e.DelivererId)
-                .HasColumnName("DelivererId")
-                .HasColumnType("int");
-
             entity.Property(e => e.Price)
                 .HasColumnName("Price")
                 .IsRequired()

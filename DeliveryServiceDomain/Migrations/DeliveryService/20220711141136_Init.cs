@@ -68,7 +68,6 @@ namespace DeliveryServiceDomain.Migrations.DeliveryService
                     ContactPersonName = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
                     ContactPersonPhone = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false),
                     CustomerId = table.Column<int>(type: "int", nullable: false),
-                    DelivererId = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<double>(type: "float", nullable: false),
                     Note = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true)
                 },
@@ -79,12 +78,6 @@ namespace DeliveryServiceDomain.Migrations.DeliveryService
                         name: "FK_Shipments_Customer_CustomerId",
                         column: x => x.CustomerId,
                         principalTable: "Customer",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Shipments_Deliverer_DelivererId",
-                        column: x => x.DelivererId,
-                        principalTable: "Deliverer",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -197,11 +190,6 @@ namespace DeliveryServiceDomain.Migrations.DeliveryService
                 name: "IX_Shipments_CustomerId",
                 table: "Shipments",
                 column: "CustomerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Shipments_DelivererId",
-                table: "Shipments",
-                column: "DelivererId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Shipments_ShipmentWeightId",

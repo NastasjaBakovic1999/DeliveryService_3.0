@@ -1,5 +1,6 @@
-﻿@using DeliveryServiceDomain
-@model List<Shipment>
+﻿@using DataTransferObjects
+@using DeliveryServiceDomain
+@model List<ShipmentDto>
 
 <h3>All shipments</h3>
 
@@ -21,7 +22,7 @@ else {
 			</tr>
 		</thead>
 		<tbody>
-			@foreach (Shipment item in Model)
+			@foreach (ShipmentDto item in Model)
 		   {
 			   <tr>
 				<td>@item.ShipmentCode</td>
