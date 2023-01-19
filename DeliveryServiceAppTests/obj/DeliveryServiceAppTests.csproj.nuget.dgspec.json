@@ -31,7 +31,8 @@
           "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\DevExpress 22.1\\Components\\System\\Components\\Packages": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.devexpress.com/wwNgbYGFegIHupeE8h3ZeMtdjogd6LqEPOqXiS74dzJaRd1rxB/api": {}
         },
         "frameworks": {
           "net6.0": {
@@ -127,7 +128,8 @@
           "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\DevExpress 22.1\\Components\\System\\Components\\Packages": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.devexpress.com/wwNgbYGFegIHupeE8h3ZeMtdjogd6LqEPOqXiS74dzJaRd1rxB/api": {}
         },
         "frameworks": {
           "net6.0": {
@@ -156,6 +158,10 @@
               "target": "Package",
               "version": "[12.0.0, )"
             },
+            "GoogleAnalytics.GoogleCharts.NET": {
+              "target": "Package",
+              "version": "[1.0.1, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.0.13, )"
@@ -177,6 +183,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[6.0.11, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.3.0, )"
             },
             "System.Runtime.Extensions": {
               "target": "Package",
@@ -232,7 +242,8 @@
           "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\DevExpress 22.1\\Components\\System\\Components\\Packages": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.devexpress.com/wwNgbYGFegIHupeE8h3ZeMtdjogd6LqEPOqXiS74dzJaRd1rxB/api": {}
         },
         "frameworks": {
           "net6.0": {
@@ -299,7 +310,8 @@
           "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\DevExpress 22.1\\Components\\System\\Components\\Packages": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.devexpress.com/wwNgbYGFegIHupeE8h3ZeMtdjogd6LqEPOqXiS74dzJaRd1rxB/api": {}
         },
         "frameworks": {
           "net6.0": {
@@ -390,7 +402,8 @@
           "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\DevExpress 22.1\\Components\\System\\Components\\Packages": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.devexpress.com/wwNgbYGFegIHupeE8h3ZeMtdjogd6LqEPOqXiS74dzJaRd1rxB/api": {}
         },
         "frameworks": {
           "net6.0": {
