@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
+#nullable disable
+
 namespace DeliveryServiceDomain.Migrations.DeliveryService
 {
     [DbContext(typeof(DeliveryServiceContext))]
@@ -15,17 +17,19 @@ namespace DeliveryServiceDomain.Migrations.DeliveryService
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.14")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "6.0.13")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("DeliveryServiceDomain.AdditionalService", b =>
                 {
                     b.Property<int>("AdditionalServiceId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("AdditionalServiceId")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnName("AdditionalServiceId");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AdditionalServiceId"), 1L, 1);
 
                     b.Property<string>("AdditionalServiceName")
                         .IsRequired()
@@ -39,7 +43,7 @@ namespace DeliveryServiceDomain.Migrations.DeliveryService
 
                     b.HasKey("AdditionalServiceId");
 
-                    b.ToTable("AdditionalService");
+                    b.ToTable("AdditionalService", (string)null);
 
                     b.HasData(
                         new
@@ -112,15 +116,16 @@ namespace DeliveryServiceDomain.Migrations.DeliveryService
 
                     b.HasIndex("ShipmentId");
 
-                    b.ToTable("AdditionalServiceShipments");
+                    b.ToTable("AdditionalServiceShipments", (string)null);
                 });
 
             modelBuilder.Entity("DeliveryServiceDomain.Customer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
@@ -181,76 +186,14 @@ namespace DeliveryServiceDomain.Migrations.DeliveryService
                     b.ToTable("Customer");
                 });
 
-            modelBuilder.Entity("DeliveryServiceDomain.Deliverer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DateOfEmployment")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Deliverer");
-                });
-
             modelBuilder.Entity("DeliveryServiceDomain.Shipment", b =>
                 {
                     b.Property<int>("ShipmentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("ShipmentId")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnName("ShipmentId");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ShipmentId"), 1L, 1);
 
                     b.Property<string>("ContactPersonName")
                         .IsRequired()
@@ -298,7 +241,20 @@ namespace DeliveryServiceDomain.Migrations.DeliveryService
 
                     b.HasIndex("ShipmentWeightId");
 
-                    b.ToTable("Shipments");
+                    b.ToTable("Shipments", (string)null);
+                });
+
+            modelBuilder.Entity("DeliveryServiceDomain.ShipmentStatusStatistic", b =>
+                {
+                    b.Property<int>("NumberOfShipments")
+                        .HasColumnType("int")
+                        .HasColumnName("NumberOfShipments");
+
+                    b.Property<string>("StatusName")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("StatusName");
+
+                    b.ToView("ShipmentStatusStatistic");
                 });
 
             modelBuilder.Entity("DeliveryServiceDomain.ShipmentWeight", b =>
@@ -306,8 +262,9 @@ namespace DeliveryServiceDomain.Migrations.DeliveryService
                     b.Property<int>("ShipmentWeightId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("ShipmentWeightId")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnName("ShipmentWeightId");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ShipmentWeightId"), 1L, 1);
 
                     b.Property<string>("ShipmentWeightDescpription")
                         .IsRequired()
@@ -321,7 +278,7 @@ namespace DeliveryServiceDomain.Migrations.DeliveryService
 
                     b.HasKey("ShipmentWeightId");
 
-                    b.ToTable("ShipmentWeight");
+                    b.ToTable("ShipmentWeight", (string)null);
 
                     b.HasData(
                         new
@@ -361,8 +318,9 @@ namespace DeliveryServiceDomain.Migrations.DeliveryService
                     b.Property<int>("StatusId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("StatusId")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnName("StatusId");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StatusId"), 1L, 1);
 
                     b.Property<string>("StatusName")
                         .IsRequired()
@@ -372,7 +330,7 @@ namespace DeliveryServiceDomain.Migrations.DeliveryService
 
                     b.HasKey("StatusId");
 
-                    b.ToTable("Statuses");
+                    b.ToTable("Statuses", (string)null);
 
                     b.HasData(
                         new
@@ -442,7 +400,7 @@ namespace DeliveryServiceDomain.Migrations.DeliveryService
 
                     b.HasIndex("ShipmentId");
 
-                    b.ToTable("StatusShipments");
+                    b.ToTable("StatusShipments", (string)null);
                 });
 
             modelBuilder.Entity("DeliveryServiceDomain.AdditionalServiceShipment", b =>
@@ -481,9 +439,7 @@ namespace DeliveryServiceDomain.Migrations.DeliveryService
                     b.OwnsOne("DeliveryServiceDomain.Address", "Receiving", b1 =>
                         {
                             b1.Property<int>("ShipmentId")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("int")
-                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                                .HasColumnType("int");
 
                             b1.Property<string>("City")
                                 .HasColumnType("nvarchar(max)");
@@ -510,9 +466,7 @@ namespace DeliveryServiceDomain.Migrations.DeliveryService
                     b.OwnsOne("DeliveryServiceDomain.Address", "Sending", b1 =>
                         {
                             b1.Property<int>("ShipmentId")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("int")
-                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                                .HasColumnType("int");
 
                             b1.Property<string>("City")
                                 .HasColumnType("nvarchar(max)");
@@ -537,8 +491,6 @@ namespace DeliveryServiceDomain.Migrations.DeliveryService
                         });
 
                     b.Navigation("Customer");
-
-                    b.Navigation("Deliverer");
 
                     b.Navigation("Receiving");
 
