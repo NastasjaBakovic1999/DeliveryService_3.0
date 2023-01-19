@@ -17,6 +17,7 @@ namespace DeliveryServiceDomain
         public DbSet<Status> Statuses { get; set; }
         public DbSet<StatusShipment> StatusShipments { get; set; }
         public DbSet<ShipmentWeight> ShipmentWeights { get; set; }
+        public DbSet<ShipmentStatusStatistic> ShipmentStatusStatistic { get; set; }
 
         public static readonly ILoggerFactory MyLoggerFactory = LoggerFactory.Create(builder => { builder.AddConsole(); });
 
@@ -63,6 +64,7 @@ namespace DeliveryServiceDomain
             modelBuilder.ApplyConfiguration(new AdditionalServiceConfiguration());
             modelBuilder.ApplyConfiguration(new AdditionalServiceShipmentConfiguration());
             modelBuilder.ApplyConfiguration(new ShipmentWeightConfiguration());
+            modelBuilder.ApplyConfiguration(new ShipmentStatusStatisticConfiguration());
 
             Seed(modelBuilder);
         }
