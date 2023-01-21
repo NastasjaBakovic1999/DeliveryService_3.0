@@ -1,6 +1,5 @@
 ﻿using DataTransferObjects;
 using DeliveryServiceApp.Services;
-using DeliveryServiceDomain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace DeliveryServiceServices.Interfaces
 {
-    public interface IServiceShipmentStatusStatistic : IService<ShipmentStatusStatisticDto>
+    public interface IServiceTimeline : IService<TimelineDto>
     {
+        public List<TimelineDto> GetAllFromProcedure(int shipmentId);
     }
 }
