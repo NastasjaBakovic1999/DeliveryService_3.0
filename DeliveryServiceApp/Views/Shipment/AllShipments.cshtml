@@ -19,6 +19,7 @@ else {
 				<th>Receiving Location</th>
 				<th>Price</th>
 				<th>Edit Shipment Status</th>
+				<th>Status Timeline</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -31,6 +32,7 @@ else {
 				<td>@item.Receiving.Street, @item.Receiving.City @item.Receiving.PostalCode</td>
 				<td>@item.Price RSD</td>
 				<td><a href="EditStatus/@item.ShipmentId">Edit Status</a></td>
+				<td><a href="Timeline/@item.ShipmentId">Timeline</a></td>
 				</tr>
 		   }
 		</tbody>

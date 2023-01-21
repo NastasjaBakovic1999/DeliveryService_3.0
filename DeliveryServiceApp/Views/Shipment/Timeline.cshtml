@@ -1,0 +1,52 @@
+﻿@model int
+
+<div class = "row">
+    <div class="col-lg-12">
+        <div id="chartdiv" style="width:1200px; height:600px">
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      <script type="text/javascript">
+              google.charts.load('current', {'packages':['timeline']});
+              google.charts.setOnLoadCallback(drawChart);
+              function drawChart(){
+                  $(function(){
+                        $.ajax({
+                            type:'POST',
+                            url: `/Shipment/GetTimeline/${@Model}`,
+                            success: function(response){
+                                var Data = response.jsonList;
+                                var data = new google.visualization.DataTable();
+
+                                data.addColumn('string', 'Status');
+                                data.addColumn('datetime', 'From');
+                                data.addColumn('datetime', 'To' );
+
+                                for(var i=0; i<Data.length; i++){
+                                    if(i+1 == Data.length){
+                                        data.addRow([Data[i].statusName, new Date(Data[i].statusTime), new Date()])
+                                    }
+                                    else {
+                                        data.addRow([Data[i].statusName, new Date(Data[i].statusTime), new Date(Data[i+1].statusTime)])
+                                    }
+                                }
+
+                                 var options = {
+                                    hAxis: {format:'dd.MM.yy'}
+                                  };
+
+                                
+                                var chart = new google.visualization.Timeline(document.getElementById('chartdiv'));
+                                chart.draw(data, options);
+                            },
+                            error: function(){
+                                alert("Error loading data! Please try again.")
+                            }
+                        })
+                  })
+              }
+      </script>
+}
