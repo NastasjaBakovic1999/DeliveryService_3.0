@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DeliveryServiceDomain.Migrations.DeliveryService
 {
     [DbContext(typeof(DeliveryServiceContext))]
-    [Migration("20230116222309_view")]
-    partial class view
+    [Migration("20230120183424_GetStatusTimelineByShipmentId")]
+    partial class GetStatusTimelineByShipmentId
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
