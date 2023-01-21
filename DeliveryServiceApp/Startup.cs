@@ -45,6 +45,7 @@ namespace DeliveryServiceApp
             services.AddScoped<IServiceShipmentWeight, ServiceShipmentWeight>();
             services.AddScoped<IServiceStatus, ServiceStatus>();
             services.AddScoped<IServiceStatusShipment, ServiceStatusShipment>();
+            services.AddScoped<IServiceTimeline, ServiceTimeline>();
 
             services.AddControllersWithViews(
             ).AddJsonOptions(x => x.JsonSerializerOptions.MaxDepth = Int32.MaxValue);
@@ -71,6 +72,8 @@ namespace DeliveryServiceApp
                 mc.AddProfile(new ShipmentWeightProfile());
                 mc.AddProfile(new StatusProfile());
                 mc.AddProfile(new StatusShipmentProfile());
+                mc.AddProfile(new ShipmentStatusStatisticProfile());
+                mc.AddProfile(new TimelineProfile());
             });
 
             IMapper mapper = mappingConfig.CreateMapper();
