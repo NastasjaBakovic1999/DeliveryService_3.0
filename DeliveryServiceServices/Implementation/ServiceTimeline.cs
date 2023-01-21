@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using DataTransferObjects;
-using DeliveryServiceApp.Services;
 using DeliveryServiceData.UnitOfWork;
-using DeliveryServiceDomain;
 using DeliveryServiceServices.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -12,26 +10,31 @@ using System.Threading.Tasks;
 
 namespace DeliveryServiceServices.Implementation
 {
-    public class ServiceShipmentStatusStatistic : IServiceShipmentStatusStatistic
+    public class ServiceTimeline : IServiceTimeline
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
 
-        public ServiceShipmentStatusStatistic(IUnitOfWork unitOfWork, IMapper mapper)
+        public ServiceTimeline(IUnitOfWork unitOfWork, IMapper mapper)
         {
             this.unitOfWork = unitOfWork;
             this.mapper = mapper;
         }
 
-        public ShipmentStatusStatisticDto FindByID(int id, params int[] ids)
+        public TimelineDto FindByID(int id, params int[] ids)
         {
             throw new NotImplementedException();
         }
 
-        public List<ShipmentStatusStatisticDto> GetAll()
+        public List<TimelineDto> GetAll()
         {
-            var shipmentStatusStatistics = unitOfWork.ShipmentStatusStatistic.GetAll();
-            return mapper.Map<List<ShipmentStatusStatisticDto>>(shipmentStatusStatistics);
+            throw new NotImplementedException();
+        }
+
+        public List<TimelineDto> GetAllFromProcedure(int shipmentId)
+        {
+            var statusTimeline = unitOfWork.Timeline.GetAllFromProcedure(shipmentId);
+            return mapper.Map<List<TimelineDto>>(statusTimeline);
         }
     }
 }
