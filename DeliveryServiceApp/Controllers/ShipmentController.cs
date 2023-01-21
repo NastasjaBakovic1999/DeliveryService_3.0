@@ -5,6 +5,7 @@ using DeliveryServiceApp.Services.Interfaces;
 using DeliveryServiceData.UnitOfWork;
 using DeliveryServiceData.UnitOfWork.Implementation;
 using DeliveryServiceDomain;
+using DeliveryServiceServices.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Text.Json.Serialization;
 
 namespace DeliveryServiceApp.Controllers
 {
@@ -25,11 +27,12 @@ namespace DeliveryServiceApp.Controllers
         private readonly IServiceAddionalServiceShipment serviceAddionalServiceShipment;
         private readonly IServiceStatus serviceStatus;
         private readonly IServiceStatusShipment serviceStatusShipment;
+        private readonly IServiceTimeline serviceTimeline;
         private readonly IMapper mapper;
 
         public ShipmentController(UserManager<Person> userManager, IServiceAdditonalService serviceAdditonalService, IServiceShipmentWeight serviceShipmentWeight,
                                   IServiceShipment serviceShipment, IServiceAddionalServiceShipment serviceAddionalServiceShipment, IServiceStatus serviceStatus,
-                                  IServiceStatusShipment serviceStatusShipment, IMapper mapper)
+                                  IServiceStatusShipment serviceStatusShipment, IServiceTimeline serviceTimeline, IMapper mapper)
         {
             this.userManager = userManager;
             this.serviceAdditonalService = serviceAdditonalService;
@@ -38,6 +41,7 @@ namespace DeliveryServiceApp.Controllers
             this.serviceAddionalServiceShipment = serviceAddionalServiceShipment;
             this.serviceStatus = serviceStatus;
             this.serviceStatusShipment = serviceStatusShipment;
+            this.serviceTimeline = serviceTimeline;
             this.mapper = mapper;
         }
 
@@ -343,6 +347,21 @@ namespace DeliveryServiceApp.Controllers
             {
                 return RedirectToAction("Error", "Home", new { Message = ex.Message });
             }
+        }
+
+        [Authorize(Roles = "Deliverer")]
+        [HttpGet]
+        public IActionResult Timeline(int id)
+        {
+            return View(id);
+        }
+
+        [HttpPost("Shipment/GetTimeline/{id}")]
+        public JsonResult GetTimeline([FromRoute]int id)
+        {
+            var timelines = serviceTimeline.GetAllFromProcedure(id);
+            var data = Json(new { JSONList = timelines });
+            return data;
         }
     }   
 }
