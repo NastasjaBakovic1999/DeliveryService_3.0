@@ -22,6 +22,7 @@ namespace DeliveryServiceData.UnitOfWork.Implementation
             AdditionalServiceShipment = new RepositoryAdditionalServiceShipment(context);
             ShipmentWeight = new RepositoryShipmentWeight(context);
             ShipmentStatusStatistic = new RepositoryShipmentStatusStatistic(context);
+            Timeline = new RepositoryTimeline(context);
         }
 
         public IRepositoryAdditionalService AdditionalService { get; set; }
@@ -31,6 +32,7 @@ namespace DeliveryServiceData.UnitOfWork.Implementation
         public IRepositoryStatusShipment StatusShipment { get; set; }
         public IRepositoryShipmentWeight ShipmentWeight { get; set; }
         public IRepositoryShipmentStatusStatistic ShipmentStatusStatistic { get; set; }
+        public IRepositoryTimeline Timeline { get; set; }
 
         public void Commit()
         {
