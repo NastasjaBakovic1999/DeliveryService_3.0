@@ -521,7 +521,6 @@ namespace DeliveryServiceAppTests
                 ContactPersonName = "Marko Markovic",
                 ContactPersonPhone = "0654433221",
                 CustomerId = 4,
-                Price = 330,
                 Note = "stan 8"
             } };
 
