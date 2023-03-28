@@ -14,7 +14,7 @@ using Xunit;
 
 namespace DeliveryServiceAppTests
 {
-    public class ShipmentTests
+    public class ShipmentServiceTests
     {
         readonly Mock<IUnitOfWork> unitOfWork = Mocks.GetMockUnitOfWork();
         readonly Mock<IRepositoryCustomer> customerRepository = Mocks.GetMockCustomerRepository();

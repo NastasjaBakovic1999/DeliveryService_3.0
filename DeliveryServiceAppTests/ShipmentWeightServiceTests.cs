@@ -13,7 +13,7 @@ using Xunit;
 
 namespace DeliveryServiceAppTests
 {
-    public class ShipmentWeightTests
+    public class ShipmentWeightServiceTests
     {
         Mock<IUnitOfWork> unitOfWork = Mocks.GetMockUnitOfWork();
         IMapper mapper = Mocks.GetMockAutoMapper();
