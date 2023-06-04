@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3LZf5OxmgbEojwokFCVpd3sY7vSVoLl0Dn0KyGcboo1jf+nKZFyZu+jUSsKiBGE3J/Y5bbBCsYLqTEG2WW7HFQ==",
+  "dgSpecHash": "gf6SC4t8COHufT0neOHKrJ1kpnTvHUXzkxjMYKNkfiD5FvsD+zze3BJuH27eb6jcoFJ42f51sgTG3wtKRC27uw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Luka\\Desktop\\delivery3.0\\DeliveryService_3.0\\DeliveryServiceData\\DeliveryServiceData.csproj",
+  "projectFilePath": "C:\\Users\\Luka\\Desktop\\nst\\DeliveryService_3.0\\DeliveryServiceData\\DeliveryServiceData.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Luka\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.13\\microsoft.aspnetcore.cryptography.internal.6.0.13.nupkg.sha512",
     "C:\\Users\\Luka\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\6.0.13\\microsoft.aspnetcore.cryptography.keyderivation.6.0.13.nupkg.sha512",

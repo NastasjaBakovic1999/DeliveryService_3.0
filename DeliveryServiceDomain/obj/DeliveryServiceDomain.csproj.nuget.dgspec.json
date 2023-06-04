@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Luka\\Desktop\\delivery3.0\\DeliveryService_3.0\\DeliveryServiceDomain\\DeliveryServiceDomain.csproj": {}
+    "C:\\Users\\Luka\\Desktop\\nst\\DeliveryService_3.0\\DeliveryServiceDomain\\DeliveryServiceDomain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Luka\\Desktop\\delivery3.0\\DeliveryService_3.0\\DeliveryServiceDomain\\DeliveryServiceDomain.csproj": {
+    "C:\\Users\\Luka\\Desktop\\nst\\DeliveryService_3.0\\DeliveryServiceDomain\\DeliveryServiceDomain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Luka\\Desktop\\delivery3.0\\DeliveryService_3.0\\DeliveryServiceDomain\\DeliveryServiceDomain.csproj",
+        "projectUniqueName": "C:\\Users\\Luka\\Desktop\\nst\\DeliveryService_3.0\\DeliveryServiceDomain\\DeliveryServiceDomain.csproj",
         "projectName": "DeliveryServiceDomain",
-        "projectPath": "C:\\Users\\Luka\\Desktop\\delivery3.0\\DeliveryService_3.0\\DeliveryServiceDomain\\DeliveryServiceDomain.csproj",
+        "projectPath": "C:\\Users\\Luka\\Desktop\\nst\\DeliveryService_3.0\\DeliveryServiceDomain\\DeliveryServiceDomain.csproj",
         "packagesPath": "C:\\Users\\Luka\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Luka\\Desktop\\delivery3.0\\DeliveryService_3.0\\DeliveryServiceDomain\\obj\\",
+        "outputPath": "C:\\Users\\Luka\\Desktop\\nst\\DeliveryService_3.0\\DeliveryServiceDomain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages",
@@ -83,7 +83,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -92,7 +93,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

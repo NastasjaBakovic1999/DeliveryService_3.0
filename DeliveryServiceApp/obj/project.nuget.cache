@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ku8cUoFGXCdBBFgoTjgTn1U82GaWzqtEhM17SslVTU1z5iTMW4642GlQhpWhNlqb9648WCBJb9ONO7tgJNwMnQ==",
+  "dgSpecHash": "DIPZMlpa2fpfAKR338Nf8bXkUrT2VeQt/Jx0xvhiSmi0vIWnbUUzmncvgqSVfk4hr9XYJl8bWA2+bBeThCpznw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Luka\\Desktop\\delivery3.0\\DeliveryService_3.0\\DeliveryServiceApp\\DeliveryServiceApp.csproj",
+  "projectFilePath": "C:\\Users\\Luka\\Desktop\\nst\\DeliveryService_3.0\\DeliveryServiceApp\\DeliveryServiceApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Luka\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\Luka\\.nuget\\packages\\googleanalytics.googlecharts.net\\1.0.1\\googleanalytics.googlecharts.net.1.0.1.nupkg.sha512",
@@ -199,7 +199,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'GoogleAnalytics.GoogleCharts.NET 1.0.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "message": "Package 'GoogleAnalytics.GoogleCharts.NET 1.0.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
       "libraryId": "GoogleAnalytics.GoogleCharts.NET",
       "targetGraphs": [
         "net6.0"

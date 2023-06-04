@@ -20,7 +20,7 @@ namespace DeliveryServiceDomain
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB; Database=Delivery_Service_Database;");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB; Database=Delivery_Service;");
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
