@@ -19,8 +19,7 @@
                      </div>
                      <div class="form-group">
                          <label asp-for="SendingCity" class="control-label">Sending City</label>
-                         <input asp-for="SendingCity" type="text" id="cityInput" class="form-control" list="cityOptions" />
-                         <datalist id="cityOptions"></datalist>
+                         <input asp-for="SendingCity" type="text" id="cityInput" class="form-control" />
                      </div>
                      <div class="form-group">
                          <label asp-for="SendingAddress" class="control-label"></label>
@@ -34,8 +33,7 @@
                     </div>
                      <div class="form-group">
                          <label asp-for="ReceivingCity" class="control-label">Receiving City</label>
-                        <input asp-for="ReceivingCity" type="text" id="rcityInput" class="form-control" list="rcityOptions" />
-                         <datalist id="rcityOptions"></datalist>
+                         <input asp-for="ReceivingCity" type="text" id="rcityInput" class="form-control" />
                      </div>
                     <div class="form-group">
                         <label asp-for="ReceivingAddress" class="control-label"></label>
@@ -98,6 +96,8 @@
 
 @section Scripts {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/smoothness/jquery-ui.css">
     <script>
         $("#addService").click(function(event){
           $.ajax({
@@ -131,75 +131,49 @@
     </script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script>
-        var typingTimer;
-        var doneTypingInterval = 1000;  // 1 sec delay
-
         $(document).ready(function() {
             var inputField = $('#cityInput');
-            var dataList = $('#cityOptions');
             
-            inputField.on('input', function(){
-                clearTimeout(typingTimer);
-                typingTimer = setTimeout(doneTyping, doneTypingInterval);
+            inputField.autocomplete({
+                source: function(request, response){
+                    $.ajax({
+                        url: 'https://api.api-ninjas.com/v1/city?name=' + inputField.val() + '&limit=30&country=RS',
+                        method: 'GET',
+                        headers: { 'X-Api-Key': '2rSffgtf65ojstrBpnXIOQ==OgTsWTJyB5CP8NtW' },
+                        success: function (res) {
+                                response(res.map(function(city){
+                                return city.name
+                            }));
+                        },
+                        error: function (error) {
+                            console.log(error);
+                        }
+                    });
+                },
+                minLength: 2
             });
-            
-            function doneTyping(){
-                var cityName = inputField.val();
-                $.ajax({
-                    url: 'https://api.api-ninjas.com/v1/city?name=' + cityName + '&limit=30&country=RS',
-                    method: 'GET',
-                    headers: { 'X-Api-Key': '2rSffgtf65ojstrBpnXIOQ==OgTsWTJyB5CP8NtW' },
-                    success: function(res){
-                        populateDropdown(res, dataList);
-                    },
-                    error: function(error){
-                        console.log(error);    
-                    }
-                })
-            }
-
-            function populateDropdown(cities, datalist) {
-                datalist.empty();
-                cities.forEach(function (city) {
-                    datalist.append('<option value="' + city.name + '">');
-                });
-            }
-        })
+        });
     </script>
     <script>
-        var typingTimer;
-        var doneTypingInterval = 1000;  // 1 sec delay
+        var inputField = $('#rcityInput');
 
-        $(document).ready(function () {
-            var inputField = $('#rcityInput');
-            var dataList = $('#rcityOptions');
-
-            inputField.on('input', function () {
-                clearTimeout(typingTimer);
-                typingTimer = setTimeout(doneTyping, doneTypingInterval);
-            });
-
-            function doneTyping() {
-                var cityName = inputField.val();
+        inputField.autocomplete({
+            source: function (request, response) {
                 $.ajax({
-                    url: 'https://api.api-ninjas.com/v1/city?name=' + cityName + '&limit=30&country=RS',
+                    url: 'https://api.api-ninjas.com/v1/city?name=' + inputField.val() + '&limit=30&country=RS',
                     method: 'GET',
                     headers: { 'X-Api-Key': '2rSffgtf65ojstrBpnXIOQ==OgTsWTJyB5CP8NtW' },
                     success: function (res) {
-                        populateDropdown(res, dataList);
+                        response(res.map(function (city) {
+                            return city.name
+                        }));
                     },
                     error: function (error) {
                         console.log(error);
                     }
-                })
-            }
-
-            function populateDropdown(cities, datalist) {
-                datalist.empty();
-                cities.forEach(function (city) {
-                    datalist.append('<option value="' + city.name + '">');
                 });
-            }
-        })
+            },
+            minLength: 2
+        });
     </script>
 }
